@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/Choice.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/Combat.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/Exit.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/Key.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/Lore.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/Player.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/TileBackground.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/TileCover.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

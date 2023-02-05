@@ -1,0 +1,33 @@
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Project Ring-Quest.exe
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Project Ring-Quest.deps.json
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Project Ring-Quest.runtimeconfig.json
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Project Ring-Quest.dll
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Project Ring-Quest.pdb
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\MonoGame.Framework.dll
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\runtimes\osx\native\libSDL2.dylib
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\runtimes\osx\native\libopenal.1.dylib
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\runtimes\win-x64\native\SDL2.dll
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\runtimes\win-x64\native\soft_oal.dll
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\runtimes\win-x86\native\SDL2.dll
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\runtimes\win-x86\native\soft_oal.dll
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\obj\Debug\net6.0\Project Ring-Quest.csproj.AssemblyReference.cache
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\obj\Debug\net6.0\Project Ring-Quest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\obj\Debug\net6.0\Project Ring-Quest.AssemblyInfoInputs.cache
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\obj\Debug\net6.0\Project Ring-Quest.AssemblyInfo.cs
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\obj\Debug\net6.0\Project Ring-Quest.csproj.CoreCompileInputs.cache
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\obj\Debug\net6.0\Project Ring-Quest.csproj.CopyComplete
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\obj\Debug\net6.0\Project Ring-Quest.dll
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\obj\Debug\net6.0\refint\Project Ring-Quest.dll
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\obj\Debug\net6.0\Project Ring-Quest.pdb
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\obj\Debug\net6.0\Project Ring-Quest.genruntimeconfig.cache
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\obj\Debug\net6.0\ref\Project Ring-Quest.dll
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\Choice.xnb
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\Combat.xnb
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\Exit.xnb
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\Key.xnb
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\Lore.xnb
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\Player.xnb
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\TileBackground.xnb
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\TileCover.xnb
