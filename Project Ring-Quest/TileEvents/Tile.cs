@@ -10,16 +10,20 @@ namespace RingQuest
 {
     public class Tile
     {
-        public static int SIZE = 128;
+        public const int SIZE = 128;
 
         public Rectangle rect;
         public TileEvent tEvent;
         bool covered;
 
+        List<Tile> adjacentTiles;
+
         public Tile(Vector2 position)
         {
             rect = new Rectangle((int)position.X, (int)position.Y, SIZE, SIZE);
             covered = true;
+
+            adjacentTiles = new List<Tile>();
         }
 
         public void Uncover()
@@ -35,6 +39,17 @@ namespace RingQuest
             else if (tEvent != null) result.Add(tEvent.sprite);
 
             return result;
+        }
+
+        public void Connect(Tile t)
+        {
+            adjacentTiles.Add(t);
+            t.adjacentTiles.Add(this);
+        }
+
+        public bool IsTileAdjacent(Tile t)
+        {
+            return adjacentTiles.Contains(t);
         }
     }
 }

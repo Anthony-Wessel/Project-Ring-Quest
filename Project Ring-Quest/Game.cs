@@ -5,6 +5,7 @@ using IndependentResolutionRendering;
 using System;
 using System.Diagnostics;
 using RingQuest;
+using System.Collections.Generic;
 
 namespace Project_Ring_Quest
 {
@@ -14,6 +15,7 @@ namespace Project_Ring_Quest
         private SpriteBatch _spriteBatch;
 
         Tile[,] tiles;
+        Player player;
         Vector2 ScreenSize { get { return new Vector2(1920, 1080); } }
         Vector2 mousePos
         {
@@ -42,26 +44,40 @@ namespace Project_Ring_Quest
 
         protected override void Initialize()
         {
+            // Setup graphics scaling
             Resolution.Init(ref _graphics);
             Resolution.SetVirtualResolution(1920, 1080);
             Resolution.SetResolution((int)ScreenSize.X, (int)ScreenSize.Y, false);
 
+            // Misc window settings
             Window.AllowUserResizing = true;
             Window.ClientSizeChanged += updateResolution;
-            //Window.IsBorderless = true;
+            ///Window.IsBorderless = true;
 
+            // Spawn grid of tiles
             Vector2 boardSize = new Vector2(10, 5);
-
             Vector2 offset = (ScreenSize / 2) - (boardSize / 2 * Tile.SIZE);
             tiles = new Tile[(int)boardSize.X, (int)boardSize.Y];
+            List<Tile> emptyTiles = new List<Tile>();
             for (int y = 0; y < boardSize.Y; y++)
             {
                 for (int x = 0; x < boardSize.X; x++)
                 {
-                    tiles[x, y] = new Tile(new Vector2(offset.X + x * Tile.SIZE, offset.Y + y * Tile.SIZE));
+                    Tile t = new Tile(new Vector2(offset.X + x * Tile.SIZE, offset.Y + y * Tile.SIZE));
+                    if (x > 0) t.Connect(tiles[x - 1, y]);
+                    if (y > 0) t.Connect(tiles[x, y - 1]);
+
+                    tiles[x, y] = t;
+                    emptyTiles.Add(t);
                 }
             }
 
+            // Spawn player
+            Random rng = new Random();
+            int index = rng.Next(emptyTiles.Count);
+            player = new Player(emptyTiles[index]);
+
+            // Setup mouse events
             mouseClicked = CheckIfTileClicked;
             wasPressed = false;
 
@@ -74,7 +90,8 @@ namespace Project_Ring_Quest
             {
                 if (t.rect.Contains(mousePos))
                 {
-                    t.Uncover();
+                    if (t.IsTileAdjacent(player.currentTile))
+                        player.MoveTo(t);
                 }
             }
         }
@@ -118,6 +135,7 @@ namespace Project_Ring_Quest
                 foreach (Texture2D tex in t.GetSprites()) _spriteBatch.Draw(tex, t.rect, Color.White);
             }
 
+            _spriteBatch.Draw(player.sprite, player.rect, Color.White);
 
             _spriteBatch.End();
 
