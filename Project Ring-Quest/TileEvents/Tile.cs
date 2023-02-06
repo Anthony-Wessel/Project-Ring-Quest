@@ -10,7 +10,7 @@ namespace RingQuest
 {
     public class Tile
     {
-        static int TILE_SIZE = 64;
+        public static int SIZE = 128;
 
         public Rectangle rect;
         public TileEvent tEvent;
@@ -18,7 +18,7 @@ namespace RingQuest
 
         public Tile(Vector2 position)
         {
-            rect = new Rectangle((int)position.X, (int)position.Y, TILE_SIZE, TILE_SIZE);
+            rect = new Rectangle((int)position.X, (int)position.Y, SIZE, SIZE);
             covered = true;
         }
 
