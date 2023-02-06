@@ -7,10 +7,12 @@ using System.Diagnostics;
 using RingQuest;
 using System.Collections.Generic;
 
-namespace Project_Ring_Quest
+namespace RingQuest
 {
-    public class Game : Microsoft.Xna.Framework.Game
+    public class GameManager : Microsoft.Xna.Framework.Game
     {
+        public static GameManager Instance;
+
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -34,8 +36,9 @@ namespace Project_Ring_Quest
         delegate void MouseClicked(Vector2 mousePos);
         MouseClicked mouseClicked;
 
-        public Game()
+        public GameManager()
         {
+            Instance = this;
             _graphics = new GraphicsDeviceManager(this);
             
             Content.RootDirectory = "Content";
@@ -119,6 +122,8 @@ namespace Project_Ring_Quest
             }
             else wasPressed = false;
 
+            player.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -138,8 +143,13 @@ namespace Project_Ring_Quest
             _spriteBatch.Draw(player.sprite, player.rect, Color.White);
 
             _spriteBatch.End();
-
+            
             base.Draw(gameTime);
+        }
+
+        public void SetWindowTitle(string title)
+        {
+            Window.Title = title;
         }
     }
 }

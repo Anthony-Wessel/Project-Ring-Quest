@@ -14,18 +14,57 @@ namespace RingQuest
         public Rectangle rect;
         public Texture2D sprite { get { return ImageDB.Player; } }
 
+        bool moving;
+        float moveStartTime;
+        Tile previousTile;
+
         public Player(Tile t)
         {
             currentTile = t;
             rect = t.rect;
+
+            t.Uncover();
+
+            moving = false;
         }
         
         public void MoveTo(Tile t)
         {
-            t.Uncover();
+            if (moving) return;
 
+            t.Uncover();
+            // Wait 0.5s
+            // Tile event
+
+            // If successful then move
+            previousTile = currentTile;
             currentTile = t;
-            rect = t.rect;
+            moving = true;
+            moveStartTime = -1;
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            if (moving)
+            {
+                if (moveStartTime == -1) moveStartTime = (float)gameTime.TotalGameTime.TotalSeconds;
+
+                float progress = ((float)gameTime.TotalGameTime.TotalSeconds - moveStartTime) / 0.5f;
+
+                if (progress < 0.95f)
+                {
+                    Vector2 calculatedPosition = Vector2.Lerp(previousTile.rect.Location.ToVector2(), currentTile.rect.Location.ToVector2(), progress);
+                    GameManager.Instance.SetWindowTitle(progress.ToString());
+
+                    rect.Location = calculatedPosition.ToPoint();
+                }
+                else
+                {
+                    GameManager.Instance.SetWindowTitle("testDone");
+                    rect.Location = currentTile.rect.Location;
+                    moving = false;
+                }
+            }
         }
     }
 }

@@ -1,3 +1,3 @@
 ﻿
-using var game = new Project_Ring_Quest.Game();
+using var game = new RingQuest.GameManager();
 game.Run();
