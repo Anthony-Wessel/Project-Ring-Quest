@@ -54,13 +54,11 @@ namespace RingQuest
                 if (progress < 0.95f)
                 {
                     Vector2 calculatedPosition = Vector2.Lerp(previousTile.rect.Location.ToVector2(), currentTile.rect.Location.ToVector2(), progress);
-                    GameManager.Instance.SetWindowTitle(progress.ToString());
 
                     rect.Location = calculatedPosition.ToPoint();
                 }
                 else
                 {
-                    GameManager.Instance.SetWindowTitle("testDone");
                     rect.Location = currentTile.rect.Location;
                     moving = false;
                 }

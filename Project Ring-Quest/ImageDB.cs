@@ -23,10 +23,16 @@ namespace RingQuest
             Key = Content.Load<Texture2D>("Key");
 
             Player = Content.Load<Texture2D>("Player");
+
+            Panel = Content.Load<Texture2D>("UI/Panel");
+            Button = Content.Load<Texture2D>("UI/Button");
+            Button_Pressed = Content.Load<Texture2D>("UI/Button_Pressed");
+            Button_Hovered = Content.Load<Texture2D>("UI/Button_Hovered");
         }
 
         public static Texture2D TileBackground, TileCover,
                                 CombatEvent, ChoiceEvent, LoreEvent, OpenExit, LockedExit, Key,
-                                Player;
+                                Player,
+                                Panel, Button, Button_Pressed, Button_Hovered;
     }
 }

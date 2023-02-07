@@ -31,3 +31,14 @@ C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\
 C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\Player.xnb
 C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\TileBackground.xnb
 C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\TileCover.xnb
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\Tiles\Choice.xnb
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\Tiles\Combat.xnb
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\Tiles\Exit.xnb
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\Tiles\Key.xnb
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\Tiles\Lore.xnb
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\Tiles\TileBackground.xnb
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\Tiles\TileCover.xnb
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\UI\Button.xnb
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\UI\Button_Hovered.xnb
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\UI\Button_Pressed.xnb
+C:\Users\thebo\Desktop\Projects\Project-Ring-Quest\Project Ring-Quest\bin\Debug\net6.0\Content\UI\Panel.xnb
