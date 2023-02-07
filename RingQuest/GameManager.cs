@@ -19,6 +19,10 @@ namespace RingQuest
         Tile[,] tiles;
         Player player;
         Panel openPanel;
+        Input input;
+
+        public delegate void UpdateChildren(GameTime gameTime);
+        public UpdateChildren updateChildren;
 
         public GameManager()
         {
@@ -29,6 +33,7 @@ namespace RingQuest
             IsMouseVisible = true;
 
             Screen.Init(Window);
+            input = new Input();
         }
 
         #region Initialization
@@ -40,8 +45,7 @@ namespace RingQuest
             Resolution.SetVirtualResolution(1920, 1080);
             Resolution.SetResolution((int)Screen.UnscaledSize.X, (int)Screen.UnscaledSize.Y, false);
 
-            // Spawn grid of tiles and player
-            InitBoard();
+            updateChildren = (x) => { };
 
             // Setup mouse events
             mouseClicked = CheckIfTileClicked;
@@ -80,6 +84,9 @@ namespace RingQuest
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             ImageDB.LoadImages(Content);
 
+            // Spawn grid of tiles and player
+            InitBoard();
+
             openPanel = new Panel(new Rectangle(700, 300, 500, 400));
             openPanel.AddUIElement(new Button(new Rectangle(900, 475, 100, 50), "Button", () => Screen.SetWindowTitle("Button pressed")));
         }
@@ -88,17 +95,6 @@ namespace RingQuest
 
         #region Mouse events
 
-        Vector2 mousePos
-        {
-            get
-            {
-                float yScale = 1080f / Window.ClientBounds.Height;
-                float xScale = 1920f / Window.ClientBounds.Width;
-
-                MouseState ms = Mouse.GetState();
-                return new Vector2(xScale * ms.Position.X, yScale * ms.Position.Y);
-            }
-        }
         bool wasPressed;
         delegate void MouseClicked(Vector2 mousePos);
         MouseClicked mouseClicked;
@@ -121,21 +117,20 @@ namespace RingQuest
 
         protected override void Update(GameTime gameTime)
         {
+            input.Update(gameTime);
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
 
             // Check for mouse click
-            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
-            {
-                if (!wasPressed) mouseClicked(mousePos);
-                wasPressed = true;
-            }
-            else wasPressed = false;
+            if (Input.GetMouseButtonDown(0))
+                mouseClicked(Input.GetMousePosition().ToVector2());
 
             // Update player
             player.Update(gameTime);
 
+            updateChildren.Invoke(gameTime);
 
             // Monogame stuff
             base.Update(gameTime);
@@ -143,10 +138,12 @@ namespace RingQuest
 
         protected override void Draw(GameTime gameTime)
         {
+            // Background color
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             Resolution.BeginDraw();
             _spriteBatch.Begin(transformMatrix: Resolution.getTransformationMatrix());
+
 
             // Draw tiles
             foreach (Tile t in tiles)
@@ -157,7 +154,9 @@ namespace RingQuest
             // Draw player
             player.Draw(gameTime, _spriteBatch);
 
+            // Draw panel
             openPanel.Draw(gameTime, _spriteBatch);
+
 
             _spriteBatch.End();
             
