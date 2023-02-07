@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fK0UU4/Ra3xtDXUWI7xpaRQ1kkJAjYV4tf00ZuogOGi72//0DO6f1LGuNwJkd+Wm+SQJNOw1jNbBuLr/gg/gPw==",
+  "dgSpecHash": "xqusLfwSB1STA6ylgifVP031lmXmFVoUyKDpv8CImtrmOShf1KK9LDPsVKZIKejZ+Ru9NS6a5MaH05LfErkQHw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\thebo\\Desktop\\Projects\\Project-Ring-Quest\\Project Ring-Quest\\Project Ring-Quest.csproj",
+  "projectFilePath": "C:\\Users\\thebo\\Desktop\\Projects\\RingQuest\\RingQuest\\RingQuest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\thebo\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
     "C:\\Users\\thebo\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
