@@ -20,9 +20,9 @@ namespace RingQuest
             this.text = text;
         }
 
-        public Dictionary<Texture2D, Rectangle> GetSprites()
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            return null;
+            
         }
     }
 }

@@ -151,14 +151,13 @@ namespace RingQuest
             // Draw tiles
             foreach (Tile t in tiles)
             {
-                foreach (Texture2D tex in t.GetSprites()) _spriteBatch.Draw(tex, t.rect, Color.White);
+                t.Draw(gameTime, _spriteBatch);
             }
 
             // Draw player
-            _spriteBatch.Draw(player.sprite, player.rect, Color.White);
+            player.Draw(gameTime, _spriteBatch);
 
-            var temp = openPanel.GetSprites();
-            foreach (Texture2D tex in temp.Keys) _spriteBatch.Draw(tex, temp[tex], Color.White);
+            openPanel.Draw(gameTime, _spriteBatch);
 
             _spriteBatch.End();
             

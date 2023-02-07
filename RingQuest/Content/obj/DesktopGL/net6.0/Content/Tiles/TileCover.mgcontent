@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/Tiles/TileCover.png</SourceFile>
+  <SourceFile>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/TileCover.png</SourceFile>
   <SourceTime>2023-02-05T12:52:53.5112924-06:00</SourceTime>
-  <DestFile>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/bin/DesktopGL/Content/Tiles/TileCover.xnb</DestFile>
-  <DestTime>2023-02-07T01:09:48.8824235-06:00</DestTime>
+  <DestFile>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/bin/DesktopGL/Content/Tiles/TileCover.xnb</DestFile>
+  <DestTime>2023-02-07T14:31:11.0528797-06:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T06:44:56-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

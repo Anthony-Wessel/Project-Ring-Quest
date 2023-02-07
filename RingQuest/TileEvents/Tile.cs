@@ -31,14 +31,12 @@ namespace RingQuest
             covered = false;
         }
 
-        public List<Texture2D> GetSprites()
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            List<Texture2D> result = new List<Texture2D>();
-            result.Add(ImageDB.TileBackground);
-            if (covered) result.Add(ImageDB.TileCover);
-            else if (tEvent != null) result.Add(tEvent.sprite);
+            spriteBatch.Draw(ImageDB.TileBackground, rect, Color.White);
 
-            return result;
+            if (covered) spriteBatch.Draw(ImageDB.TileCover, rect, Color.White);
+            else if (tEvent != null) spriteBatch.Draw(tEvent.sprite, rect, Color.White);
         }
 
         public void Connect(Tile t)

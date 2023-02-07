@@ -24,22 +24,14 @@ namespace RingQuest
             childElements.Add(element);
         }
 
-        public Dictionary<Texture2D, Rectangle> GetSprites()
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            Dictionary<Texture2D, Rectangle> result = new Dictionary<Texture2D, Rectangle>();
-
-            result.Add(ImageDB.Panel, rect);
+            spriteBatch.Draw(ImageDB.Panel, rect, Color.White);
 
             foreach (UIElement element in childElements)
             {
-                Dictionary<Texture2D, Rectangle> sprites = element.GetSprites();
-                foreach (Texture2D tex in sprites.Keys)
-                {
-                    result.Add(tex, sprites[tex]);
-                }
+                element.Draw(gameTime, spriteBatch);
             }
-
-            return result;
         }
     }
 }

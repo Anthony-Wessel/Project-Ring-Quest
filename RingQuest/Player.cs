@@ -12,7 +12,6 @@ namespace RingQuest
     {
         public Tile currentTile;
         public Rectangle rect;
-        public Texture2D sprite { get { return ImageDB.Player; } }
 
         bool moving;
         float moveStartTime;
@@ -63,6 +62,11 @@ namespace RingQuest
                     moving = false;
                 }
             }
+        }
+
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(ImageDB.Player, rect, Color.White);
         }
     }
 }

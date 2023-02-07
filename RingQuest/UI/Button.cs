@@ -21,14 +21,11 @@ namespace RingQuest
             this.OnClick = OnClick;
         }
 
-        public Dictionary<Texture2D, Rectangle> GetSprites()
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            Dictionary<Texture2D, Rectangle> result = new Dictionary<Texture2D, Rectangle>();
-            result.Add(ImageDB.Button, rect);
+            spriteBatch.Draw(ImageDB.Button, rect, Color.White);
 
-            // TODO: Render text
-
-            return result;
+            text.Draw(gameTime, spriteBatch);
         }
     }
 }

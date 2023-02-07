@@ -4,18 +4,18 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/Player.png</File>
-    <File>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/Tiles/Choice.png</File>
-    <File>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/Tiles/Combat.png</File>
-    <File>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/Tiles/Exit.png</File>
-    <File>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/Tiles/Key.png</File>
-    <File>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/Tiles/Lore.png</File>
-    <File>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/Tiles/TileBackground.png</File>
-    <File>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/Tiles/TileCover.png</File>
-    <File>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/UI/Button_Hovered.png</File>
-    <File>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/UI/Button_Pressed.png</File>
-    <File>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/UI/Button.png</File>
-    <File>C:/Users/thebo/Desktop/Projects/Project-Ring-Quest/Project Ring-Quest/Content/UI/Panel.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Player.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/Choice.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/Combat.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/Exit.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/Key.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/Lore.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/TileBackground.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/TileCover.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/UI/Button_Hovered.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/UI/Button_Pressed.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/UI/Button.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/UI/Panel.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
