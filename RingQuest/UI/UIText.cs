@@ -15,12 +15,16 @@ namespace RingQuest
     public class UIText : UIElement
     {
         public Rectangle rect { get; set; }
-        string text;
+        public string text;
 
-        public UIText(Rectangle parentRect, string text, bool centerJustified = true)
+        public UIText(Rectangle parentRect, string text)
         {
             this.rect = parentRect;
-            
+            SetText(text);         
+        }
+
+        public void SetText(string text)
+        {
             Vector2 textSize = Fonts.defaultFont.MeasureString(text);
 
             if (textSize.X > rect.Width)
@@ -59,34 +63,27 @@ namespace RingQuest
             else this.text = text;
 
 
-            if (centerJustified)
+            // Center individual lines
+            string[] lines = this.text.Split('\n');
+            float maxLength = 0;
+            foreach (string line in lines)
             {
-                string[] lines = this.text.Split('\n');
-                float maxLength = 0;
-                foreach (string line in lines)
-                {
-                    float lineLength = stringLen(line);
-                    if (lineLength > maxLength) maxLength = lineLength;
-                }
-
-                float spaceLength = stringLen(" ");
-                string compiledString = "";
-                foreach (string line in lines)
-                {
-                    float diff = maxLength - stringLen(line);
-                    int spaces = (int)((diff / 2) / spaceLength);
-
-                    for (int i = 0; i < spaces; i++) compiledString += " ";
-                    compiledString += line + '\n';
-                }
-
-                this.text = compiledString;
+                float lineLength = stringLen(line);
+                if (lineLength > maxLength) maxLength = lineLength;
             }
 
-            this.text = this.text.TrimEnd();
+            float spaceLength = stringLen(" ");
+            string compiledString = "";
+            foreach (string line in lines)
+            {
+                float diff = maxLength - stringLen(line);
+                int spaces = (int)((diff / 2) / spaceLength);
 
-            // Center the text within the rect
-                        
+                for (int i = 0; i < spaces; i++) compiledString += " ";
+                compiledString += line + '\n';
+            }
+
+            this.text = compiledString.TrimEnd();
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)

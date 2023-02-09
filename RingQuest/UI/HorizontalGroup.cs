@@ -15,9 +15,11 @@ namespace RingQuest
 
         public HorizontalGroup(Rectangle rect, List<UIElement> children)
         {
-            this.rect = rect;
-            this.children = children;
+            Init(rect, children);
+        }
 
+        public void ConfigurePlacement()
+        {
             float summedWidth = 0;
             foreach (UIElement child in children)
             {
@@ -36,6 +38,14 @@ namespace RingQuest
             }
         }
 
+        public void Init(Rectangle rect, List<UIElement> children)
+        {
+            this.rect = rect;
+            if (children == null) this.children = new List<UIElement>();
+            else this.children = children;
+
+            ConfigurePlacement();
+        }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {

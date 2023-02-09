@@ -18,7 +18,7 @@ namespace RingQuest
 
         Tile[,] tiles;
         Player player;
-        Panel openPanel;
+        PromptPanel promptPanel;
         Input input;
 
         public delegate void UpdateChildren(GameTime gameTime);
@@ -87,7 +87,8 @@ namespace RingQuest
             var options = new Dictionary<string, Action>();
             options.Add("Close window", () => Debug.WriteLine("Trying to close window, but that's not implemented yet"));
             options.Add("Red", () => Debug.WriteLine("You pressed the button that said 'red'"));
-            openPanel = Panel.PromptPanel("This is a title", "This is a prompt. I am prompting you to make a decision. Please choose one of the following choices by pressing one of the buttons. Your decision will affect your character in some way.", options);
+            promptPanel = new PromptPanel();
+            promptPanel.DisplayPrompt("This is a title", "This is a prompt. I am prompting you to make a decision. Please choose one of the following choices by pressing one of the buttons. Your decision will affect your character in some way.", options);
         }
 
         #endregion
@@ -127,6 +128,19 @@ namespace RingQuest
 
             updateChildren.Invoke(gameTime);
 
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (promptPanel.hidden)
+                {
+                    var options = new Dictionary<string, Action>();
+                    options.Add("test1", null);
+                    options.Add("test2", null);
+                    options.Add("test3", null);
+                    promptPanel.DisplayPrompt("BRAND NEW TITLE!", "There's no point in putting anything complex here right now.", options);
+                }
+                else promptPanel.hidden = true;
+            }
+
             // Monogame stuff
             base.Update(gameTime);
         }
@@ -150,7 +164,7 @@ namespace RingQuest
             player.Draw(gameTime, _spriteBatch);
 
             // Draw panel
-            openPanel.Draw(gameTime, _spriteBatch);
+            promptPanel.Draw(gameTime, _spriteBatch);
 
 
             _spriteBatch.End();

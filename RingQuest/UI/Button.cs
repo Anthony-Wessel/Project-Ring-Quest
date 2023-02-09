@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace RingQuest
     public class Button : UIElement
     {
         Rectangle r;
-        public Rectangle rect { get { return r; } set { r = value; if (text != null) text.rect = value; } }
+        public Rectangle rect { get { return r; } set { r = value; if (text != null) { text.rect = value; text.SetText(text.text); } } }
         UIText text;
         Action OnClick;
 
@@ -19,19 +20,22 @@ namespace RingQuest
 
         public Button(Rectangle rect, string text, Action OnClick)
         {
-            this.rect = rect;
-            this.text = new UIText(rect, text);
-            this.OnClick = OnClick;
-
-            GameManager.Instance.updateChildren += Update;
+            Init(rect, text, OnClick);
         }
 
-        public static Button UIButton(Point position, string text, Action OnClick)
+        public void Init(Rectangle rect, string text, Action OnClick)
         {
-            Button uiButton = new Button(new Rectangle(position, new Point(100, 50)), text, OnClick);
+            this.rect = rect;
+            if (this.text == null) this.text = new UIText(rect, text);
+            else
+            {
+                this.text.rect = rect;
+                this.text.SetText(text);
+            }
 
+            this.OnClick = OnClick;
 
-            return uiButton;
+            Activate();
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -63,6 +67,16 @@ namespace RingQuest
                 hovered = false;
                 pressed = false;
             }
+        }
+
+        public void Activate()
+        {
+            GameManager.Instance.updateChildren += Update;
+        }
+
+        public void Deactivate()
+        {
+            GameManager.Instance.updateChildren -= Update;
         }
     }
 }
