@@ -16,7 +16,6 @@ namespace RingQuest
     {
         public Rectangle rect { get; set; }
         string text;
-        Vector2 drawPosition;
 
         public UIText(Rectangle parentRect, string text, bool centerJustified = true)
         {
@@ -87,13 +86,15 @@ namespace RingQuest
             this.text = this.text.TrimEnd();
 
             // Center the text within the rect
-            textSize = Fonts.defaultFont.MeasureString(this.text);
-            drawPosition = new Vector2(rect.Location.X + (rect.Width - textSize.X) / 2, rect.Location.Y + (rect.Height - textSize.Y) / 2);            
+                        
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Fonts.defaultFont, text, drawPosition, Color.White);
+            Vector2 textSize = Fonts.defaultFont.MeasureString(this.text);
+            Vector2 drawPosition = new Vector2(rect.Location.X + (rect.Width - textSize.X) / 2, rect.Location.Y + (rect.Height - textSize.Y) / 2);
+
+            spriteBatch.DrawString(Fonts.defaultFont, text, drawPosition, Color.Black);
         }
 
         float stringLen(string x)

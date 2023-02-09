@@ -10,7 +10,8 @@ namespace RingQuest
 {
     public class Button : UIElement
     {
-        public Rectangle rect { get; set; }
+        Rectangle r;
+        public Rectangle rect { get { return r; } set { r = value; if (text != null) text.rect = value; } }
         UIText text;
         Action OnClick;
 
@@ -23,6 +24,14 @@ namespace RingQuest
             this.OnClick = OnClick;
 
             GameManager.Instance.updateChildren += Update;
+        }
+
+        public static Button UIButton(Point position, string text, Action OnClick)
+        {
+            Button uiButton = new Button(new Rectangle(position, new Point(100, 50)), text, OnClick);
+
+
+            return uiButton;
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)

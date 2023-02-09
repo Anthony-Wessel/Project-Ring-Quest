@@ -19,17 +19,24 @@ namespace RingQuest
             childElements = new List<UIElement>();
         }
 
-        public Panel PromptPanel(string title, string prompt, Dictionary<string, Action> options)
+        public static Panel PromptPanel(string title, string prompt, Dictionary<string, Action> options)
         {
             Panel promptPanel = new Panel(new Rectangle(610, 290, 700, 500));
 
             // Title
-            Vector2 titleSize = Fonts.defaultFont.MeasureString(title);
+            promptPanel.AddUIElement(new UIText(new Rectangle(670, 315,600,50), title));
 
             // Prompt
+            promptPanel.AddUIElement(new UIText(new Rectangle(720, 390, 500, 300), prompt));
 
             // Options
+            List<UIElement> buttons = new List<UIElement>();
+            foreach (string option in options.Keys)
+            {
+                buttons.Add(Button.UIButton(Point.Zero, option, options[option]));
+            }
 
+            promptPanel.AddUIElement(new HorizontalGroup(new Rectangle(720,690,500,100), buttons));
 
             return promptPanel;
         }

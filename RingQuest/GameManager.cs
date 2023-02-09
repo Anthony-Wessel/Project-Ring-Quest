@@ -84,8 +84,10 @@ namespace RingQuest
             // Spawn grid of tiles and player
             InitBoard();
 
-            openPanel = new Panel(new Rectangle(700, 300, 500, 400));
-            openPanel.AddUIElement(new Button(new Rectangle(900, 475, 100, 50), "This is a button", () => Screen.SetWindowTitle("Button pressed")));
+            var options = new Dictionary<string, Action>();
+            options.Add("Close window", () => Debug.WriteLine("Trying to close window, but that's not implemented yet"));
+            options.Add("Red", () => Debug.WriteLine("You pressed the button that said 'red'"));
+            openPanel = Panel.PromptPanel("This is a title", "This is a prompt. I am prompting you to make a decision. Please choose one of the following choices by pressing one of the buttons. Your decision will affect your character in some way.", options);
         }
 
         #endregion
