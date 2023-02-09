@@ -19,6 +19,21 @@ namespace RingQuest
             childElements = new List<UIElement>();
         }
 
+        public Panel PromptPanel(string title, string prompt, Dictionary<string, Action> options)
+        {
+            Panel promptPanel = new Panel(new Rectangle(610, 290, 700, 500));
+
+            // Title
+            Vector2 titleSize = Fonts.defaultFont.MeasureString(title);
+
+            // Prompt
+
+            // Options
+
+
+            return promptPanel;
+        }
+
         public void AddUIElement(UIElement element)
         {
             childElements.Add(element);

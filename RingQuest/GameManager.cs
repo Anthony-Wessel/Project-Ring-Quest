@@ -47,10 +47,6 @@ namespace RingQuest
 
             updateChildren = (x) => { };
 
-            // Setup mouse events
-            mouseClicked = CheckIfTileClicked;
-            wasPressed = false;
-
             base.Initialize();
         }
 
@@ -83,21 +79,18 @@ namespace RingQuest
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             ImageDB.LoadImages(Content);
+            Fonts.LoadFonts(Content);
 
             // Spawn grid of tiles and player
             InitBoard();
 
             openPanel = new Panel(new Rectangle(700, 300, 500, 400));
-            openPanel.AddUIElement(new Button(new Rectangle(900, 475, 100, 50), "Button", () => Screen.SetWindowTitle("Button pressed")));
+            openPanel.AddUIElement(new Button(new Rectangle(900, 475, 100, 50), "This is a button", () => Screen.SetWindowTitle("Button pressed")));
         }
 
         #endregion
 
         #region Mouse events
-
-        bool wasPressed;
-        delegate void MouseClicked(Vector2 mousePos);
-        MouseClicked mouseClicked;
 
         void CheckIfTileClicked(Vector2 mousePos)
         {
@@ -125,7 +118,7 @@ namespace RingQuest
 
             // Check for mouse click
             if (Input.GetMouseButtonDown(0))
-                mouseClicked(Input.GetMousePosition().ToVector2());
+                CheckIfTileClicked(Input.GetMousePosition().ToVector2());
 
             // Update player
             player.Update(gameTime);

@@ -42,3 +42,4 @@ C:\Users\thebo\Desktop\Projects\RingQuest\RingQuest\obj\Debug\net6.0\refint\Ring
 C:\Users\thebo\Desktop\Projects\RingQuest\RingQuest\obj\Debug\net6.0\RingQuest.pdb
 C:\Users\thebo\Desktop\Projects\RingQuest\RingQuest\obj\Debug\net6.0\RingQuest.genruntimeconfig.cache
 C:\Users\thebo\Desktop\Projects\RingQuest\RingQuest\obj\Debug\net6.0\ref\RingQuest.dll
+C:\Users\thebo\Desktop\Projects\RingQuest\RingQuest\bin\Debug\net6.0\Content\DefaultFont.xnb

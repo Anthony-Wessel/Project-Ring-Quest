@@ -4,6 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/DefaultFont.spritefont</File>
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Player.png</File>
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/Choice.png</File>
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/Combat.png</File>
@@ -18,6 +19,7 @@
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/UI/Panel.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -39,7 +39,6 @@ namespace RingQuest
 
         void Update(GameTime gameTime)
         {
-            Screen.SetWindowTitle(gameTime.TotalGameTime.TotalSeconds + "");
             if (rect.Contains(Input.GetMousePosition()))
             {
                 hovered = true;

@@ -1,4 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/DefaultFont.spritefont","C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/bin/DesktopGL/Content/DefaultFont.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21535,0.3900148
 "C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Player.png","C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/bin/DesktopGL/Content/Player.xnb","TextureProcessor","Texture2DContent",916,16469,0.2501182
 "C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/Choice.png","C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/bin/DesktopGL/Content/Tiles/Choice.xnb","TextureProcessor","Texture2DContent",3640,262229,0.0124057
 "C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/Combat.png","C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/bin/DesktopGL/Content/Tiles/Combat.xnb","TextureProcessor","Texture2DContent",11154,262229,0.0139955
