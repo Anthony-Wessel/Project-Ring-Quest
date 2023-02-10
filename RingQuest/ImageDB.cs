@@ -20,6 +20,7 @@ namespace RingQuest
             CombatEvent = Content.Load<Texture2D>("Combat");
             LoreEvent = Content.Load<Texture2D>("Lore");
             OpenExit = Content.Load<Texture2D>("Exit");
+            LockedExit = Content.Load<Texture2D>("Tiles/Exit_Locked");
             Key = Content.Load<Texture2D>("Key");
 
             Player = Content.Load<Texture2D>("Player");

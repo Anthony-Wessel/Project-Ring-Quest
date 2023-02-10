@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace RingQuest
 {
-    public class GameManager : Microsoft.Xna.Framework.Game
+    public class GameManager : Game
     {
         public static GameManager Instance;
 
@@ -20,6 +20,8 @@ namespace RingQuest
         Player player;
         PromptPanel promptPanel;
         Input input;
+
+        ExitEvent exit;
 
         public delegate void UpdateChildren(GameTime gameTime);
         public UpdateChildren updateChildren;
@@ -61,17 +63,48 @@ namespace RingQuest
                 for (int x = 0; x < boardSize.X; x++)
                 {
                     Tile t = new Tile(new Vector2(offset.X + x * Tile.SIZE, offset.Y + y * Tile.SIZE));
+
+                    if ((new Random()).NextSingle() < 0.25f)
+                    {
+                        t.SetEvent(new ChoiceEvent("Choice Event", "Here is a difficult choice for you to make." +
+                                                                "You need to choose one of the following options, which" +
+                                                                "may have a significant impact on your game.", new Dictionary<string, Action>()
+                                                                {
+                                                                    { "red", () => Debug.WriteLine("red") },
+                                                                    { "green", () => Debug.WriteLine("green") },
+                                                                    { "blue", () => Debug.WriteLine("blue") },
+                                                                }));
+                        
+                    }
+                    else emptyTiles.Add(t);
+
+
                     if (x > 0) t.Connect(tiles[x - 1, y]);
                     if (y > 0) t.Connect(tiles[x, y - 1]);
 
                     tiles[x, y] = t;
-                    emptyTiles.Add(t);
+                    
                 }
             }
 
-            // Spawn player
+            // Spawn exit
             Random rng = new Random();
             int index = rng.Next(emptyTiles.Count);
+            bool locked = rng.NextSingle() > 0f;
+            exit = new ExitEvent(locked);
+            emptyTiles[index].SetEvent(exit);
+            emptyTiles.RemoveAt(index);
+
+            // Spawn key?
+            if (locked)
+            {
+                index = rng.Next(emptyTiles.Count);
+                emptyTiles[index].SetEvent(new KeyEvent());
+                emptyTiles.RemoveAt(index);
+            }
+
+            // Spawn player
+            index = rng.Next(emptyTiles.Count);
             player = new Player(emptyTiles[index]);
         }
 
@@ -84,11 +117,7 @@ namespace RingQuest
             // Spawn grid of tiles and player
             InitBoard();
 
-            var options = new Dictionary<string, Action>();
-            options.Add("Close window", () => Debug.WriteLine("Trying to close window, but that's not implemented yet"));
-            options.Add("Red", () => Debug.WriteLine("You pressed the button that said 'red'"));
             promptPanel = new PromptPanel();
-            promptPanel.DisplayPrompt("This is a title", "This is a prompt. I am prompting you to make a decision. Please choose one of the following choices by pressing one of the buttons. Your decision will affect your character in some way.", options);
         }
 
         #endregion
@@ -113,33 +142,22 @@ namespace RingQuest
 
         protected override void Update(GameTime gameTime)
         {
+            Debug.WriteLine("Update");
             input.Update(gameTime);
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
 
-            // Check for mouse click
-            if (Input.GetMouseButtonDown(0))
-                CheckIfTileClicked(Input.GetMousePosition().ToVector2());
-
             // Update player
             player.Update(gameTime);
 
             updateChildren.Invoke(gameTime);
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (promptPanel.hidden)
-                {
-                    var options = new Dictionary<string, Action>();
-                    options.Add("test1", null);
-                    options.Add("test2", null);
-                    options.Add("test3", null);
-                    promptPanel.DisplayPrompt("BRAND NEW TITLE!", "There's no point in putting anything complex here right now.", options);
-                }
-                else promptPanel.hidden = true;
-            }
+            // Check for mouse click
+            if (Input.GetMouseButtonDown(0) && promptPanel.hidden)
+                CheckIfTileClicked(Input.GetMousePosition().ToVector2());
+
 
             // Monogame stuff
             base.Update(gameTime);
@@ -170,6 +188,11 @@ namespace RingQuest
             _spriteBatch.End();
             
             base.Draw(gameTime);
+        }
+
+        public void UnlockExit()
+        {
+            exit.Unlock();
         }
     }
 }

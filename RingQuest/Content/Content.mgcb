@@ -56,6 +56,18 @@
 /processorParam:TextureFormat=Color
 /build:Tiles/Combat.png
 
+#begin Tiles/Exit_Locked.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Tiles/Exit_Locked.png
+
 #begin Tiles/Exit.png
 /importer:TextureImporter
 /processor:TextureProcessor

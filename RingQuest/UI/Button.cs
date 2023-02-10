@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,10 +18,13 @@ namespace RingQuest
         Action OnClick;
 
         bool pressed, hovered;
+        bool skipFrame;
+        bool active;
 
         public Button(Rectangle rect, string text, Action OnClick)
         {
             Init(rect, text, OnClick);
+            GameManager.Instance.updateChildren += Update;
         }
 
         public void Init(Rectangle rect, string text, Action OnClick)
@@ -52,10 +56,23 @@ namespace RingQuest
 
         void Update(GameTime gameTime)
         {
+            Debug.WriteLine("Button Update");
+            if (!active) return;
+            Debug.WriteLine("Active Button Update");
+
+            if (skipFrame)
+            {
+                skipFrame = false;
+                return;
+            }
+
             if (rect.Contains(Input.GetMousePosition()))
             {
                 hovered = true;
-                if (Input.GetMouseButtonDown(0)) pressed = true;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    pressed = true;
+                }
                 if (Input.GetMouseButtonUp(0) && pressed)
                 {
                     pressed = false;
@@ -71,12 +88,13 @@ namespace RingQuest
 
         public void Activate()
         {
-            GameManager.Instance.updateChildren += Update;
+            active = true;
+            skipFrame = true;
         }
 
         public void Deactivate()
         {
-            GameManager.Instance.updateChildren -= Update;
+            active = false;
         }
     }
 }

@@ -8,6 +8,7 @@
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Player.png</File>
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/Choice.png</File>
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/Combat.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/Exit_Locked.png</File>
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/Exit.png</File>
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/Key.png</File>
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/Lore.png</File>
@@ -19,6 +20,7 @@
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/UI/Panel.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

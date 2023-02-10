@@ -14,7 +14,7 @@ namespace RingQuest
 
         public Rectangle rect;
         public TileEvent tEvent;
-        bool covered;
+        public bool covered;
 
         List<Tile> adjacentTiles;
 
@@ -48,6 +48,13 @@ namespace RingQuest
         public bool IsTileAdjacent(Tile t)
         {
             return adjacentTiles.Contains(t);
+        }
+
+        public void SetEvent(TileEvent tEvent)
+        {
+            if (tEvent != null)
+                tEvent.tile = this;
+            this.tEvent = tEvent;
         }
     }
 }

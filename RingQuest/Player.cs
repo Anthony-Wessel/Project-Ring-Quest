@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace RingQuest
         bool moving;
         float moveStartTime;
         Tile previousTile;
+        Tile desiredTile;
 
         public Player(Tile t)
         {
@@ -26,19 +28,35 @@ namespace RingQuest
 
             moving = false;
         }
-        
+
         public void MoveTo(Tile t)
         {
             if (moving) return;
 
-            t.Uncover();
-            // Wait 0.5s
-            // Tile event
+            desiredTile = t;
 
-            // If successful then move
-            previousTile = currentTile;
-            currentTile = t;
+            if (t.covered)
+                t.Uncover();
+
+            if (t.tEvent != null)
+                t.tEvent.StartEvent(CompleteMove);
+            else
+                CompleteMove(true);
+        }
+
+        public void CompleteMove(bool successfulMove)
+        {
+            if (!successfulMove)
+            {
+                moving = false;
+                desiredTile = currentTile;
+                return;
+            }
+
             moving = true;
+
+            previousTile = currentTile;
+            currentTile = desiredTile;
             moveStartTime = -1;
         }
 

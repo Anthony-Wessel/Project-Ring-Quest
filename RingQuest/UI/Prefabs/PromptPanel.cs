@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,8 @@ namespace RingQuest
 {
     public class PromptPanel : Panel
     {
+        static PromptPanel instance;
+
         UIText title, prompt;
         Button[] buttons;
         HorizontalGroup buttonGroup;
@@ -29,28 +32,40 @@ namespace RingQuest
 
             buttonGroup = new HorizontalGroup(new Rectangle(720, 690, 500, 100), null);
             AddUIElement(buttonGroup);
+
+            instance = this;
+            Hide();
         }
 
-        public void DisplayPrompt(string title, string prompt, Dictionary<string, Action> options)
+        public static void DisplayPrompt(string title, string prompt, Dictionary<string, Action> options)
         {
-            this.title.SetText(title);
-            this.prompt.SetText(prompt);
+            instance.title.SetText(title);
+            instance.prompt.SetText(prompt);
 
 
-            buttonGroup.children.Clear();
+            instance.buttonGroup.children.Clear();
 
             int index = 0;
             foreach (string option in options.Keys)
             {
-                buttons[index].Init(buttons[index].rect, option, options[option]);
-                buttonGroup.children.Add(buttons[index]);
+                instance.buttons[index].Init(instance.buttons[index].rect, option, options[option]);
+                instance.buttonGroup.children.Add(instance.buttons[index]);
                 index++;
             }
-            while (index < buttons.Length) buttons[index++].Deactivate();
+            while (index < instance.buttons.Length) instance.buttons[index++].Deactivate();
 
-            buttonGroup.ConfigurePlacement();
+            instance.buttonGroup.ConfigurePlacement();
 
-            hidden = false;
+            instance.hidden = false;
+        }
+
+        public static void Hide()
+        {
+            instance.hidden = true;
+            foreach (Button btn in instance.buttons)
+            {
+                btn.Deactivate();
+            }
         }
     }
 }
