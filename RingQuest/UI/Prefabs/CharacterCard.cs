@@ -13,29 +13,26 @@ namespace RingQuest
         public Rectangle rect { get; set; }
         Rectangle charSpriteRect;
 
-        Texture2D charSprite;
-        int currentHealth, maxHealth;
-
         UIText name;
         HealthBar healthBar;
 
-        public CharacterCard()
+        Character character;
+
+        public CharacterCard(Character character)
         {
+            this.character = character;
+
             rect = new Rectangle(100, 100, 300, 400);
             charSpriteRect = new Rectangle(rect.X, rect.Y, 300, 300);
 
-            charSprite = ImageDB.C_Lizard;
-            currentHealth = 7;
-            maxHealth = 10;
-
-            name = new UIText(new Rectangle(rect.X, rect.Y + 300, 300, 50), "Lizardman");
-            healthBar = new HealthBar(new Rectangle(rect.X, rect.Y + 350, 300, 50), currentHealth, maxHealth);
+            name = new UIText(new Rectangle(rect.X, rect.Y + 300, 300, 50), character.name);
+            healthBar = new HealthBar(new Rectangle(rect.X, rect.Y + 350, 300, 50), character.currentHealth, character.maxHealth);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             // Draw other stuff
-            spriteBatch.Draw(charSprite, charSpriteRect, Color.White);
+            spriteBatch.Draw(character.sprite, charSpriteRect, Color.White);
             name.Draw(gameTime, spriteBatch);
             healthBar.Draw(gameTime, spriteBatch);
 
