@@ -4,8 +4,12 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Blank.png</File>
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/DefaultFont.spritefont</File>
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Player.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Portraits/C_Cyclops.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Portraits/C_Lizard.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Portraits/C_Ninja.png</File>
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/Choice.png</File>
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/Combat.png</File>
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Tiles/Exit_Locked.png</File>
@@ -17,9 +21,15 @@
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/UI/Button_Hovered.png</File>
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/UI/Button_Pressed.png</File>
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/UI/Button.png</File>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/UI/CharacterFrame.png</File>
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/UI/Panel.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

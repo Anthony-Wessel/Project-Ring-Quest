@@ -20,6 +20,7 @@ namespace RingQuest
         Player player;
         PromptPanel promptPanel;
         Input input;
+        CharacterCard cc;
 
         ExitEvent exit;
 
@@ -118,6 +119,7 @@ namespace RingQuest
             InitBoard();
 
             promptPanel = new PromptPanel();
+            cc = new CharacterCard();
         }
 
         #endregion
@@ -184,6 +186,7 @@ namespace RingQuest
             // Draw panel
             promptPanel.Draw(gameTime, _spriteBatch);
 
+            cc.Draw(gameTime, _spriteBatch);
 
             _spriteBatch.End();
             
