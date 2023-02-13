@@ -25,6 +25,8 @@ namespace RingQuest
                 turnQueue.Enqueue(c);
             }
 
+            CombatPanel.Instance.Open();
+
             StartNewTurn();
         }
 

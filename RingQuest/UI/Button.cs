@@ -56,9 +56,7 @@ namespace RingQuest
 
         void Update(GameTime gameTime)
         {
-            Debug.WriteLine("Button Update");
             if (!active) return;
-            Debug.WriteLine("Active Button Update");
 
             if (skipFrame)
             {

@@ -10,7 +10,8 @@ namespace RingQuest
 {
     public class HealthBar : UIElement
     {
-        public Rectangle rect { get; set; }
+        Rectangle r;
+        public Rectangle rect { get { return r; } set { r = value; remainingRect = new Rectangle(rect.X, rect.Y, calculateRemainingWidth(currentHealth, maxHealth), rect.Height); if (text != null) text.rect = rect; } }
         Rectangle remainingRect;
         int currentHealth, maxHealth;
         UIText text;

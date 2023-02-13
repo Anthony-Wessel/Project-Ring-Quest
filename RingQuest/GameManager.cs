@@ -19,6 +19,7 @@ namespace RingQuest
         Tile[,] tiles;
         Player player;
         PromptPanel promptPanel;
+        CombatPanel combatPanel;
         Input input;
         CharacterCard cc;
 
@@ -119,7 +120,10 @@ namespace RingQuest
             InitBoard();
 
             promptPanel = new PromptPanel();
-            cc = new CharacterCard();
+            combatPanel = new CombatPanel();
+
+            CombatManager.Init();
+            CombatManager.BeginNewCombat(new PlayerCharacter("Antony", ImageDB.Player, 10), new List<Character> { new AICharacter("Lizardman", ImageDB.C_Lizard, 10) });
         }
 
         #endregion
@@ -144,7 +148,6 @@ namespace RingQuest
 
         protected override void Update(GameTime gameTime)
         {
-            Debug.WriteLine("Update");
             input.Update(gameTime);
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -185,8 +188,9 @@ namespace RingQuest
 
             // Draw panel
             promptPanel.Draw(gameTime, _spriteBatch);
+            combatPanel.Draw(gameTime, _spriteBatch);
 
-            cc.Draw(gameTime, _spriteBatch);
+            //cc.Draw(gameTime, _spriteBatch);
 
             _spriteBatch.End();
             
