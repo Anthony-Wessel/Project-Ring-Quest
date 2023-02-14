@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +33,9 @@ namespace RingQuest
 
         public static void StartNewTurn()
         {
+            
             activeCharacter = turnQueue.Dequeue();
+
             turnQueue.Enqueue(activeCharacter);
 
             activeCharacter.TakeTurn();

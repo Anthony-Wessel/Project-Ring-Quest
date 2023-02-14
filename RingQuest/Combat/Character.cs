@@ -18,6 +18,9 @@ namespace RingQuest
 
         public bool isDead;
 
+        public delegate void OnCharacterUpdated();
+        public OnCharacterUpdated onCharacterUpdated;
+
         public Character(string name, Texture2D sprite, int maxHealth)
         {
             this.name = name;
@@ -26,12 +29,16 @@ namespace RingQuest
             this.currentHealth = maxHealth;
 
             isDead = false;
+
+            onCharacterUpdated = () => { };
         }
 
         public void TakeDamage(int amount)
         {
             currentHealth -= amount;
-            if (amount <= 0) Die();
+            if (currentHealth <= 0) Die();
+
+            onCharacterUpdated();
         }
 
         void Die()
@@ -42,6 +49,7 @@ namespace RingQuest
         public void Heal(int amount)
         {
             currentHealth = Math.Min(currentHealth + amount, maxHealth);
+            onCharacterUpdated();
         }
 
         public virtual void TakeTurn()

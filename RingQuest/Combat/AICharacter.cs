@@ -16,9 +16,15 @@ namespace RingQuest
 
         public override void TakeTurn()
         {
-            // Pick a random ability and random target
-
-            CombatManager.StartNewTurn();
+            foreach (Character c in CombatManager.turnQueue)
+            {
+                if (c.isEnemy != isEnemy)
+                {
+                    c.TakeDamage(1);
+                    CombatManager.StartNewTurn();
+                    return;
+                }
+            }
         }
     }
 }

@@ -48,11 +48,25 @@ namespace RingQuest
         public void SetCharacter(Character character)
         {
             this.character = character;
+            character.onCharacterUpdated += updateUI;
 
-            name.text = character.name;
-            healthBar.Update(character.currentHealth, character.maxHealth);
+            updateUI();
 
             active = true;
+        }
+
+        void updateUI()
+        {
+            if (character.isDead)
+            {
+                name.text = "---";
+                healthBar.Update(0, character.maxHealth);
+            }
+            else
+            {
+                name.text = character.name;
+                healthBar.Update(character.currentHealth, character.maxHealth);
+            }
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
