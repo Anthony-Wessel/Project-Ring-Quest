@@ -68,15 +68,17 @@ namespace RingQuest
 
                     if ((new Random()).NextSingle() < 0.25f)
                     {
-                        t.SetEvent(new ChoiceEvent("Choice Event", "Here is a difficult choice for you to make." +
+                        t.SetEvent(new CombatEvent(new List<AICharacter> { new AICharacter("Lizardman", ImageDB.C_Lizard, 10) }));
+
+                        /*t.SetEvent(new ChoiceEvent("Choice Event", "Here is a difficult choice for you to make." +
                                                                 "You need to choose one of the following options, which" +
                                                                 "may have a significant impact on your game.", new Dictionary<string, Action>()
                                                                 {
                                                                     { "red", () => Debug.WriteLine("red") },
                                                                     { "green", () => Debug.WriteLine("green") },
                                                                     { "blue", () => Debug.WriteLine("blue") },
-                                                                }));
-                        
+                                                                }));*/
+
                     }
                     else emptyTiles.Add(t);
 
@@ -118,12 +120,10 @@ namespace RingQuest
 
             // Spawn grid of tiles and player
             InitBoard();
+            CombatManager.Init();
 
             promptPanel = new PromptPanel();
             combatPanel = new CombatPanel();
-
-            CombatManager.Init();
-            CombatManager.BeginNewCombat(new PlayerCharacter("Antony", ImageDB.Player, 10), new List<Character> { new AICharacter("Lizardman", ImageDB.C_Lizard, 10) });
         }
 
         #endregion
@@ -189,8 +189,6 @@ namespace RingQuest
             // Draw panel
             promptPanel.Draw(gameTime, _spriteBatch);
             combatPanel.Draw(gameTime, _spriteBatch);
-
-            //cc.Draw(gameTime, _spriteBatch);
 
             _spriteBatch.End();
             

@@ -27,6 +27,7 @@ namespace RingQuest
             }
 
             Instance = this;
+            Hide();
         }
 
         public void Open()

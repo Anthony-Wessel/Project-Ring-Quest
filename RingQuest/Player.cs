@@ -11,6 +11,8 @@ namespace RingQuest
 {
     public class Player
     {
+        public static PlayerCharacter character;
+
         public Tile currentTile;
         public Rectangle rect;
 
@@ -27,6 +29,8 @@ namespace RingQuest
             t.Uncover();
 
             moving = false;
+
+            character = new PlayerCharacter("Antony", ImageDB.Player, 10);
         }
 
         public void MoveTo(Tile t)

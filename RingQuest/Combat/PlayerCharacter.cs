@@ -36,7 +36,7 @@ namespace RingQuest
                     {
                         waitingForInput = false;
 
-                        c.TakeDamage(1);
+                        c.TakeDamage(2);
                         CombatManager.StartNewTurn();
                         return;
                     }
