@@ -10,7 +10,8 @@ namespace RingQuest
 {
     public class HorizontalGroup : UIElement
     {
-        public Rectangle rect { get; set; }
+        Rectangle r;
+        public Rectangle rect { get { return r; } set { r = value; ConfigurePlacement(); } }
         public List<UIElement> children;
 
         public HorizontalGroup(Rectangle rect, List<UIElement> children)

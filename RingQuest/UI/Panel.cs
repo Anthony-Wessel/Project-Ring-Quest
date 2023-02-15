@@ -10,7 +10,8 @@ namespace RingQuest
 {
     public class Panel : UIElement
     {
-        public Rectangle rect { get; set; }
+        Rectangle r;
+        public Rectangle rect { get { return r; } set { if (childElements != null) { foreach (UIElement element in childElements) element.rect = element.rect.ScaleProportionately(r, value); } r = value; } }
         public List<UIElement> childElements;
         public bool hidden;
 

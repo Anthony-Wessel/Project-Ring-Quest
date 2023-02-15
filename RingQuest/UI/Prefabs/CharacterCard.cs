@@ -15,12 +15,13 @@ namespace RingQuest
         public Rectangle rect { get { return r; }
             set
             {
-                r = value;
-                spriteRect = new Rectangle(rect.X, rect.Y, 300, 300);
+                spriteRect = spriteRect.ScaleProportionately(r, value);
                 if (name != null)
-                    name.rect = new Rectangle(rect.X, rect.Y + 300, 300, 50);
+                    name.rect = name.rect.ScaleProportionately(r, value);
                 if (healthBar != null)
-                    healthBar.rect = new Rectangle(rect.X, rect.Y + 350, 300, 50);
+                    healthBar.rect = healthBar.rect.ScaleProportionately(r, value);
+
+                r = value;
             }
         }
         Rectangle spriteRect;
