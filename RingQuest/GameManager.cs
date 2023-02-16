@@ -56,6 +56,8 @@ namespace RingQuest
 
         void InitBoard()
         {
+            ProbabilityTable pTable = new ProbabilityTable();
+
             Vector2 boardSize = new Vector2(10, 5);
             Vector2 offset = (Screen.Size / 2) - (boardSize / 2 * Tile.SIZE);
             tiles = new Tile[(int)boardSize.X, (int)boardSize.Y];
@@ -66,20 +68,8 @@ namespace RingQuest
                 {
                     Tile t = new Tile(new Vector2(offset.X + x * Tile.SIZE, offset.Y + y * Tile.SIZE));
 
-                    if ((new Random()).NextSingle() < 0.25f)
-                    {
-                        t.SetEvent(new CombatEvent(new List<AICharacter> { new AICharacter("Lizardman", ImageDB.C_Lizard, 10) }));
-
-                        /*t.SetEvent(new ChoiceEvent("Choice Event", "Here is a difficult choice for you to make." +
-                                                                "You need to choose one of the following options, which" +
-                                                                "may have a significant impact on your game.", new Dictionary<string, Action>()
-                                                                {
-                                                                    { "red", () => Debug.WriteLine("red") },
-                                                                    { "green", () => Debug.WriteLine("green") },
-                                                                    { "blue", () => Debug.WriteLine("blue") },
-                                                                }));*/
-
-                    }
+                    TileEvent tEvent = pTable.GetRandomEvent();
+                    if (tEvent != null) t.SetEvent(tEvent);
                     else emptyTiles.Add(t);
 
 

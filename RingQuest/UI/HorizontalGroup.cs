@@ -21,6 +21,8 @@ namespace RingQuest
 
         public void ConfigurePlacement()
         {
+            if (children == null) return;
+
             float summedWidth = 0;
             foreach (UIElement child in children)
             {
