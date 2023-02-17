@@ -15,6 +15,17 @@ namespace RingQuest
             sprite = ImageDB.CombatEvent;
         }
 
+        public CombatEvent(CombatEvent original)
+        {
+            enemies = new List<AICharacter>();
+            foreach (AICharacter enemy in original.enemies)
+            {
+                enemies.Add(new AICharacter(enemy));
+            }
+
+            sprite = original.sprite;
+        }
+
         public override void StartEvent(Action<bool> OnCompleted)
         {
             CombatManager.BeginNewCombat(Player.character, enemies, (x) => { if (x) tile.SetEvent(null); OnCompleted(x); });

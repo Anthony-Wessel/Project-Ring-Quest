@@ -21,6 +21,15 @@ namespace RingQuest
             sprite = ImageDB.ChoiceEvent;
         }
 
+        public ChoiceEvent(ChoiceEvent original)
+        {
+            title = original.title;
+            prompt = original.prompt;
+            options = original.options;
+
+            sprite = original.sprite;
+        }
+
         public override void StartEvent(Action<bool> OnCompleted)
         {
             foreach (string option in options.Keys)

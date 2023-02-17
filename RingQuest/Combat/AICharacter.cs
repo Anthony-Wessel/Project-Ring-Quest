@@ -14,6 +14,11 @@ namespace RingQuest
             isEnemy = true;
         }
 
+        public AICharacter(AICharacter original) : base(original.name, original.sprite, original.maxHealth)
+        {
+            isEnemy = original.isEnemy;
+        }
+
         public override void TakeTurn()
         {
             foreach (Character c in CombatManager.turnQueue)

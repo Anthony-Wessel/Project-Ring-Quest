@@ -63,15 +63,15 @@ namespace RingQuest
             float r = rng.NextSingle();
             if (r < combatChance)
             {
-                return combatEvents[rng.Next(combatEvents.Count)];
+                return new CombatEvent(combatEvents[rng.Next(combatEvents.Count)]);
             }
             else if (r < combatChance + choiceChance)
             {
-                return choiceEvents[rng.Next(choiceEvents.Count)];
+                return new ChoiceEvent(choiceEvents[rng.Next(choiceEvents.Count)]);
             }
             else if (r < combatChance + choiceChance + loreChance)
             {
-                return loreEvents[rng.Next(loreEvents.Count)];
+                return new LoreEvent(loreEvents[rng.Next(loreEvents.Count)]);
             }
 
             return null;

@@ -19,6 +19,7 @@ namespace RingQuest
 
         public void Unlock()
         {
+            locked = false;
             sprite = ImageDB.OpenExit;
         }
 

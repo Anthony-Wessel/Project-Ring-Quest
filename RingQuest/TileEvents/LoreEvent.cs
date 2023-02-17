@@ -20,6 +20,15 @@ namespace RingQuest
             sprite = ImageDB.LoreEvent;
         }
 
+        public LoreEvent(LoreEvent original)
+        {
+            title = original.title;
+            prompt = original.prompt;
+            buttonTxt = original.buttonTxt;
+
+            sprite = original.sprite;
+        }
+
         public override void StartEvent(Action<bool> OnCompleted)
         {
             PromptPanel.DisplayPrompt(title, prompt, new Dictionary<string, Action>() { { buttonTxt,
