@@ -31,12 +31,11 @@ namespace RingQuest
 
         public override void StartEvent(Action<bool> OnCompleted)
         {
-            PromptPanel.DisplayPrompt(title, prompt, new Dictionary<string, Action>() { { buttonTxt,
+            PromptPanel.DisplaySimplePrompt(title, prompt, buttonTxt,
             () => {
-                PromptPanel.Hide();
                 OnCompleted.Invoke(true);
                 tile.SetEvent(null);
-            } } });
+            });
         }
     }
 }

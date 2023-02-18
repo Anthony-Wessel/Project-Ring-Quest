@@ -36,17 +36,17 @@ namespace RingQuest
                 new ChoiceEvent("Old Begger", "You come across an old man sitting next to the path. His clothes are barely more than rags, and his hair is long and disheveled. He looks up when he hears your footsteps. 'Please kind sir, could you spare some of your supplies? I don't need much, just enough to help me reach the next town'.",
                 new Dictionary<string, Action>
                 {
-                    {"Give him supplies", () => Debug.WriteLine("You lost some supplies. The begger is very thankful.") },
-                    {"Ignore him", () => Debug.WriteLine("The begger is sad, but gives up on his plea.") },
-                    {"Spit on him", () => Debug.WriteLine("The begger recoils in fear. He cowers behind a nearby tree while you walk away.") }
+                    {"Give him supplies", () => PromptPanel.DisplaySimplePrompt("", "You lost some supplies. The begger is very thankful.", "Continue", null) },
+                    {"Ignore him", () => PromptPanel.DisplaySimplePrompt("", "The begger is sad, but gives up on his plea.", "Continue", null) },
+                    {"Spit on him", () => PromptPanel.DisplaySimplePrompt("", "The begger recoils in fear. He cowers behind a nearby tree while you walk away.", "Continue", null) }
                 }),
 
                 new ChoiceEvent("Wolf pup", "As you continue down the path, you hear some noises from the nearby bushes. Upon investigating, you realize it is a lone wolf pup. It is tiny, probably the runt of the pack, and seems to have been separated from its family. It doesn't appear to have eaten in days, and is barely strong enough to look up at you.",
                 new Dictionary<string, Action>
                 {
-                    {"Take it with you", () => Debug.WriteLine("This pup couldn't survive on its own, perhaps you can help it.") },
-                    {"Give it some food", () => Debug.WriteLine("The pup begins nibbling on the food. Hopefully this will help it regain enough strength to survive on its own.") },
-                    {"Kill it", () => Debug.WriteLine("This pup was abandoned because it is too weak to survive in this area. Rather than letting it die slowly and painfully, you end its misery in an instant. Perhaps it is in a better place now.") }
+                    {"Take it with you", () => PromptPanel.DisplaySimplePrompt("", "This pup couldn't survive on its own, perhaps you can help it.", "Continue", null) },
+                    {"Give it some food", () => PromptPanel.DisplaySimplePrompt("", "The pup begins nibbling on the food. Hopefully this will help it regain enough strength to survive on its own.", "Continue", null) },
+                    {"Kill it", () => PromptPanel.DisplaySimplePrompt("", "This pup was abandoned because it is too weak to survive in this area. Rather than letting it die slowly and painfully, you end its misery in an instant. Perhaps it is in a better place now.", "Continue", null) }
                 })
             };
 

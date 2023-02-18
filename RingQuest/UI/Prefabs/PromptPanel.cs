@@ -59,6 +59,16 @@ namespace RingQuest
             instance.hidden = false;
         }
 
+        public static void DisplaySimplePrompt(string title, string prompt, string buttonText, Action OnButtonPressed)
+        {
+            DisplayPrompt(title, prompt, new Dictionary<string, Action>() { { buttonText,
+            () => {
+                Hide();
+                if (OnButtonPressed != null)
+                    OnButtonPressed.Invoke();
+            } } });
+        }
+
         public static void Hide()
         {
             instance.hidden = true;
