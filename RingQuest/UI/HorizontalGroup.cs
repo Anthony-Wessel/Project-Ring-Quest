@@ -23,6 +23,12 @@ namespace RingQuest
         {
             if (children == null) return;
 
+            if (children.Count == 1)
+            {
+                children[0].rect = new Rectangle(new Point(rect.X + (rect.Width - children[0].rect.Width) / 2, rect.Y + (rect.Height - children[0].rect.Height) / 2), children[0].rect.Size);
+                return;
+            }
+
             float summedWidth = 0;
             foreach (UIElement child in children)
             {
