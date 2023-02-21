@@ -30,7 +30,7 @@ namespace RingQuest
 
             moving = false;
 
-            character = new PlayerCharacter("Antony", ImageDB.Player, 10);
+            character = new PlayerCharacter("Antony", ImageDB.Player, 60);
         }
 
         public void MoveTo(Tile t)

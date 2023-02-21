@@ -21,12 +21,16 @@ namespace RingQuest
         public delegate void OnCharacterUpdated();
         public OnCharacterUpdated onCharacterUpdated;
 
+        public List<Ability> abilities;
+
         public Character(string name, Texture2D sprite, int maxHealth)
         {
             this.name = name;
             this.sprite = sprite;
             this.maxHealth = maxHealth;
             this.currentHealth = maxHealth;
+
+            this.abilities = new List<Ability>();
 
             isDead = false;
 

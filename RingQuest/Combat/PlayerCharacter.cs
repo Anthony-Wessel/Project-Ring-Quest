@@ -18,11 +18,12 @@ namespace RingQuest
             isEnemy = false;
             waitingForInput = false;
             GameManager.Instance.updateChildren += Update;
+
+            abilities.Add(new AAttack(2, 4));
         }
 
         public override void TakeTurn()
         {
-            Debug.WriteLine("Player turn");
             waitingForInput = true;
         }
 
@@ -32,11 +33,11 @@ namespace RingQuest
             {
                 foreach (Character c in CombatManager.turnQueue)
                 {
-                    if (c.isEnemy != isEnemy)
+                    if (c.isEnemy != isEnemy && !c.isDead)
                     {
                         waitingForInput = false;
 
-                        c.TakeDamage(2);
+                        abilities[0].Cast(this, c);
                         CombatManager.StartNewTurn();
                         return;
                     }
