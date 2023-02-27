@@ -36,10 +36,10 @@ namespace RingQuest
             }
 
             float remainingWidth = rect.Width - summedWidth;
-            int gaps = children.Count - 1;
+            int gaps = children.Count;
             int gapSize = (int)(remainingWidth / gaps);
 
-            int currentX = rect.X;
+            int currentX = rect.X + gapSize/2;
             foreach (UIElement child in children)
             {
                 child.rect = new Rectangle(new Point(currentX, rect.Y + (rect.Height - child.rect.Height) / 2), child.rect.Size);

@@ -21,7 +21,6 @@ namespace RingQuest
         PromptPanel promptPanel;
         CombatPanel combatPanel;
         Input input;
-        CharacterCard cc;
 
         ExitEvent exit;
 

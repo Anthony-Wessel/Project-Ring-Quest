@@ -20,6 +20,8 @@ namespace RingQuest
             GameManager.Instance.updateChildren += Update;
 
             abilities.Add(new AAttack(2, 4));
+            abilities.Add(new AAttack(2, 4));
+            abilities.Add(new AAttack(2, 4));
         }
 
         public override void TakeTurn()

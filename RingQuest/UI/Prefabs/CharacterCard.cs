@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using RingQuest.My_Utilities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,13 +10,14 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class CharacterCard : UIElement
+    public class CharacterCard : UIElement, IBatchable
     {
         Rectangle r;
         public Rectangle rect { get { return r; }
             set
             {
-                spriteRect = spriteRect.ScaleProportionately(r, value);
+                if (image != null)
+                    image.rect = image.rect.ScaleProportionately(r, value);
                 if (name != null)
                     name.rect = name.rect.ScaleProportionately(r, value);
                 if (healthBar != null)
@@ -24,26 +26,24 @@ namespace RingQuest
                 r = value;
             }
         }
-        Rectangle spriteRect;
 
+        Image image;
         UIText name;
         HealthBar healthBar;
 
         Character character;
 
-        public bool active;
+        public bool active { get; set; }
 
         public CharacterCard()
         {
             character = null;
 
             rect = new Rectangle(100, 100, 300, 400);
-            spriteRect = new Rectangle(rect.X, rect.Y, 300, 300);
+            image = new Image(new Rectangle(rect.X, rect.Y, 300, 300), ImageDB.Blank);
 
             name = new UIText(new Rectangle(rect.X, rect.Y + 300, 300, 50), "");
             healthBar = new HealthBar(new Rectangle(rect.X, rect.Y + 350, 300, 50), 0, 0);
-
-            active = true;
         }
 
         public void SetCharacter(Character character)
@@ -52,8 +52,6 @@ namespace RingQuest
             character.onCharacterUpdated += updateUI;
 
             updateUI();
-
-            active = true;
         }
 
         void updateUI()
@@ -62,22 +60,22 @@ namespace RingQuest
             {
                 name.text = "---";
                 healthBar.Update(0, character.maxHealth);
+                image.image = ImageDB.OpenExit;
             }
             else
             {
                 name.text = character.name;
                 healthBar.Update(character.currentHealth, character.maxHealth);
+                image.image = character.sprite;
             }
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (!active) return;
-            
-            // Draw other stuff
-            if (character != null)
-                spriteBatch.Draw(character.sprite, spriteRect, Color.White);
 
+            // Draw other stuff
+            image.Draw(gameTime, spriteBatch);
             name.Draw(gameTime, spriteBatch);
             healthBar.Draw(gameTime, spriteBatch);
 

@@ -12,19 +12,19 @@ namespace RingQuest
         public static CombatPanel Instance;
 
         HorizontalGroup enemies, players;
-        List<CharacterCard> cards;
+        Batch<CharacterCard> cards;
 
-        public CombatPanel() : base(new Rectangle(260, 102, 1400, 875))
+        CombatOptions combatOptions;
+
+        public CombatPanel() : base(new Rectangle(260, 2, 1400, 1075))
         {
             enemies = new HorizontalGroup(new Rectangle(rect.X + 200, rect.Y + 25, 1000, 400), null);
             players = new HorizontalGroup(new Rectangle(rect.X + 200, rect.Y + 450, 1000, 400), null);
 
-            cards = new List<CharacterCard>();
-            for (int i = 0; i < 7; i++)
-            {
-                cards.Add(new CharacterCard());
-                AddUIElement(cards[i]);
-            }
+            cards = new Batch<CharacterCard>();
+
+            combatOptions = new CombatOptions(new Rectangle(rect.X + 50, rect.Y + 875, 1300, 175));
+            AddUIElement(combatOptions);
 
             Instance = this;
             Hide();
@@ -34,20 +34,21 @@ namespace RingQuest
         {
             players.children.Clear();
             enemies.children.Clear();
-            
-            int index = 0;
+
+            cards.Clear();
+
             foreach (Character c in CombatManager.turnQueue)
             {
-                cards[index].SetCharacter(c);
-                if (c.isEnemy) enemies.children.Add(cards[index]);
-                else players.children.Add(cards[index]);
+                CharacterCard cc = cards.Request();
+                if (!childElements.Contains(cc)) AddUIElement(cc);
 
-                index++;
-            }
-
-            while (index < cards.Count)
-            {
-                cards[index++].active = false;
+                cc.SetCharacter(c);
+                if (c.isEnemy) enemies.children.Add(cc);
+                else
+                {
+                    players.children.Add(cc);
+                    combatOptions.Open(c);
+                }
             }
 
             players.ConfigurePlacement();

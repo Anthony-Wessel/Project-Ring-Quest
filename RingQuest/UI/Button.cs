@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using RingQuest.My_Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class Button : UIElement
+    public class Button : UIElement, IBatchable
     {
         Rectangle r;
         public Rectangle rect { get { return r; } set { r = value; if (text != null) { text.rect = value; text.SetText(text.text); } } }
@@ -19,7 +20,9 @@ namespace RingQuest
 
         bool pressed, hovered;
         bool skipFrame;
-        bool active;
+        public bool active { get; set; }
+
+        public Button() : this(new Rectangle(0, 0, 100, 50), "", null){ }
 
         public Button(Rectangle rect, string text, Action OnClick)
         {
@@ -39,7 +42,7 @@ namespace RingQuest
 
             this.OnClick = OnClick;
 
-            Activate();
+            skipFrame = true;
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -82,17 +85,6 @@ namespace RingQuest
                 hovered = false;
                 pressed = false;
             }
-        }
-
-        public void Activate()
-        {
-            active = true;
-            skipFrame = true;
-        }
-
-        public void Deactivate()
-        {
-            active = false;
         }
     }
 }

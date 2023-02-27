@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,7 +14,7 @@ namespace RingQuest
         static PromptPanel instance;
 
         UIText title, prompt;
-        Button[] buttons;
+        Batch<Button> buttons;
         HorizontalGroup buttonGroup;
 
         public PromptPanel() : base(new Rectangle(610, 290, 700, 500))
@@ -26,9 +27,7 @@ namespace RingQuest
             prompt = new UIText(new Rectangle(720, 390, 500, 300), "");
             AddUIElement(prompt);
 
-            buttons = new Button[3];
-            for (int i = 0; i < buttons.Length; i++)
-                buttons[i] = new Button(new Rectangle(0, 0, 100, 50), "", null);
+            buttons = new Batch<Button>();
 
             buttonGroup = new HorizontalGroup(new Rectangle(720, 690, 500, 100), null);
             AddUIElement(buttonGroup);
@@ -45,14 +44,13 @@ namespace RingQuest
 
             instance.buttonGroup.children.Clear();
 
-            int index = 0;
+            instance.buttons.Clear();
             foreach (string option in options.Keys)
             {
-                instance.buttons[index].Init(instance.buttons[index].rect, option, options[option]);
-                instance.buttonGroup.children.Add(instance.buttons[index]);
-                index++;
+                Button b = instance.buttons.Request();
+                b.Init(b.rect, option, options[option]);
+                instance.buttonGroup.children.Add(b);
             }
-            while (index < instance.buttons.Length) instance.buttons[index++].Deactivate();
 
             instance.buttonGroup.ConfigurePlacement();
 
@@ -72,10 +70,7 @@ namespace RingQuest
         public static void Hide()
         {
             instance.hidden = true;
-            foreach (Button btn in instance.buttons)
-            {
-                btn.Deactivate();
-            }
+            instance.buttons.Clear();
         }
     }
 }
