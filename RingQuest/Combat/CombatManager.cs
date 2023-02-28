@@ -15,6 +15,7 @@ namespace RingQuest
         static Action<bool> onCompleted;
 
         static bool combatEnded;
+        public static Ability playersActiveAbility;
 
         public static void Init()
         {
@@ -74,6 +75,31 @@ namespace RingQuest
             turnQueue.Enqueue(activeCharacter);
 
             activeCharacter.TakeTurn();
+        }
+
+        public static void SelectAbility(Ability a)
+        {
+            if (!(activeCharacter is PlayerCharacter)) return;
+
+            if (!activeCharacter.abilities.Contains(a)) throw new Exception(activeCharacter.name + " does not have that ability (" + a.Name + ")");
+
+            playersActiveAbility = a;
+        }
+
+        public static void SelectTarget(Character c)
+        {
+            if (!(activeCharacter is PlayerCharacter)) return; // It is not the player's turn
+
+            if (playersActiveAbility == null) return; // No ability selected
+
+            if (c.isDead) return; // That character is already dead
+
+            if (playersActiveAbility.targetFriendly == c.isEnemy) return; // that ability cannot target that character
+
+
+            playersActiveAbility.Cast(activeCharacter, c);
+
+            StartNewTurn();
         }
     }
 }

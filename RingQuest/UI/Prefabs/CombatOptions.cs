@@ -44,7 +44,7 @@ namespace RingQuest
             foreach (Ability a in player.abilities)
             {
                 AbilityCard ac = abilityCards.Request();
-                ac.Update(a);
+                ac.SetAbility(a);
                 abilityGroup.children.Add(ac);
 
             }

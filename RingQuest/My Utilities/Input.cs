@@ -45,7 +45,10 @@ namespace RingQuest
         }
 
         #region Mouse
-        
+
+        public delegate void OnMouseClick(Point mousePos);
+        public static OnMouseClick onMouseClick;
+
         public static bool GetMouseButton(int i)
         {
             switch (i)
@@ -58,21 +61,23 @@ namespace RingQuest
                     return mouseState.MiddleButton == ButtonState.Pressed;
             }
 
-            throw new ArgumentOutOfRangeException("i", "Parameter i cannot be greater than 3 for function 'GetMouseButton'.");
+            throw new ArgumentOutOfRangeException("i", "Parameter i cannot be greater than 2 for function 'GetMouseButton'.");
         }
 
         public static bool GetMouseButtonDown(int i)
         {
-            return GetMouseButton(i) && !mouseButtonDownPreviously[i];
+            if (i > 2)
+                throw new ArgumentOutOfRangeException("i", "Parameter i cannot be greater than 2 for function 'GetMouseButtonDown'.");
 
-            throw new ArgumentOutOfRangeException("i", "Parameter i cannot be greater than 3 for function 'GetMouseButtonDown'.");
+            return GetMouseButton(i) && !mouseButtonDownPreviously[i];
         }
 
         public static bool GetMouseButtonUp(int i)
         {
-            return !GetMouseButton(i) && mouseButtonDownPreviously[i];
+            if (i > 2)
+                throw new ArgumentOutOfRangeException("i", "Parameter i cannot be greater than 2 for function 'GetMouseButtonUp'.");
 
-            throw new ArgumentOutOfRangeException("i", "Parameter i cannot be greater than 3 for function 'GetMouseButtonUp'.");
+            return !GetMouseButton(i) && mouseButtonDownPreviously[i];
         }
 
         public static Point GetMousePosition()

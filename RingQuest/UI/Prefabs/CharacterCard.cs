@@ -34,6 +34,7 @@ namespace RingQuest
         Character character;
 
         public bool active { get; set; }
+        bool pressed;
 
         public CharacterCard()
         {
@@ -44,6 +45,8 @@ namespace RingQuest
 
             name = new UIText(new Rectangle(rect.X, rect.Y + 300, 300, 50), "");
             healthBar = new HealthBar(new Rectangle(rect.X, rect.Y + 350, 300, 50), 0, 0);
+
+            GameManager.Instance.updateChildren += Update;
         }
 
         public void SetCharacter(Character character)
@@ -81,6 +84,28 @@ namespace RingQuest
 
             // Draw frame
             spriteBatch.Draw(ImageDB.CharacterFrame, rect, Color.White);
+        }
+
+        void Update(GameTime gameTime)
+        {
+            if (!active) return;
+
+            if (rect.Contains(Input.GetMousePosition()))
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    pressed = true;
+                }
+                if (Input.GetMouseButtonUp(0) && pressed)
+                {
+                    pressed = false;
+                    CombatManager.SelectTarget(character);
+                }
+            }
+            else
+            {
+                pressed = false;
+            }
         }
     }
 }

@@ -22,9 +22,7 @@ namespace RingQuest
         public Image image;
 
         public bool active { get; set; }
-
-        // TODO: Compile description from multiple variables
-        // damage, cooldown, buffs/debuffs
+        bool skipFrame, pressed;
 
         public AbilityCard() : this(new Rectangle(0,0,100,150), Point.Zero, null) { }
 
@@ -39,7 +37,9 @@ namespace RingQuest
             this.expandedSize = expandedSize;
 
             UpdateRects();
-            Update(ability);
+            SetAbility(ability);
+
+            GameManager.Instance.updateChildren += Update;
         }
 
         public void UpdateRects()
@@ -63,7 +63,6 @@ namespace RingQuest
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (!active) return;
-            Debug.WriteLine("test");
 
             spriteBatch.Draw(ImageDB.Panel, rect, Color.White);
 
@@ -72,7 +71,7 @@ namespace RingQuest
             description.Draw(gameTime, spriteBatch);
         }
 
-        public void Update(Ability ability)
+        public void SetAbility(Ability ability)
         {
             this.ability = ability;
 
@@ -81,6 +80,28 @@ namespace RingQuest
             image.image = ability.Image;
             name.text = ability.Name;
             description.text = ability.Description;
+        }
+
+        void Update(GameTime gameTime)
+        {
+            if (!active) return;
+
+            if (rect.Contains(Input.GetMousePosition()))
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    pressed = true;
+                }
+                if (Input.GetMouseButtonUp(0) && pressed)
+                {
+                    pressed = false;
+                    CombatManager.SelectAbility(ability);
+                }
+            }
+            else
+            {
+                pressed = false;
+            }
         }
     }
 }
