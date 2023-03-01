@@ -17,8 +17,7 @@ namespace RingQuest
             isEnemy = false;
 
             abilities.Add(new AAttack(2, 4));
-            abilities.Add(new AAttack(2, 4));
-            abilities.Add(new AAttack(2, 4));
+            abilities.Add(new AHeal(8));
         }
 
         public override void TakeTurn()

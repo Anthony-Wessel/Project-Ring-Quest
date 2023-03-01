@@ -79,11 +79,24 @@ namespace RingQuest
 
         public static void SelectAbility(Ability a)
         {
-            if (!(activeCharacter is PlayerCharacter)) return;
+            if (!(activeCharacter is PlayerCharacter)) return; // It is not the player's turn
+
+            if (a.remainingCooldown > 0) return; // Ability is still on cooldown
 
             if (!activeCharacter.abilities.Contains(a)) throw new Exception(activeCharacter.name + " does not have that ability (" + a.Name + ")");
 
-            playersActiveAbility = a;
+            
+
+            if (a.targetFriendly) // ASSUMES ONLY 1 PLAYER CHARACTER
+            {
+                a.Cast(activeCharacter, activeCharacter);
+
+                StartNewTurn();
+            }
+            else
+            {
+                playersActiveAbility = a;
+            }
         }
 
         public static void SelectTarget(Character c)
