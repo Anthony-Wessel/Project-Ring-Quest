@@ -74,6 +74,7 @@ namespace RingQuest
 
             turnQueue.Enqueue(activeCharacter);
 
+            activeCharacter.ManageEffects();
             activeCharacter.TakeTurn();
         }
 

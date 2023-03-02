@@ -22,6 +22,7 @@ namespace RingQuest
         public OnCharacterUpdated onCharacterUpdated;
 
         public List<Ability> abilities;
+        public List<Effect> effects;
 
         public Character(string name, Texture2D sprite, int maxHealth)
         {
@@ -30,7 +31,8 @@ namespace RingQuest
             this.maxHealth = maxHealth;
             this.currentHealth = maxHealth;
 
-            this.abilities = new List<Ability>();
+            abilities = new List<Ability>();
+            effects = new List<Effect>();
 
             isDead = false;
 
@@ -60,6 +62,20 @@ namespace RingQuest
         {
             Debug.WriteLine("Character named " + name + " does not have any behaviour set up and can't do anything on their turn.");
             CombatManager.StartNewTurn();
+        }
+
+        public void ManageEffects()
+        {
+            for (int i = effects.Count - 1; i >= 0; i--)
+            {
+                effects[i].DoSomething(this);
+                if (--effects[i].remainingDuration <= 0) effects.RemoveAt(i);
+            }
+        }
+
+        public void ApplyEffect(Effect e)
+        {
+            effects.Add(e);
         }
     }
 }
