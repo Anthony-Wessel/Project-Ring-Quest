@@ -60,6 +60,7 @@ namespace RingQuest
         static void EndCombat(bool playerWon)
         {
             CombatPanel.Instance.Hide();
+            foreach (Character c in turnQueue) c.ClearEffects();
             turnQueue.Clear();
             combatEnded = true;
 
@@ -70,11 +71,15 @@ namespace RingQuest
         {
             if (combatEnded) return;
 
+            // Apply per-turn effects
+            if (activeCharacter != null)
+                activeCharacter.ManageEffects();
+
+            // Select the next active character
             activeCharacter = turnQueue.Dequeue();
-
             turnQueue.Enqueue(activeCharacter);
-
-            activeCharacter.ManageEffects();
+            
+            // Start new active character's turn
             activeCharacter.TakeTurn();
         }
 

@@ -25,7 +25,7 @@ namespace RingQuest
             {
                 if (c.isEnemy != isEnemy)
                 {
-                    c.TakeDamage(1);
+                    c.TakeDamage(this, 1);
                     CombatManager.StartNewTurn();
                     return;
                 }

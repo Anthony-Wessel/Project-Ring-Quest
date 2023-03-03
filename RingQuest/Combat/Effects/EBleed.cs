@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class EPoison : Effect
+    public class EBleed : Effect
     {
-        public int damagePerTurn;
+        int damagePerTurn;
 
-        public EPoison(int duration, int damagePerTurn) : base(duration, EffectType.POISON, false)
+        public EBleed(int duration, int damagePerTurn) : base(duration, EffectType.BLEED, false)
         {
             this.damagePerTurn = damagePerTurn;
         }

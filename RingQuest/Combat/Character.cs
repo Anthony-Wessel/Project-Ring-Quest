@@ -15,6 +15,7 @@ namespace RingQuest
         public string name;
         public Texture2D sprite;
         public int currentHealth, maxHealth;
+        public int bonusDamageDone, bonusDamageTaken;
 
         public bool isDead;
 
@@ -37,10 +38,15 @@ namespace RingQuest
             isDead = false;
 
             onCharacterUpdated = () => { };
+
+            bonusDamageDone = 0;
+            bonusDamageTaken = 0;
         }
 
-        public void TakeDamage(int amount)
+        public void TakeDamage(Character source, int amount)
         {
+            if (source != null) amount = amount + source.bonusDamageDone + bonusDamageTaken;
+
             currentHealth -= amount;
             if (currentHealth <= 0) Die();
 
@@ -68,14 +74,29 @@ namespace RingQuest
         {
             for (int i = effects.Count - 1; i >= 0; i--)
             {
-                effects[i].DoSomething(this);
-                if (--effects[i].remainingDuration <= 0) effects.RemoveAt(i);
+                effects[i].OnTurnEnded(this);
+                if (--effects[i].remainingDuration <= 0) RemoveEffect(effects[i]);
+            }
+        }
+
+        public void ClearEffects()
+        {
+            for (int i = effects.Count-1; i >= 0; i--)
+            {
+                RemoveEffect(effects[i]);
             }
         }
 
         public void ApplyEffect(Effect e)
         {
+            e.OnApplied(this);
             effects.Add(e);
+        }
+
+        public void RemoveEffect(Effect e)
+        {
+            e.OnRemoved(this);
+            effects.Remove(e);
         }
     }
 }

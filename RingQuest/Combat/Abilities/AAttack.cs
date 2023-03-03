@@ -22,7 +22,7 @@ namespace RingQuest
 
         public override void Cast(Character source, Character target)
         {
-            target.TakeDamage(RNG.NextInt(minDamage, maxDamage+1));
+            target.TakeDamage(source, RNG.NextInt(minDamage, maxDamage+1));
         }
 
         public override string Description { get { return minDamage + "-" + maxDamage + " damage"; } }
