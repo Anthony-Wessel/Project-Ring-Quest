@@ -29,6 +29,7 @@ namespace RingQuest
             this.helpful = helpful;
         }
 
+        public abstract void OnTurnStarted(Character effectedCharacter);
         public abstract void OnTurnEnded(Character effectedCharacter);
         public abstract void OnApplied(Character effectedCharacter);
         public abstract void OnRemoved(Character effectedCharacter);

@@ -32,5 +32,10 @@ namespace RingQuest
             effectedCharacter.bonusDamageDone -= bonusDamageDone;
             effectedCharacter.bonusDamageTaken -= bonusDamageTaken;
         }
+
+        public override void OnTurnStarted(Character effectedCharacter)
+        {
+            // NOTHING
+        }
     }
 }

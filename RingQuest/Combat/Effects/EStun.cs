@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class EBleed : Effect
+    public class EStun : Effect
     {
-        int damagePerTurn;
-
-        public EBleed(int duration, int damagePerTurn) : base(duration, EffectType.BLEED, false)
-        {
-            this.damagePerTurn = damagePerTurn;
-        }
+        public EStun(int duration) : base(duration, EffectType.STUN, false) { }
 
         public override void OnApplied(Character effectedCharacter)
         {
@@ -27,12 +22,12 @@ namespace RingQuest
 
         public override void OnTurnEnded(Character effectedCharacter)
         {
-            effectedCharacter.TakeDamage(null, damagePerTurn);
+            // NOTHING
         }
 
         public override void OnTurnStarted(Character effectedCharacter)
         {
-            // NOTHING
+            CombatManager.StartNewTurn();
         }
     }
 }

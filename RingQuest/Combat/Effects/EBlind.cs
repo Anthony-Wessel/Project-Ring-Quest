@@ -6,28 +6,27 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class EBleed : Effect
+    public class EBlind : Effect
     {
-        int damagePerTurn;
-
-        public EBleed(int duration, int damagePerTurn) : base(duration, EffectType.BLEED, false)
+        float accuracyDecrease;
+        public EBlind(int duration, float accuracyDecrease) : base(duration, EffectType.BLIND, false)
         {
-            this.damagePerTurn = damagePerTurn;
+            this.accuracyDecrease = accuracyDecrease;
         }
 
         public override void OnApplied(Character effectedCharacter)
         {
-            // NOTHING
+            effectedCharacter.accuracy -= accuracyDecrease;
         }
 
         public override void OnRemoved(Character effectedCharacter)
         {
-            // NOTHING
+            effectedCharacter.accuracy += accuracyDecrease;
         }
 
         public override void OnTurnEnded(Character effectedCharacter)
         {
-            effectedCharacter.TakeDamage(null, damagePerTurn);
+            // NOTHING
         }
 
         public override void OnTurnStarted(Character effectedCharacter)

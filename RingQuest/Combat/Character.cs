@@ -16,6 +16,7 @@ namespace RingQuest
         public Texture2D sprite;
         public int currentHealth, maxHealth;
         public int bonusDamageDone, bonusDamageTaken;
+        public float accuracy;
 
         public bool isDead;
 
@@ -41,6 +42,7 @@ namespace RingQuest
 
             bonusDamageDone = 0;
             bonusDamageTaken = 0;
+            accuracy = 1;
         }
 
         public void TakeDamage(Character source, int amount)

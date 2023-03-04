@@ -29,5 +29,10 @@ namespace RingQuest
         {
             effectedCharacter.TakeDamage(null, damagePerTurn);
         }
+
+        public override void OnTurnStarted(Character effectedCharacter)
+        {
+            // NOTHING
+        }
     }
 }
