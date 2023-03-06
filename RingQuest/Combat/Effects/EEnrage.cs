@@ -37,5 +37,10 @@ namespace RingQuest
         {
             // NOTHING
         }
+
+        public override Effect Copy()
+        {
+            return new EEnrage(remainingDuration, bonusDamageDone, bonusDamageTaken);
+        }
     }
 }

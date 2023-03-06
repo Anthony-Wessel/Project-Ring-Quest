@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class AApplyEffect : Ability
+    public class AApplyPoison : Ability
     {
-        public Effect effect;
+        public EPoison effect;
 
-        public AApplyEffect(Effect effect)
+        public AApplyPoison(EPoison effect)
         {
             this.effect = effect;
             targetFriendly = effect.helpful;
@@ -23,8 +23,8 @@ namespace RingQuest
             target.ApplyEffect(effect);
         }
 
-        public override string Description { get { return "Applies Effect"; } }
-        public override string Name { get { return "Apply Effect"; } }
+        public override string Description { get { return effect.damagePerTurn + " dmg/turn for " + effect.remainingDuration + "turns"; } }
+        public override string Name { get { return "Apply Poison"; } }
         public override Texture2D Image { get { return ImageDB.Key; } }
     }
 }

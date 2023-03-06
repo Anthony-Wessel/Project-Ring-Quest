@@ -15,8 +15,9 @@ namespace RingQuest
         public string name;
         public Texture2D sprite;
         public int currentHealth, maxHealth;
+
         public int bonusDamageDone, bonusDamageTaken;
-        public float accuracy;
+        public float accuracy, bonusCritChance, bonusCritMultiplier;
 
         public bool isDead;
 
@@ -47,7 +48,14 @@ namespace RingQuest
 
         public void TakeDamage(Character source, int amount)
         {
-            if (source != null) amount = amount + source.bonusDamageDone + bonusDamageTaken;
+            if (source != null)
+            {
+                if (RNG.NextFloat(1) > source.accuracy) return; // Missed
+
+                amount = amount + source.bonusDamageDone + bonusDamageTaken;
+
+                if (RNG.NextFloat(1) <= source.bonusCritChance) amount = (int)(amount*(1.5 + source.bonusCritMultiplier));
+            }
 
             currentHealth -= amount;
             if (currentHealth <= 0) Die();
@@ -91,8 +99,9 @@ namespace RingQuest
 
         public void ApplyEffect(Effect e)
         {
-            e.OnApplied(this);
-            effects.Add(e);
+            Effect eCopy = e.Copy();
+            eCopy.OnApplied(this);
+            effects.Add(eCopy);
         }
 
         public void RemoveEffect(Effect e)

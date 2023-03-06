@@ -34,5 +34,10 @@ namespace RingQuest
         {
             // NOTHING
         }
+
+        public override Effect Copy()
+        {
+            return new EPoison(remainingDuration, damagePerTurn);
+        }
     }
 }

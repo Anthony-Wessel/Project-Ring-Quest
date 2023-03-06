@@ -33,5 +33,7 @@ namespace RingQuest
         public abstract void OnTurnEnded(Character effectedCharacter);
         public abstract void OnApplied(Character effectedCharacter);
         public abstract void OnRemoved(Character effectedCharacter);
+
+        public abstract Effect Copy();
     }
 }

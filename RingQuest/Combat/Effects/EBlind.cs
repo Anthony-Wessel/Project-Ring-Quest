@@ -33,5 +33,10 @@ namespace RingQuest
         {
             // NOTHING
         }
+
+        public override Effect Copy()
+        {
+            return new EBlind(remainingDuration, accuracyDecrease);
+        }
     }
 }

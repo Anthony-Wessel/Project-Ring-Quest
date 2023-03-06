@@ -29,5 +29,10 @@ namespace RingQuest
         {
             CombatManager.StartNewTurn();
         }
+
+        public override Effect Copy()
+        {
+            return new EStun(remainingDuration);
+        }
     }
 }
