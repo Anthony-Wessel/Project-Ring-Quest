@@ -10,7 +10,7 @@ namespace RingQuest
     {
         int damagePerTurn;
 
-        public EBleed(int duration, int damagePerTurn) : base(duration, EffectType.BLEED, false)
+        public EBleed(int duration, int damagePerTurn) : base(duration, EffectType.BLEED, false, EffectPermanence.COMBAT)
         {
             this.damagePerTurn = damagePerTurn;
         }

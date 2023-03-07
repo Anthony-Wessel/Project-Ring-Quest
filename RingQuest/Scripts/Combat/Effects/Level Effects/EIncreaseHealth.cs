@@ -6,38 +6,39 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class EPoison : Effect
+    public class EIncreaseHealth : Effect
     {
-        public int damagePerTurn;
-
-        public EPoison(int duration, int damagePerTurn) : base(duration, EffectType.POISON, false, EffectPermanence.COMBAT)
+        int amount;
+        public EIncreaseHealth(int amount) : base(-1, EffectType.BUFF, true, EffectPermanence.LEVEL)
         {
-            this.damagePerTurn = damagePerTurn;
+            this.amount = amount;
+        }
+
+        public override Effect Copy()
+        {
+            return new EIncreaseHealth(amount);
         }
 
         public override void OnApplied(Character effectedCharacter)
         {
-            // NOTHING
+            effectedCharacter.maxHealth += amount;
+            effectedCharacter.currentHealth += amount;
         }
 
         public override void OnRemoved(Character effectedCharacter)
         {
-            // NOTHING
+            effectedCharacter.maxHealth -= amount;
+            effectedCharacter.currentHealth -= amount;
         }
 
         public override void OnTurnEnded(Character effectedCharacter)
         {
-            effectedCharacter.TakeDamage(null, damagePerTurn);
+            // NOTHING
         }
 
         public override void OnTurnStarted(Character effectedCharacter)
         {
             // NOTHING
-        }
-
-        public override Effect Copy()
-        {
-            return new EPoison(remainingDuration, damagePerTurn);
         }
     }
 }

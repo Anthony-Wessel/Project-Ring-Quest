@@ -8,7 +8,7 @@ namespace RingQuest
 {
     public class EStun : Effect
     {
-        public EStun(int duration) : base(duration, EffectType.STUN, false) { }
+        public EStun(int duration) : base(duration, EffectType.STUN, false, EffectPermanence.COMBAT) { }
 
         public override void OnApplied(Character effectedCharacter)
         {

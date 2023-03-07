@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static RingQuest.Character;
 
 namespace RingQuest
 {
@@ -29,7 +28,10 @@ namespace RingQuest
         public OnTakeDamageCalled onTakeDamageCalled;
 
         public List<Ability> abilities;
-        public List<Effect> effects;
+        public List<Effect> combatEffects;
+        public List<Effect> levelEffects;
+        public List<Effect> permanentEffects;
+
 
         public Character(string name, Texture2D sprite, int maxHealth)
         {
@@ -39,7 +41,9 @@ namespace RingQuest
             this.currentHealth = maxHealth;
 
             abilities = new List<Ability>();
-            effects = new List<Effect>();
+            combatEffects = new List<Effect>();
+            levelEffects = new List<Effect>();
+            permanentEffects = new List<Effect>();
 
             isDead = false;
 
@@ -88,18 +92,18 @@ namespace RingQuest
 
         public void ManageEffects()
         {
-            for (int i = effects.Count - 1; i >= 0; i--)
+            for (int i = combatEffects.Count - 1; i >= 0; i--)
             {
-                effects[i].OnTurnEnded(this);
-                if (--effects[i].remainingDuration <= 0) RemoveEffect(effects[i]);
+                combatEffects[i].OnTurnEnded(this);
+                if (--combatEffects[i].remainingDuration <= 0) RemoveEffect(combatEffects[i]);
             }
         }
 
         public void ClearEffects()
         {
-            for (int i = effects.Count-1; i >= 0; i--)
+            for (int i = combatEffects.Count-1; i >= 0; i--)
             {
-                RemoveEffect(effects[i]);
+                RemoveEffect(combatEffects[i]);
             }
         }
 
@@ -107,13 +111,37 @@ namespace RingQuest
         {
             Effect eCopy = e.Copy();
             eCopy.OnApplied(this);
-            effects.Add(eCopy);
+
+            switch (e.permanence)
+            {
+                case EffectPermanence.COMBAT:
+                    combatEffects.Add(eCopy);
+                    break;
+                case EffectPermanence.LEVEL:
+                    levelEffects.Add(eCopy);
+                    break;
+                case EffectPermanence.PERMANENT:
+                    permanentEffects.Add(eCopy);
+                    break;
+            }
         }
 
         public void RemoveEffect(Effect e)
         {
             e.OnRemoved(this);
-            effects.Remove(e);
+
+            switch (e.permanence)
+            {
+                case EffectPermanence.COMBAT:
+                    combatEffects.Remove(e);
+                    break;
+                case EffectPermanence.LEVEL:
+                    levelEffects.Remove(e);
+                    break;
+                case EffectPermanence.PERMANENT:
+                    permanentEffects.Remove(e);
+                    break;
+            }
         }
     }
 }

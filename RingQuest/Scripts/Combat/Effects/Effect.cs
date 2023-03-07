@@ -13,7 +13,15 @@ namespace RingQuest
         BLEED,
         BURN,
         BLIND,
-        STUN
+        STUN,
+        BUFF
+    }
+
+    public enum EffectPermanence
+    {
+        COMBAT,
+        LEVEL,
+        PERMANENT
     }
 
     public abstract class Effect
@@ -21,12 +29,14 @@ namespace RingQuest
         public int remainingDuration;
         public EffectType type;
         public bool helpful;
+        public EffectPermanence permanence;
 
-        public Effect(int duration, EffectType type, bool helpful)
+        public Effect(int duration, EffectType type, bool helpful, EffectPermanence permanence)
         {
             remainingDuration = duration;
             this.type = type;
             this.helpful = helpful;
+            this.permanence = permanence;
         }
 
         public abstract void OnTurnStarted(Character effectedCharacter);

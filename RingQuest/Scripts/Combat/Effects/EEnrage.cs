@@ -10,7 +10,7 @@ namespace RingQuest
     {
         int bonusDamageDone, bonusDamageTaken;
 
-        public EEnrage(int duration, int bonusDamageDone, int bonusDamageTaken) : base(duration, EffectType.ENRAGE, true)
+        public EEnrage(int duration, int bonusDamageDone, int bonusDamageTaken) : base(duration, EffectType.ENRAGE, true, EffectPermanence.COMBAT)
         {
             this.bonusDamageDone = bonusDamageDone;
             this.bonusDamageTaken = bonusDamageTaken;

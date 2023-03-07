@@ -31,6 +31,7 @@ namespace RingQuest
             moving = false;
 
             character = new PlayerCharacter("Antony", ImageDB.Player, 60);
+            character.ApplyEffect(new EIncreaseHealth(10));
         }
 
         public void MoveTo(Tile t)

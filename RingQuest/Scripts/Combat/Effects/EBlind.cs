@@ -9,7 +9,7 @@ namespace RingQuest
     public class EBlind : Effect
     {
         float accuracyDecrease;
-        public EBlind(int duration, float accuracyDecrease) : base(duration, EffectType.BLIND, false)
+        public EBlind(int duration, float accuracyDecrease) : base(duration, EffectType.BLIND, false, EffectPermanence.COMBAT)
         {
             this.accuracyDecrease = accuracyDecrease;
         }
