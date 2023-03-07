@@ -5,7 +5,8 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Blank.png</File>
-    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/DefaultFont.spritefont</File>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Fonts/DefaultFont.spritefont</File>
+    <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Fonts/Large.spritefont</File>
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Player.png</File>
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Portraits/C_Cyclops.png</File>
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Portraits/C_Lizard.png</File>
@@ -25,6 +26,7 @@
     <File>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/UI/Panel.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

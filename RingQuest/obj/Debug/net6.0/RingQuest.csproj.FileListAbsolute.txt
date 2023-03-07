@@ -42,10 +42,12 @@ C:\Users\thebo\Desktop\Projects\RingQuest\RingQuest\obj\Debug\net6.0\refint\Ring
 C:\Users\thebo\Desktop\Projects\RingQuest\RingQuest\obj\Debug\net6.0\RingQuest.pdb
 C:\Users\thebo\Desktop\Projects\RingQuest\RingQuest\obj\Debug\net6.0\RingQuest.genruntimeconfig.cache
 C:\Users\thebo\Desktop\Projects\RingQuest\RingQuest\obj\Debug\net6.0\ref\RingQuest.dll
-C:\Users\thebo\Desktop\Projects\RingQuest\RingQuest\bin\Debug\net6.0\Content\DefaultFont.xnb
 C:\Users\thebo\Desktop\Projects\RingQuest\RingQuest\bin\Debug\net6.0\Content\Tiles\Exit_Locked.xnb
 C:\Users\thebo\Desktop\Projects\RingQuest\RingQuest\bin\Debug\net6.0\Content\Portraits\C_Cyclops.xnb
 C:\Users\thebo\Desktop\Projects\RingQuest\RingQuest\bin\Debug\net6.0\Content\Portraits\C_Lizard.xnb
 C:\Users\thebo\Desktop\Projects\RingQuest\RingQuest\bin\Debug\net6.0\Content\Portraits\C_Ninja.xnb
 C:\Users\thebo\Desktop\Projects\RingQuest\RingQuest\bin\Debug\net6.0\Content\UI\CharacterFrame.xnb
 C:\Users\thebo\Desktop\Projects\RingQuest\RingQuest\bin\Debug\net6.0\Content\Blank.xnb
+C:\Users\thebo\Desktop\Projects\RingQuest\RingQuest\bin\Debug\net6.0\Content\Fonts\DefaultFont.xnb
+C:\Users\thebo\Desktop\Projects\RingQuest\RingQuest\bin\Debug\net6.0\Content\Fonts\LargeWhite.xnb
+C:\Users\thebo\Desktop\Projects\RingQuest\RingQuest\bin\Debug\net6.0\Content\Fonts\Large.xnb

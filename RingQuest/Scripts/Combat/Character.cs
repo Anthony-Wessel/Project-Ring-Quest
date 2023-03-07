@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static RingQuest.Character;
 
 namespace RingQuest
 {
@@ -24,6 +25,9 @@ namespace RingQuest
         public delegate void OnCharacterUpdated();
         public OnCharacterUpdated onCharacterUpdated;
 
+        public delegate void OnTakeDamageCalled(int i);
+        public OnTakeDamageCalled onTakeDamageCalled;
+
         public List<Ability> abilities;
         public List<Effect> effects;
 
@@ -40,6 +44,7 @@ namespace RingQuest
             isDead = false;
 
             onCharacterUpdated = () => { };
+            onTakeDamageCalled = (i) => { };
 
             bonusDamageDone = 0;
             bonusDamageTaken = 0;
@@ -60,6 +65,7 @@ namespace RingQuest
             currentHealth -= amount;
             if (currentHealth <= 0) Die();
 
+            onTakeDamageCalled(amount);
             onCharacterUpdated();
         }
 

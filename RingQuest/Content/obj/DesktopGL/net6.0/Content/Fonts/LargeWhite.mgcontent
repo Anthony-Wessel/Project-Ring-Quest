@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Fonts/LargeWhite.spritefont</SourceFile>
+  <SourceTime>2023-03-06T19:28:09.3423097-06:00</SourceTime>
+  <DestFile>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/bin/DesktopGL/Content/Fonts/LargeWhite.xnb</DestFile>
+  <DestTime>2023-03-06T19:32:43.2764306-06:00</DestTime>
+  <Importer>FontDescriptionImporter</Importer>
+  <ImporterTime>2022-07-26T06:44:56-05:00</ImporterTime>
+  <Processor>FontDescriptionProcessor</Processor>
+  <ProcessorTime>2022-07-26T06:44:56-05:00</ProcessorTime>
+  <Parameters>
+    <Key>PremultiplyAlpha</Key>
+    <Value>True</Value>
+  </Parameters>
+  <Parameters>
+    <Key>TextureFormat</Key>
+    <Value>Compressed</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

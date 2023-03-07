@@ -11,10 +11,12 @@ namespace RingQuest
     public static class Fonts
     {
         public static SpriteFont defaultFont;
+        public static SpriteFont large;
         
         public static void LoadFonts(ContentManager content)
         {
-            defaultFont = content.Load<SpriteFont>("DefaultFont");
+            defaultFont = content.Load<SpriteFont>("Fonts/DefaultFont");
+            large = content.Load<SpriteFont>("Fonts/Large");
         }
     }
 }

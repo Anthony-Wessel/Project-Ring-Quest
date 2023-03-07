@@ -18,7 +18,7 @@ namespace RingQuest
 
             abilities.Add(new AAttack(2, 4));
             abilities.Add(new AHeal(8));
-            abilities.Add(new AApplyPoison(new EEnrage(3, 5, 10)));
+            abilities.Add(new AApplyPoison(new EPoison(3, 2)));
         }
 
         public override void TakeTurn()

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Net.Mime;
 using System.Text;
@@ -86,12 +87,16 @@ namespace RingQuest
             this.text = compiledString.TrimEnd();
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch) => Draw(gameTime, spriteBatch, Fonts.defaultFont, Color.Black);
+
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, SpriteFont font) => Draw(gameTime, spriteBatch, font, Color.Black);
+
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, SpriteFont font, Color color)
         {
             Vector2 textSize = Fonts.defaultFont.MeasureString(this.text);
             Vector2 drawPosition = new Vector2(rect.Location.X + (rect.Width - textSize.X) / 2, rect.Location.Y + (rect.Height - textSize.Y) / 2);
 
-            spriteBatch.DrawString(Fonts.defaultFont, text, drawPosition, Color.Black);
+            spriteBatch.DrawString(font, text, drawPosition, color);
         }
 
         float stringLen(string x)

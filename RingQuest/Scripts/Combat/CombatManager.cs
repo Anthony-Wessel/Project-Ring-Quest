@@ -25,11 +25,11 @@ namespace RingQuest
         public static void BeginNewCombat(PlayerCharacter pc, List<AICharacter> enemies, Action<bool> OnCompleted = null)
         {
             turnQueue.Enqueue(pc);
-            pc.onCharacterUpdated += CheckCharacterStatus;
+            pc.onCharacterUpdated = CheckCharacterStatus;
             foreach (Character c in enemies)
             {
                 turnQueue.Enqueue(c);
-                c.onCharacterUpdated += CheckCharacterStatus;
+                c.onCharacterUpdated = CheckCharacterStatus;
             }
 
             onCompleted = OnCompleted;

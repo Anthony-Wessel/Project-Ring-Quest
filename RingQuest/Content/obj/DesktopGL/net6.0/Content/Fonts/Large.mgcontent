@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/DefaultFont.spritefont</SourceFile>
-  <SourceTime>2022-07-26T06:44:10-05:00</SourceTime>
-  <DestFile>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/bin/DesktopGL/Content/DefaultFont.xnb</DestFile>
-  <DestTime>2023-02-08T14:05:16.412155-06:00</DestTime>
+  <SourceFile>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/Fonts/Large.spritefont</SourceFile>
+  <SourceTime>2023-03-06T19:37:26.1762836-06:00</SourceTime>
+  <DestFile>C:/Users/thebo/Desktop/Projects/RingQuest/RingQuest/Content/bin/DesktopGL/Content/Fonts/Large.xnb</DestFile>
+  <DestTime>2023-03-06T19:37:29.469275-06:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2022-07-26T06:44:56-05:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
