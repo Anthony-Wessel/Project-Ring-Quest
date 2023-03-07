@@ -11,22 +11,17 @@ namespace RingQuest
     {
         int minDamage, maxDamage;
 
-        public AAttack(int minDamage, int maxDamage)
+        public AAttack(int minDamage, int maxDamage) : base("Attack", minDamage + "-" + maxDamage + " damage", ImageDB.CombatEvent, 0, false)
         {
             this.minDamage = minDamage;
             this.maxDamage = maxDamage;
-
-            targetFriendly = false;
-            cooldown = 0;
         }
 
         public override void Cast(Character source, Character target)
         {
+            base.Cast(source, target);
+
             target.TakeDamage(source, RNG.NextInt(minDamage, maxDamage+1));
         }
-
-        public override string Description { get { return minDamage + "-" + maxDamage + " damage"; } }
-        public override string Name { get { return "Attack"; } }
-        public override Texture2D Image { get { return ImageDB.CombatEvent; } }
     }
 }

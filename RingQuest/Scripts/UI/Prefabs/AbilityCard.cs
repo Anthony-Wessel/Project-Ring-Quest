@@ -77,9 +77,9 @@ namespace RingQuest
 
             if (ability == null) return;
 
-            image.image = ability.Image;
-            name.text = ability.Name;
-            description.text = ability.Description;
+            image.image = ability.image;
+            name.text = ability.name;
+            description.text = ability.description;
         }
 
         void Update(GameTime gameTime)

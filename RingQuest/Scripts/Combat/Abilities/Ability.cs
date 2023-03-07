@@ -9,24 +9,33 @@ namespace RingQuest
 {
     public abstract class Ability
     {
+        public string name, description;
+        public Texture2D image;
         public bool targetFriendly;
         public int cooldown, remainingCooldown;
         public bool isReady { get { return remainingCooldown == 0; } }
 
-        public virtual void Cast(Character source, Character target)
+        public Ability(string name, string description, Texture2D image, int cooldown, bool targetFriendly)
         {
-            remainingCooldown = cooldown;
+            this.name = name;
+            this.description = description;
+            this.image = image;
+
+            this.cooldown = cooldown;
+            remainingCooldown = 0;
+
+            this.targetFriendly = targetFriendly;
         }
 
-        public virtual string Name { get { return "NULL"; } }
-        public virtual string Description { get { return "NULL"; } }
-        public virtual Texture2D Image { get { return ImageDB.Blank; } }
+        public virtual void Cast(Character source, Character target)
+        {
+            remainingCooldown = cooldown + 1;
+        }
 
         public void DecrementCooldown()
         {
             if (remainingCooldown > 0)
                 remainingCooldown -= 1;
         }
-
     }
 }

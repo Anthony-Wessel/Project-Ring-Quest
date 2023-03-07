@@ -11,20 +11,16 @@ namespace RingQuest
     {
         public EPoison effect;
 
-        public AApplyPoison(EPoison effect)
+        public AApplyPoison(EPoison effect) : base("Apply Poison", effect.damagePerTurn + " dmg/turn for " + effect.remainingDuration + "turns", ImageDB.Key, 0, effect.helpful)
         {
             this.effect = effect;
-            targetFriendly = effect.helpful;
-            cooldown = 0;
         }
 
         public override void Cast(Character source, Character target)
         {
+            base.Cast(source, target);
+
             target.ApplyEffect(effect);
         }
-
-        public override string Description { get { return effect.damagePerTurn + " dmg/turn for " + effect.remainingDuration + "turns"; } }
-        public override string Name { get { return "Apply Poison"; } }
-        public override Texture2D Image { get { return ImageDB.Key; } }
     }
 }

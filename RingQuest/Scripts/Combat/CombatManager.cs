@@ -71,9 +71,13 @@ namespace RingQuest
         {
             if (combatEnded) return;
 
-            // Apply per-turn effects
+            // Apply per-turn effects and decrement cooldowns
             if (activeCharacter != null)
+            {
                 activeCharacter.ManageEffects();
+                foreach (Ability a in activeCharacter.abilities) a.DecrementCooldown();
+            }
+               
 
             // Select the next active character
             activeCharacter = turnQueue.Dequeue();
@@ -89,7 +93,7 @@ namespace RingQuest
 
             if (a.remainingCooldown > 0) return; // Ability is still on cooldown
 
-            if (!activeCharacter.abilities.Contains(a)) throw new Exception(activeCharacter.name + " does not have that ability (" + a.Name + ")");
+            if (!activeCharacter.abilities.Contains(a)) throw new Exception(activeCharacter.name + " does not have that ability (" + a.name + ")");
 
             
 

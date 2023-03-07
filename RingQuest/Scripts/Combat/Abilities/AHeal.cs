@@ -11,21 +11,16 @@ namespace RingQuest
     {
         int amount;
 
-        public AHeal(int amount)
+        public AHeal(int amount) : base("Heal", amount + " healing", ImageDB.OpenExit, 2, true)
         {
             this.amount = amount;
-
-            targetFriendly = true;
-            cooldown = 2;
         }
 
         public override void Cast(Character source, Character target)
         {
+            base.Cast(source, target);
+
             target.Heal(RNG.NextInt(amount));
         }
-
-        public override string Description { get { return amount + " healing"; } }
-        public override string Name { get { return "Heal"; } }
-        public override Texture2D Image { get { return ImageDB.OpenExit; } }
     }
 }

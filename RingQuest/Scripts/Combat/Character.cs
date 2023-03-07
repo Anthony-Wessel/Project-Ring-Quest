@@ -55,11 +55,11 @@ namespace RingQuest
             accuracy = 1;
         }
 
-        public void TakeDamage(Character source, int amount)
+        public int TakeDamage(Character source, int amount)
         {
             if (source != null)
             {
-                if (RNG.NextFloat(1) > source.accuracy) return; // Missed
+                if (RNG.NextFloat(1) > source.accuracy) return 0; // Missed
 
                 amount = amount + source.bonusDamageDone + bonusDamageTaken;
 
@@ -71,6 +71,8 @@ namespace RingQuest
 
             onTakeDamageCalled(amount);
             onCharacterUpdated();
+
+            return amount;
         }
 
         void Die()
