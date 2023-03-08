@@ -12,7 +12,7 @@ namespace RingQuest
         public static CombatPanel Instance;
 
         HorizontalGroup enemies, players;
-        Batch<CharacterCard> cards;
+        Pool<CharacterCard> cards;
 
         CombatOptions combatOptions;
 
@@ -21,7 +21,7 @@ namespace RingQuest
             enemies = new HorizontalGroup(new Rectangle(rect.X + 200, rect.Y + 25, 1000, 400), null);
             players = new HorizontalGroup(new Rectangle(rect.X + 200, rect.Y + 450, 1000, 400), null);
 
-            cards = new Batch<CharacterCard>();
+            cards = new Pool<CharacterCard>();
 
             combatOptions = new CombatOptions(new Rectangle(rect.X + 50, rect.Y + 875, 1300, 175));
             AddUIElement(combatOptions);

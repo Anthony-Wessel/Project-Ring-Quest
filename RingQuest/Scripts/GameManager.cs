@@ -179,6 +179,9 @@ namespace RingQuest
             promptPanel.Draw(gameTime, _spriteBatch);
             combatPanel.Draw(gameTime, _spriteBatch);
 
+            if (!combatPanel.hidden)
+                HealthPopups.Draw(gameTime, _spriteBatch);
+
             _spriteBatch.End();
             
             base.Draw(gameTime);

@@ -24,8 +24,8 @@ namespace RingQuest
         public delegate void OnCharacterUpdated();
         public OnCharacterUpdated onCharacterUpdated;
 
-        public delegate void OnTakeDamageCalled(int i);
-        public OnTakeDamageCalled onTakeDamageCalled;
+        public delegate void OnHealthChanged(int i);
+        public OnHealthChanged onHealthChanged;
 
         public List<Ability> abilities;
         public List<Effect> combatEffects;
@@ -48,7 +48,7 @@ namespace RingQuest
             isDead = false;
 
             onCharacterUpdated = () => { };
-            onTakeDamageCalled = (i) => { };
+            onHealthChanged = (i) => { };
 
             bonusDamageDone = 0;
             bonusDamageTaken = 0;
@@ -69,7 +69,7 @@ namespace RingQuest
             currentHealth -= amount;
             if (currentHealth <= 0) Die();
 
-            onTakeDamageCalled(amount);
+            onHealthChanged(-amount);
             onCharacterUpdated();
 
             return amount;
@@ -84,6 +84,7 @@ namespace RingQuest
         {
             currentHealth = Math.Min(currentHealth + amount, maxHealth);
             onCharacterUpdated();
+            onHealthChanged(amount);
         }
 
         public virtual void TakeTurn()

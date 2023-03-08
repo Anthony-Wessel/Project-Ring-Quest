@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class AbilityCard : UIElement, IBatchable
+    public class AbilityCard : UIElement, IPoolable
     {
         Rectangle r;
         public Rectangle rect { get { return r; } set { r = value; UpdateRects(); } }

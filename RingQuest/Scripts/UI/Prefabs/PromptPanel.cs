@@ -14,7 +14,7 @@ namespace RingQuest
         static PromptPanel instance;
 
         UIText title, prompt;
-        Batch<Button> buttons;
+        Pool<Button> buttons;
         HorizontalGroup buttonGroup;
 
         public PromptPanel() : base(new Rectangle(610, 290, 700, 500))
@@ -27,7 +27,7 @@ namespace RingQuest
             prompt = new UIText(new Rectangle(720, 390, 500, 300), "");
             AddUIElement(prompt);
 
-            buttons = new Batch<Button>();
+            buttons = new Pool<Button>();
 
             buttonGroup = new HorizontalGroup(new Rectangle(720, 690, 500, 100), null);
             AddUIElement(buttonGroup);

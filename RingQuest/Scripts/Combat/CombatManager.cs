@@ -64,6 +64,8 @@ namespace RingQuest
             turnQueue.Clear();
             combatEnded = true;
 
+            HealthPopups.Clear();
+
             onCompleted(playerWon);
         }
 

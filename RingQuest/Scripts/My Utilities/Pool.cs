@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class Batch<T> where T : IBatchable, new()
+    public class Pool<T> where T : IPoolable, new()
     {
         public List<T> tList;
 
-        public Batch()
+        public Pool()
         {
             tList = new List<T>();
         }

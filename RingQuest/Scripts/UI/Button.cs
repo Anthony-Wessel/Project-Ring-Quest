@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class Button : UIElement, IBatchable
+    public class Button : UIElement, IPoolable
     {
         Rectangle r;
         public Rectangle rect { get { return r; } set { r = value; if (text != null) { text.rect = value; text.SetText(text.text); } } }

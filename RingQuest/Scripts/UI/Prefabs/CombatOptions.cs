@@ -14,7 +14,7 @@ namespace RingQuest
         public Rectangle rect { get; set; }
         HorizontalGroup abilityGroup, optionsGroup, itemGroup;
 
-        Batch<AbilityCard> abilityCards;
+        Pool<AbilityCard> abilityCards;
 
         public CombatOptions(Rectangle rect)
         {
@@ -32,7 +32,7 @@ namespace RingQuest
 
 
 
-            abilityCards = new Batch<AbilityCard>();
+            abilityCards = new Pool<AbilityCard>();
         }
 
         public void Open(Character player)
