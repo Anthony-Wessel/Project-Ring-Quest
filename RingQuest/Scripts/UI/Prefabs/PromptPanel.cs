@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -9,28 +10,29 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class PromptPanel : Panel
+    public class PromptPanel : UIElement
     {
         static PromptPanel instance;
 
         UIText title, prompt;
         Pool<Button> buttons;
         HorizontalGroup buttonGroup;
+        public bool hidden;
 
         public PromptPanel() : base(new Rectangle(610, 290, 700, 500))
         {
             // Title
-            title = new UIText(new Rectangle(670, 315, 600, 50), "");
-            AddUIElement(title);
+            title = new UIText(new Rectangle(670, 315, 600, 50), "", Fonts.defaultFont, Color.Black);
+            AddChild(title);
 
             // Prompt
-            prompt = new UIText(new Rectangle(720, 390, 500, 300), "");
-            AddUIElement(prompt);
+            prompt = new UIText(new Rectangle(720, 390, 500, 300), "", Fonts.defaultFont, Color.Black);
+            AddChild(prompt);
 
             buttons = new Pool<Button>();
 
-            buttonGroup = new HorizontalGroup(new Rectangle(720, 690, 500, 100), null);
-            AddUIElement(buttonGroup);
+            buttonGroup = new HorizontalGroup(new Rectangle(720, 690, 500, 100));
+            AddChild(buttonGroup);
 
             instance = this;
             Hide();
@@ -42,14 +44,14 @@ namespace RingQuest
             instance.prompt.SetText(prompt);
 
 
-            instance.buttonGroup.children.Clear();
+            instance.buttonGroup.Clear();
 
             instance.buttons.Clear();
             foreach (string option in options.Keys)
             {
                 Button b = instance.buttons.Request();
-                b.Init(b.rect, option, options[option]);
-                instance.buttonGroup.children.Add(b);
+                b.ReInit(option, options[option]);
+                instance.buttonGroup.AddChild(b);
             }
 
             instance.buttonGroup.ConfigurePlacement();
@@ -71,6 +73,15 @@ namespace RingQuest
         {
             instance.hidden = true;
             instance.buttons.Clear();
+        }
+
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            if (hidden) return;
+
+            spriteBatch.Draw(ImageDB.Panel, rect, Color.White);
+
+            base.Draw(gameTime, spriteBatch);
         }
     }
 }

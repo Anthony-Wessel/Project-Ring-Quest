@@ -12,18 +12,19 @@ namespace RingQuest
 {
     class HealthPopup : IPoolable
     {
-        public UIText text;
-        public Point position;
-        public Color color;
+        public UIText UIText;
         public double spawnTime;
+        public Color baseColor;
 
         public void Init(string text, Color color, Point position)
         {
-            if (this.text == null) this.text = new UIText(Rectangle.Empty, "");
+            if (UIText == null) UIText = new UIText(Rectangle.Empty, "", Fonts.large, Color.Black);
 
-            this.text.text = text;
-            this.text.rect = new Rectangle(position, Point.Zero);
-            this.color = color;
+            UIText.text = text;
+            UIText.rect = new Rectangle(position, Point.Zero);
+            UIText.color = color;
+
+            baseColor = color;
 
             spawnTime = -1;
         }
@@ -75,9 +76,10 @@ namespace RingQuest
                         {
                             alpha = (byte)((lifetime - 0.5) / 0.25 * 255);
                         }
-                        else alpha = (byte)255;
+                        else alpha = 255;
 
-                        popup.text.Draw(gameTime, spriteBatch, Fonts.large, popup.color * alpha);
+                        popup.UIText.color = popup.baseColor * alpha;
+                        popup.UIText.Draw(gameTime, spriteBatch);
                     }
                 }
             }

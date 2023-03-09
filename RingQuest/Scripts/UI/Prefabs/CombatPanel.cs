@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class CombatPanel : Panel
+    public class CombatPanel : UIElement
     {
         public static CombatPanel Instance;
 
@@ -15,16 +16,17 @@ namespace RingQuest
         Pool<CharacterCard> cards;
 
         CombatOptions combatOptions;
+        public bool hidden;
 
         public CombatPanel() : base(new Rectangle(260, 2, 1400, 1075))
         {
-            enemies = new HorizontalGroup(new Rectangle(rect.X + 200, rect.Y + 25, 1000, 400), null);
-            players = new HorizontalGroup(new Rectangle(rect.X + 200, rect.Y + 450, 1000, 400), null);
+            enemies = new HorizontalGroup(new Rectangle(rect.X + 200, rect.Y + 25, 1000, 400));
+            players = new HorizontalGroup(new Rectangle(rect.X + 200, rect.Y + 450, 1000, 400));
 
             cards = new Pool<CharacterCard>();
 
             combatOptions = new CombatOptions(new Rectangle(rect.X + 50, rect.Y + 875, 1300, 175));
-            AddUIElement(combatOptions);
+            AddChild(combatOptions);
 
             Instance = this;
             Hide();
@@ -32,21 +34,21 @@ namespace RingQuest
 
         public void Open()
         {
-            players.children.Clear();
-            enemies.children.Clear();
+            players.Clear();
+            enemies.Clear();
 
             cards.Clear();
 
             foreach (Character c in CombatManager.turnQueue)
             {
                 CharacterCard cc = cards.Request();
-                if (!childElements.Contains(cc)) AddUIElement(cc);
+                if (!children.Contains(cc)) AddChild(cc);
 
                 cc.SetCharacter(c);
-                if (c.isEnemy) enemies.children.Add(cc);
+                if (c.isEnemy) enemies.AddChild(cc);
                 else
                 {
-                    players.children.Add(cc);
+                    players.AddChild(cc);
                     combatOptions.Open(c);
                 }
             }
@@ -60,6 +62,14 @@ namespace RingQuest
         public void Hide()
         {
             hidden = true;
+        }
+
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            if (hidden) return;
+            spriteBatch.Draw(ImageDB.Panel, rect, Color.White);
+
+            base.Draw(gameTime, spriteBatch);
         }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using RingQuest.My_Utilities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -12,21 +13,6 @@ namespace RingQuest
 {
     public class CharacterCard : UIElement, IPoolable
     {
-        Rectangle r;
-        public Rectangle rect { get { return r; }
-            set
-            {
-                if (image != null)
-                    image.rect = image.rect.ScaleProportionately(r, value);
-                if (name != null)
-                    name.rect = name.rect.ScaleProportionately(r, value);
-                if (healthBar != null)
-                    healthBar.rect = healthBar.rect.ScaleProportionately(r, value);
-
-                r = value;
-            }
-        }
-
         Image image;
         UIText name;
         HealthBar healthBar;
@@ -36,16 +22,19 @@ namespace RingQuest
         public bool active { get; set; }
         bool pressed;
 
-        public CharacterCard()
+        public CharacterCard() : base(new Rectangle(100, 100, 300, 400))
         {
             character = null;
 
-            rect = new Rectangle(100, 100, 300, 400);
             image = new Image(new Rectangle(rect.X, rect.Y, 300, 300), ImageDB.Blank);
+            AddChild(image);
 
-            name = new UIText(new Rectangle(rect.X, rect.Y + 300, 300, 50), "");
+            name = new UIText(new Rectangle(rect.X, rect.Y + 300, 300, 50), "", Fonts.defaultFont, Color.Black);
+            AddChild(name);
+
             healthBar = new HealthBar(new Rectangle(rect.X, rect.Y + 350, 300, 50), 0, 0);
-            
+            AddChild(healthBar);
+
             GameManager.Instance.updateChildren += Update;
         }
 
@@ -74,14 +63,11 @@ namespace RingQuest
             }
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (!active) return;
 
-            // Draw other stuff
-            image.Draw(gameTime, spriteBatch);
-            name.Draw(gameTime, spriteBatch, Fonts.defaultFont);
-            healthBar.Draw(gameTime, spriteBatch);
+            base.Draw(gameTime, spriteBatch);
 
             // Draw frame
             spriteBatch.Draw(ImageDB.CharacterFrame, rect, Color.White);

@@ -12,16 +12,17 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    // TODO: DOES THIS NEED TO BE A UIELEMENT
     public class UIText : UIElement
     {
-        public Rectangle rect { get; set; }
         public string text;
+        public SpriteFont font;
+        public Color color;
 
-        public UIText(Rectangle parentRect, string text)
+        public UIText(Rectangle parentRect, string text, SpriteFont font, Color color) : base(parentRect)
         {
-            this.rect = parentRect;
-            SetText(text);         
+            SetText(text);
+            this.font = font;
+            this.color = color;
         }
 
         public void SetText(string text)
@@ -87,16 +88,14 @@ namespace RingQuest
             this.text = compiledString.TrimEnd();
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch) => Draw(gameTime, spriteBatch, Fonts.defaultFont, Color.Black);
-
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, SpriteFont font) => Draw(gameTime, spriteBatch, font, Color.Black);
-
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, SpriteFont font, Color color)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            Vector2 textSize = Fonts.defaultFont.MeasureString(this.text);
+            Vector2 textSize = font.MeasureString(text);
             Vector2 drawPosition = new Vector2(rect.Location.X + (rect.Width - textSize.X) / 2, rect.Location.Y + (rect.Height - textSize.Y) / 2);
 
             spriteBatch.DrawString(font, text, drawPosition, color);
+
+            base.Draw(gameTime, spriteBatch);
         }
 
         float stringLen(string x)

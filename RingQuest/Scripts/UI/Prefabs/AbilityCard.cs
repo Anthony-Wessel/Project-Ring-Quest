@@ -12,9 +12,6 @@ namespace RingQuest
 {
     public class AbilityCard : UIElement, IPoolable
     {
-        Rectangle r;
-        public Rectangle rect { get { return r; } set { r = value; UpdateRects(); } }
-
         Point expandedSize, reducedSize;
         Ability ability;
 
@@ -22,17 +19,21 @@ namespace RingQuest
         public Image image;
 
         public bool active { get; set; }
-        bool skipFrame, pressed;
+        bool pressed;
 
         public AbilityCard() : this(new Rectangle(0,0,100,150), Point.Zero, null) { }
 
-        public AbilityCard(Rectangle rect, Point expandedSize, Ability ability)
+        public AbilityCard(Rectangle rect, Point expandedSize, Ability ability) : base(rect)
         {
             image = new Image(Rectangle.Empty, ImageDB.Blank);
-            name = new UIText(Rectangle.Empty, "");
-            description = new UIText(Rectangle.Empty, "");
+            AddChild(image);
 
-            this.rect = rect;
+            name = new UIText(Rectangle.Empty, "", Fonts.defaultFont, Color.Black);
+            AddChild(name);
+
+            description = new UIText(Rectangle.Empty, "", Fonts.defaultFont, Color.Black);
+            AddChild(description);
+
             reducedSize = rect.Size;
             this.expandedSize = expandedSize;
 
@@ -60,15 +61,13 @@ namespace RingQuest
             description.rect = r1;
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (!active) return;
 
             spriteBatch.Draw(ImageDB.Panel, rect, Color.White);
 
-            image.Draw(gameTime, spriteBatch);
-            name.Draw(gameTime, spriteBatch);
-            description.Draw(gameTime, spriteBatch);
+            base.Draw(gameTime, spriteBatch);
         }
 
         public void SetAbility(Ability ability)

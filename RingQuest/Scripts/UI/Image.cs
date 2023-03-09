@@ -10,18 +10,18 @@ namespace RingQuest
 {
     public class Image : UIElement
     {
-        public Rectangle rect { get; set; }
         public Texture2D image;
 
-        public Image(Rectangle rect, Texture2D image)
+        public Image(Rectangle rect, Texture2D image) : base(rect)
         {
-            this.rect = rect;
             this.image = image;
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(image, rect, Color.White);
+
+            base.Draw(gameTime, spriteBatch);
         }
     }
 }

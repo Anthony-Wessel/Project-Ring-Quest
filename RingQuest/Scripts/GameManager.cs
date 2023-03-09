@@ -175,12 +175,11 @@ namespace RingQuest
             // Draw player
             player.Draw(gameTime, _spriteBatch);
 
-            // Draw panel
+            // Draw panels
             promptPanel.Draw(gameTime, _spriteBatch);
             combatPanel.Draw(gameTime, _spriteBatch);
 
-            if (!combatPanel.hidden)
-                HealthPopups.Draw(gameTime, _spriteBatch);
+            HealthPopups.Draw(gameTime, _spriteBatch);
 
             _spriteBatch.End();
             

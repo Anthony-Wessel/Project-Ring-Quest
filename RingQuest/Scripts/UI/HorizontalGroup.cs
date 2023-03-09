@@ -10,13 +10,13 @@ namespace RingQuest
 {
     public class HorizontalGroup : UIElement
     {
-        Rectangle r;
-        public Rectangle rect { get { return r; } set { r = value; ConfigurePlacement(); } }
-        public List<UIElement> children;
+        public HorizontalGroup(Rectangle rect) : base(rect) { }
 
-        public HorizontalGroup(Rectangle rect, List<UIElement> children)
+        public override void AddChild(UIElement newChild)
         {
-            Init(rect, children);
+            base.AddChild(newChild);
+
+            ConfigurePlacement();
         }
 
         public void ConfigurePlacement()
@@ -54,14 +54,6 @@ namespace RingQuest
             else this.children = children;
 
             ConfigurePlacement();
-        }
-
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            foreach (UIElement child in children)
-            {
-                child.Draw(gameTime, spriteBatch);
-            }
         }
     }
 }

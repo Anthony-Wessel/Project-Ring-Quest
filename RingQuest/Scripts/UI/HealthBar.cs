@@ -10,36 +10,32 @@ namespace RingQuest
 {
     public class HealthBar : UIElement
     {
-        Rectangle r;
-        public Rectangle rect { get { return r; } set { r = value; remainingRect = new Rectangle(rect.X, rect.Y, calculateRemainingWidth(currentHealth, maxHealth), rect.Height); if (text != null) text.rect = rect; } }
         Rectangle remainingRect;
-        int currentHealth, maxHealth;
         UIText text;
 
-        public HealthBar(Rectangle rect, int currentHealth, int maxHealth)
+        public HealthBar(Rectangle rect, int currentHealth, int maxHealth) : base(rect)
         {
-            this.rect = rect;
-            remainingRect = new Rectangle(rect.X, rect.Y, calculateRemainingWidth(currentHealth, maxHealth), rect.Height);
-            this.currentHealth = currentHealth;
-            this.maxHealth = maxHealth;
+            remainingRect = rect;
+            remainingRect.Width = calculateRemainingWidth(currentHealth, maxHealth);
 
-            text = new UIText(rect, currentHealth + " / " + maxHealth);
+            text = new UIText(rect, currentHealth + " / " + maxHealth, Fonts.defaultFont, Color.Black);
+            AddChild(text);
         }
 
         public void Update(int currentHealth, int maxHealth)
         {
-            this.currentHealth = currentHealth;
-            this.maxHealth = maxHealth;
-
             remainingRect.Width = calculateRemainingWidth(currentHealth, maxHealth);
             text.text = currentHealth + " / " + maxHealth;
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            remainingRect.Location = rect.Location;
+
             spriteBatch.Draw(ImageDB.Blank, rect, Color.Red);
             spriteBatch.Draw(ImageDB.Blank, remainingRect, Color.Green);
-            text.Draw(gameTime, spriteBatch);
+            
+            base.Draw(gameTime, spriteBatch);
         }
 
         int calculateRemainingWidth(int currentHealth, int maxHealth)

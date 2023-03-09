@@ -11,33 +11,33 @@ namespace RingQuest
 {
     public class CombatOptions : UIElement
     {
-        public Rectangle rect { get; set; }
         HorizontalGroup abilityGroup, optionsGroup, itemGroup;
 
         Pool<AbilityCard> abilityCards;
 
-        public CombatOptions(Rectangle rect)
+        public CombatOptions(Rectangle rect) : base(rect)
         {
             this.rect = rect;
             Rectangle oneThirdRect = rect;
             oneThirdRect.Width = rect.Width / 3;
 
-            abilityGroup = new HorizontalGroup(oneThirdRect, null);
+            abilityGroup = new HorizontalGroup(oneThirdRect);
+            AddChild(abilityGroup);
 
             oneThirdRect.X += oneThirdRect.Width;
-            optionsGroup = new HorizontalGroup(oneThirdRect, null);
+            optionsGroup = new HorizontalGroup(oneThirdRect);
+            AddChild(optionsGroup);
 
             oneThirdRect.X += oneThirdRect.Width;
-            itemGroup = new HorizontalGroup(oneThirdRect, null);
-
-
+            itemGroup = new HorizontalGroup(oneThirdRect);
+            AddChild(itemGroup);
 
             abilityCards = new Pool<AbilityCard>();
         }
 
         public void Open(Character player)
         {
-            abilityGroup.children.Clear();
+            abilityGroup.Clear();
 
             abilityCards.Clear();
             
@@ -45,20 +45,15 @@ namespace RingQuest
             {
                 AbilityCard ac = abilityCards.Request();
                 ac.SetAbility(a);
-                abilityGroup.children.Add(ac);
-
+                abilityGroup.AddChild(ac);
             }
-            
-            abilityGroup.ConfigurePlacement();
         }
         
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(ImageDB.Blank, rect, Color.Black);
 
-            abilityGroup.Draw(gameTime, spriteBatch);
-            optionsGroup.Draw(gameTime, spriteBatch);
-            itemGroup.Draw(gameTime, spriteBatch);
+            base.Draw(gameTime, spriteBatch);
         }
     }
 }

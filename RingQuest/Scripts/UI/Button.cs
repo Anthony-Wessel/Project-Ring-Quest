@@ -13,9 +13,7 @@ namespace RingQuest
 {
     public class Button : UIElement, IPoolable
     {
-        Rectangle r;
-        public Rectangle rect { get { return r; } set { r = value; if (text != null) { text.rect = value; text.SetText(text.text); } } }
-        UIText text;
+        UIText UIText;
         Action OnClick;
 
         bool pressed, hovered;
@@ -24,28 +22,26 @@ namespace RingQuest
 
         public Button() : this(new Rectangle(0, 0, 100, 50), "", null){ }
 
-        public Button(Rectangle rect, string text, Action OnClick)
+        public Button(Rectangle rect, string text, Action OnClick) : base(rect)
         {
-            Init(rect, text, OnClick);
+            UIText = new UIText(rect, text, Fonts.defaultFont, Color.Black);
+            AddChild(UIText);
+
+            ReInit(text, OnClick);
+
             GameManager.Instance.updateChildren += Update;
         }
 
-        public void Init(Rectangle rect, string text, Action OnClick)
+        public void ReInit(string text, Action OnClick)
         {
-            this.rect = rect;
-            if (this.text == null) this.text = new UIText(rect, text);
-            else
-            {
-                this.text.rect = rect;
-                this.text.SetText(text);
-            }
-
+            UIText.SetText(text);
+           
             this.OnClick = OnClick;
 
             skipFrame = true;
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Texture2D tex;
             if (pressed) tex = ImageDB.Button_Pressed;
@@ -54,7 +50,7 @@ namespace RingQuest
 
             spriteBatch.Draw(tex, rect, Color.White);
 
-            text.Draw(gameTime, spriteBatch);
+            base.Draw(gameTime, spriteBatch);
         }
 
         void Update(GameTime gameTime)
