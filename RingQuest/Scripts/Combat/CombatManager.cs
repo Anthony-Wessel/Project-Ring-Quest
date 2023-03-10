@@ -14,7 +14,7 @@ namespace RingQuest
         static Character activeCharacter;
         static Action<bool> onCompleted;
 
-        static bool combatEnded;
+        public static bool combatEnded;
         public static Ability playersActiveAbility;
 
         public static void Init()
@@ -79,7 +79,8 @@ namespace RingQuest
                 activeCharacter.ManageEffects();
                 foreach (Ability a in activeCharacter.abilities) a.DecrementCooldown();
             }
-               
+
+            if (combatEnded) return;
 
             // Select the next active character
             activeCharacter = turnQueue.Dequeue();

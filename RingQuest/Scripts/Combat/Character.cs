@@ -98,7 +98,10 @@ namespace RingQuest
             for (int i = combatEffects.Count - 1; i >= 0; i--)
             {
                 combatEffects[i].OnTurnEnded(this);
-                if (--combatEffects[i].remainingDuration <= 0) RemoveEffect(combatEffects[i]);
+
+                if (CombatManager.combatEnded) return;
+
+                if (combatEffects[i].remainingDuration <= 0) RemoveEffect(combatEffects[i]);
             }
         }
 

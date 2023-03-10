@@ -11,6 +11,8 @@ namespace RingQuest
     {
         public static Rectangle ScaleProportionately(this Rectangle original, Rectangle from, Rectangle to)
         {
+            if (original == from) return to;
+
             float xProgress = (float)(original.X - from.X) / from.Width;
             float yProgress = (float)(original.Y - from.Y) / from.Height;
 

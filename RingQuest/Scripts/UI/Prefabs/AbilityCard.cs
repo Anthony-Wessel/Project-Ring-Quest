@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RingQuest.My_Utilities;
+using RingQuest.Scripts.UI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,6 +18,7 @@ namespace RingQuest
 
         public UIText name, description;
         public Image image;
+        public CooldownDisplay cooldownDisplay;
 
         public bool active { get; set; }
         bool pressed;
@@ -27,6 +29,9 @@ namespace RingQuest
         {
             image = new Image(Rectangle.Empty, ImageDB.Blank);
             AddChild(image);
+
+            cooldownDisplay = new CooldownDisplay(Rectangle.Empty);
+            AddChild(cooldownDisplay);
 
             name = new UIText(Rectangle.Empty, "", Fonts.defaultFont, Color.Black);
             AddChild(name);
@@ -49,6 +54,7 @@ namespace RingQuest
             Rectangle r1 = rect;
             r1.Height = (int)(rect.Height * 0.5);
             image.rect = r1;
+            cooldownDisplay.rect = r1;
 
             // Create name text
             r1.Y += r1.Height;
@@ -84,6 +90,8 @@ namespace RingQuest
         void Update(GameTime gameTime)
         {
             if (!active) return;
+
+            cooldownDisplay.Update(ability.remainingCooldown);
 
             if (rect.Contains(Input.GetMousePosition()))
             {
