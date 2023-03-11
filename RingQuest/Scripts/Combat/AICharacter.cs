@@ -21,6 +21,12 @@ namespace RingQuest
 
         public override void TakeTurn()
         {
+            Task.Delay(500).ContinueWith(t => attack());
+            
+        }
+
+        void attack()
+        {
             foreach (Character c in CombatManager.turnQueue)
             {
                 if (c.isEnemy != isEnemy)
