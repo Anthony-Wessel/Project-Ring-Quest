@@ -83,8 +83,13 @@ namespace RingQuest
             if (combatEnded) return;
 
             // Select the next active character
-            activeCharacter = turnQueue.Dequeue();
-            turnQueue.Enqueue(activeCharacter);
+            do
+            {
+                activeCharacter = turnQueue.Dequeue();
+                turnQueue.Enqueue(activeCharacter);
+            }
+            while (activeCharacter.isDead);
+            
             
             // Start new active character's turn
             activeCharacter.TakeTurn();
