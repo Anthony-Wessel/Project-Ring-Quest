@@ -57,7 +57,7 @@ namespace RingQuest
 
         public static void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            for(int i = 0; i < popups.tList.Count; i++)
+            for(int i = popups.tList.Count-1; i >= 0; i--)
             {
                 HealthPopup popup = popups.tList[i];
                 if (popup.active)
@@ -71,12 +71,12 @@ namespace RingQuest
                     }
                     else
                     {
-                        byte alpha;
+                        float alpha;
                         if (lifetime > 0.5)
                         {
-                            alpha = (byte)((lifetime - 0.5) / 0.25 * 255);
+                            alpha = (float)(1 - ((lifetime - 0.5) / 0.25));
                         }
-                        else alpha = 255;
+                        else alpha = 1;
 
                         popup.UIText.color = popup.baseColor * alpha;
                         popup.UIText.Draw(gameTime, spriteBatch);
