@@ -12,6 +12,8 @@ namespace RingQuest
 {
     public class PlayerCharacter : Character
     {
+        public Inventory inventory;
+
         public PlayerCharacter(string name, Texture2D sprite, int maxHealth) : base(name, sprite, maxHealth)
         {
             isEnemy = false;
@@ -19,6 +21,11 @@ namespace RingQuest
             abilities.Add(new AAttack(2, 4));
             abilities.Add(new AHeal(8));
             abilities.Add(new AApplyPoison(new EPoison(3, 2)));
+
+            inventory = new Inventory(10);
+            inventory.Add(new Sword());
+            inventory.Add(new Dagger());
+            inventory.Add(new BattleAxe());
         }
 
         public override void TakeTurn()

@@ -8,7 +8,7 @@ namespace RingQuest
 {
     public abstract class Armor : Equipment
     {
-        public Armor(string name, string description, EquipSlot slot) : base(name, description, slot)
+        public Armor(string name, string description) : base(name, description, EquipSlot.CHEST)
         {
         }
     }

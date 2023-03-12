@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class Sword : Weapon
+    public class BattleAxe : Weapon
     {
-        public Sword() : base("Sword", "+2 damage", WeaponType.ONEH) { }
+        public BattleAxe() : base("BattleAxe", "+4 damage", WeaponType.TWOH) { }
 
         public override void OnDequip(PlayerCharacter c)
         {
-            c.bonusDamageDone -= 2;
+            c.bonusDamageDone -= 4;
         }
 
         public override void OnEquip(PlayerCharacter c)
         {
-            c.bonusDamageDone += 2;
+            c.bonusDamageDone += 4;
         }
     }
 }

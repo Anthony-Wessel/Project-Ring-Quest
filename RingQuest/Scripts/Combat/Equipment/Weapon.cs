@@ -15,7 +15,7 @@ namespace RingQuest
     public abstract class Weapon : Equipment
     {
         public WeaponType type;
-        public Weapon(string name, string description, EquipSlot slot, WeaponType type) : base(name, description, slot)
+        public Weapon(string name, string description, WeaponType type) : base(name, description, EquipSlot.WEAPON)
         {
             this.type = type;
         }

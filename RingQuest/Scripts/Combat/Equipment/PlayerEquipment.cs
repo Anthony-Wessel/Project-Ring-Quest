@@ -9,7 +9,7 @@ namespace RingQuest
 {
     public static class PlayerEquipment
     {
-        public static Character playerCharacter;
+        public static PlayerCharacter playerCharacter;
         public static Helmet equippedHelmet;
         public static Armor equippedArmor;
         public static Accessory equippedAccessory;
@@ -23,6 +23,8 @@ namespace RingQuest
 
             helmet.OnEquip(playerCharacter);
             equippedHelmet = helmet;
+            
+            playerCharacter.inventory.Remove(helmet);
         }
 
         // ARMOR
@@ -32,6 +34,8 @@ namespace RingQuest
 
             armor.OnEquip(playerCharacter);
             equippedArmor = armor;
+
+            playerCharacter.inventory.Remove(armor);
         }
         
         // ACCESSORY
@@ -41,12 +45,22 @@ namespace RingQuest
 
             accessory.OnEquip(playerCharacter);
             equippedAccessory = accessory;
+
+            playerCharacter.inventory.Remove(accessory);
         }
 
         // WEAPON
         public static void Equip(Weapon weapon)
         {
-            if (weapon.type == WeaponType.TWOH)
+            if (equippedWeapon != null && equippedWeapon.type == WeaponType.TWOH)
+            {
+                Dequip(equippedWeapon);
+
+                weapon.OnDequip(playerCharacter);
+                if (weapon.type == WeaponType.OFFHAND) equippedOffhand = weapon;
+                else equippedWeapon = weapon;
+            }
+            else if (weapon.type == WeaponType.TWOH)
             {
                 Dequip(equippedWeapon);
                 Dequip(equippedOffhand);
@@ -78,6 +92,8 @@ namespace RingQuest
                     equippedOffhand = weapon;
                 }
             }
+
+            playerCharacter.inventory.Remove(weapon);
         }
 
         public static void Dequip(Equipment equipment)
@@ -91,6 +107,8 @@ namespace RingQuest
             else if (equipment == equippedAccessory) equippedAccessory = null;
             else if (equipment == equippedWeapon) equippedWeapon = null;
             else if (equipment == equippedOffhand) equippedOffhand = null;
+
+            playerCharacter.inventory.Add(equipment);
         }
     }
 }

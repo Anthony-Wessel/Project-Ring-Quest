@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class Dagger : Equipment
+    public class Dagger : Weapon
     {
-        public Dagger() : base("Dagger", "+1 damage, + 5% crit", EquipSlot.WEAPON_1H) { }
+        public Dagger() : base("Dagger", "+1 damage, + 5% crit", WeaponType.ONEH) { }
 
-        public override void OnDequip(Character c)
+        public override void OnDequip(PlayerCharacter c)
         {
             c.bonusCritChance -= 0.05f;
             c.bonusDamageDone -= 1;
         }
 
-        public override void OnEquip(Character c)
+        public override void OnEquip(PlayerCharacter c)
         {
             c.bonusCritChance += 0.05f;
             c.bonusDamageDone += 1;

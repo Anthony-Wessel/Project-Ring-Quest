@@ -99,6 +99,7 @@ namespace RingQuest
             // Spawn player
             index = rng.Next(emptyTiles.Count);
             player = new Player(emptyTiles[index]);
+            PlayerEquipment.playerCharacter = Player.character;
         }
 
         protected override void LoadContent()
@@ -151,6 +152,29 @@ namespace RingQuest
             // Check for mouse click
             if (Input.GetMouseButtonDown(0) && promptPanel.hidden && combatPanel.hidden)
                 CheckIfTileClicked(Input.GetMousePosition().ToVector2());
+
+
+
+
+            /*
+            /// INVENTORY TESTING ///
+            
+            if (Input.GetKeyDown(Keys.Space))
+            {
+                PlayerEquipment.Equip(Player.character.inventory.items[0] as Weapon);
+
+                Debug.Write("Now Equipped: ");
+                if (PlayerEquipment.equippedWeapon != null) Debug.Write(PlayerEquipment.equippedWeapon.name + " + ");
+                if (PlayerEquipment.equippedOffhand != null) Debug.Write(PlayerEquipment.equippedOffhand.name);
+
+                Debug.WriteLine("");
+
+                Debug.WriteLine("Items left in inventory: " + Player.character.inventory.items.Length);
+            }
+
+            /////////////////////////
+            */
+
 
 
             // Monogame stuff
