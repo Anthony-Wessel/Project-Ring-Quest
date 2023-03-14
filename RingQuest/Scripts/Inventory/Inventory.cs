@@ -6,14 +6,21 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
+    public delegate void OnInventoryChanged();
+
     public class Inventory
     {
         public IItem[] items;
+
+        public int Size { get => items.Length; }
+
+        public event OnInventoryChanged onInventoryChanged;
 
         public Inventory(int size)
         {
             items = new IItem[size];
 
+            onInventoryChanged = () => { };
         }
 
         public bool Add(IItem item)
@@ -23,6 +30,7 @@ namespace RingQuest
                 if (items[i] == null)
                 {
                     items[i] = item;
+                    onInventoryChanged();
                     return true;
                 }
             }
@@ -43,6 +51,7 @@ namespace RingQuest
 
                 if (found) items[i] = (i+1 == items.Count() ? null : items[i + 1]);
             }
+            if (found) onInventoryChanged();
         }
 
         public void ChangeSize(int newSize)

@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
+    public delegate void OnEquipmentUpdated();
+
     public static class PlayerEquipment
     {
         public static PlayerCharacter playerCharacter;
@@ -15,6 +17,8 @@ namespace RingQuest
         public static Accessory equippedAccessory;
 
         public static Weapon equippedWeapon, equippedOffhand;
+
+        public static event OnEquipmentUpdated onEquipmentUpdated = () => { };
 
         // HELMET
         public static void Equip(Helmet helmet)
@@ -25,6 +29,8 @@ namespace RingQuest
             equippedHelmet = helmet;
             
             playerCharacter.inventory.Remove(helmet);
+
+            onEquipmentUpdated();
         }
 
         // ARMOR
@@ -36,6 +42,8 @@ namespace RingQuest
             equippedArmor = armor;
 
             playerCharacter.inventory.Remove(armor);
+
+            onEquipmentUpdated();
         }
         
         // ACCESSORY
@@ -47,6 +55,8 @@ namespace RingQuest
             equippedAccessory = accessory;
 
             playerCharacter.inventory.Remove(accessory);
+
+            onEquipmentUpdated();
         }
 
         // WEAPON
@@ -94,6 +104,7 @@ namespace RingQuest
             }
 
             playerCharacter.inventory.Remove(weapon);
+            onEquipmentUpdated();
         }
 
         public static void Dequip(Equipment equipment)
@@ -109,6 +120,7 @@ namespace RingQuest
             else if (equipment == equippedOffhand) equippedOffhand = null;
 
             playerCharacter.inventory.Add(equipment);
+            onEquipmentUpdated();
         }
     }
 }

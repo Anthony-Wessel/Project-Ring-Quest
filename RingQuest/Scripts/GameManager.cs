@@ -20,6 +20,7 @@ namespace RingQuest
         Player player;
         PromptPanel promptPanel;
         CombatPanel combatPanel;
+        EquipmentUI equipmentPanel;
         Input input;
 
         ExitEvent exit;
@@ -114,6 +115,7 @@ namespace RingQuest
 
             promptPanel = new PromptPanel();
             combatPanel = new CombatPanel();
+            equipmentPanel = new EquipmentUI();
         }
 
         #endregion
@@ -150,13 +152,13 @@ namespace RingQuest
             updateChildren.Invoke(gameTime);
 
             // Check for mouse click
-            if (Input.GetMouseButtonDown(0) && promptPanel.hidden && combatPanel.hidden)
+            if (Input.GetMouseButtonDown(0) && promptPanel.hidden && combatPanel.hidden && equipmentPanel.hidden)
                 CheckIfTileClicked(Input.GetMousePosition().ToVector2());
 
 
 
 
-            /*
+            
             /// INVENTORY TESTING ///
             
             if (Input.GetKeyDown(Keys.Space))
@@ -173,7 +175,7 @@ namespace RingQuest
             }
 
             /////////////////////////
-            */
+            
 
 
 
@@ -202,6 +204,7 @@ namespace RingQuest
             // Draw panels
             promptPanel.Draw(gameTime, _spriteBatch);
             combatPanel.Draw(gameTime, _spriteBatch);
+            equipmentPanel.Draw(gameTime, _spriteBatch);
 
             HealthPopups.Draw(gameTime, _spriteBatch);
 

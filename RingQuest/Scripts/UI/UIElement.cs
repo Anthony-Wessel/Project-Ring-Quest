@@ -24,6 +24,11 @@ namespace RingQuest
             children.Add(newChild);
         }
 
+        public virtual void RemoveChild(UIElement child)
+        {
+            children.Remove(child);
+        }
+
         public void Clear()
         {
             children.Clear();
