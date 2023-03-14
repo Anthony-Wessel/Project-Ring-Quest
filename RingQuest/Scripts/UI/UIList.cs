@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,6 +14,12 @@ namespace RingQuest
 
         public UIList(Rectangle rect) : base(rect)
         {
+        }
+
+        public UIElement this[int index]
+        {
+            get => children[index];
+            set => children[index] = value;
         }
 
         public override void AddChild(UIElement newChild)
