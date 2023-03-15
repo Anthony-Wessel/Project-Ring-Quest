@@ -12,6 +12,14 @@ namespace RingQuest
     {
         public HorizontalGroup(Rectangle rect) : base(rect) { }
 
+        public UIElement this[int index]
+        {
+            get => children[index];
+            set => children[index] = value;
+        }
+
+        public int Count => children.Count;
+
         public override void AddChild(UIElement newChild)
         {
             base.AddChild(newChild);

@@ -42,14 +42,14 @@ namespace RingQuest
             instance.title.SetText(title);
             instance.prompt.SetText(prompt);
 
-
             instance.buttonGroup.Clear();
-
             instance.buttons.Clear();
+
             foreach (string option in options.Keys)
             {
                 Button b = instance.buttons.Request();
                 b.ReInit(option, options[option]);
+                b.active = true;
                 instance.buttonGroup.AddChild(b);
             }
 
