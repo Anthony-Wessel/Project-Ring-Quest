@@ -1,5 +1,4 @@
-﻿using RingQuest.My_Utilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,43 +6,46 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class Pool<T> where T : IPoolable, new()
+    public class Pool<T> where T : new()
     {
-        public List<T> tList;
+        public List<T> active;
+        private List<T> inactive;
 
         public Pool()
         {
-            tList = new List<T>();
+            active = new List<T>();
+            inactive = new List<T>();
         }
 
         public void Clear()
         {
-            foreach (T item in tList)
+            for (int i = active.Count-1; i >= 0; i--)
             {
-                Remove(item);
+                Remove(active[i]);
             }
         }
 
         public T Request()
         {
-            foreach (T item in tList)
+            T newItem;
+
+            if (inactive.Count > 0)
             {
-                if (!item.active)
-                {
-                    item.active = true;
-                    return item;
-                }
+                newItem = inactive[0];
+                inactive.RemoveAt(0);
+                active.Add(newItem);
+                return newItem;
             }
 
-            T newItem = new T();
-            tList.Add(newItem);
-            newItem.active = true;
+            newItem = new T();
+            active.Add(newItem);
             return newItem;
         }
 
         public void Remove(T item)
         {
-            item.active = false;
+            inactive.Add(item);
+            active.Remove(item);
         }
     }
 }

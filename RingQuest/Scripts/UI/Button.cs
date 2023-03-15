@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using RingQuest.My_Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -11,14 +10,13 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class Button : UIElement, IPoolable
+    public class Button : UIElement
     {
         UIText UIText;
         Action OnClick;
 
         bool pressed, hovered;
         bool skipFrame;
-        public bool active { get; set; }
 
         public Button() : this(new Rectangle(0, 0, 100, 50), "", null){ }
 
@@ -41,7 +39,7 @@ namespace RingQuest
             skipFrame = true;
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Texture2D tex;
             if (pressed) tex = ImageDB.Button_Pressed;
@@ -50,7 +48,7 @@ namespace RingQuest
 
             spriteBatch.Draw(tex, rect, Color.White);
 
-            base.Draw(gameTime, spriteBatch);
+            base.DrawSelf(gameTime, spriteBatch);
         }
 
         void Update(GameTime gameTime)

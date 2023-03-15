@@ -18,7 +18,6 @@ namespace RingQuest
         UIList equipmentList, inventoryList;
         Point ItemSlotSize = new Point(300, 80);
 
-        public bool hidden;
         public EquipmentUI() : base(new Rectangle(560,40,900,1000))
         {
             equipmentList = new UIList(new Rectangle(rect.X + 400, rect.Y, 500, 500));
@@ -62,18 +61,14 @@ namespace RingQuest
             SetEquipmentItems();
             PlayerEquipment.onEquipmentUpdated += SetEquipmentItems;
 
-            hidden = false;
+            active = false;
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (hidden) return;
-
             spriteBatch.Draw(ImageDB.Panel, inventoryList.rect, Color.DarkGray);
             spriteBatch.Draw(ImageDB.Panel, equipmentList.rect, Color.Gray);
             spriteBatch.Draw(ImageDB.Panel, new Rectangle(rect.X + 400, rect.Y + 500, 500, 500), Color.White);
-
-            base.Draw(gameTime, spriteBatch);
         }
 
         void SetInventoryItems()

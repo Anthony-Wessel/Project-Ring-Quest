@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using RingQuest.My_Utilities;
 using RingQuest.Scripts.UI;
 using System;
 using System.Collections.Generic;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class AbilityCard : UIElement, IPoolable
+    public class AbilityCard : UIElement
     {
         Point expandedSize, reducedSize;
         Ability ability;
@@ -20,7 +19,6 @@ namespace RingQuest
         public Image image;
         public CooldownDisplay cooldownDisplay;
 
-        public bool active { get; set; }
         bool pressed;
 
         public AbilityCard() : this(new Rectangle(0,0,100,150), Point.Zero, null) { }
@@ -67,13 +65,9 @@ namespace RingQuest
             description.rect = r1;
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (!active) return;
-
             spriteBatch.Draw(ImageDB.Panel, rect, Color.White);
-
-            base.Draw(gameTime, spriteBatch);
         }
 
         public void SetAbility(Ability ability)

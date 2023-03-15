@@ -11,10 +11,13 @@ namespace RingQuest
     public abstract class UIElement
     {
         protected List<UIElement> children;
+        public bool active;
 
         public UIElement(Rectangle rect)
         {
             children = new List<UIElement>();
+
+            active = true;
 
             this.rect = rect;
         }
@@ -34,8 +37,17 @@ namespace RingQuest
             children.Clear();
         }
 
-        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected virtual void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
+
+        }
+
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            if (!active) return;
+
+            DrawSelf(gameTime, spriteBatch);
+
             foreach (UIElement child in children)
             {
                 child.Draw(gameTime, spriteBatch);

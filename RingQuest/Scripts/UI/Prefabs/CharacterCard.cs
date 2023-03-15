@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using RingQuest.My_Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class CharacterCard : UIElement, IPoolable
+    public class CharacterCard : UIElement
     {
         Image image;
         UIText name;
@@ -19,7 +18,6 @@ namespace RingQuest
 
         Character character;
 
-        public bool active { get; set; }
         bool pressed;
 
         public CharacterCard() : base(new Rectangle(100, 100, 300, 400))
@@ -63,13 +61,8 @@ namespace RingQuest
             }
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (!active) return;
-
-            base.Draw(gameTime, spriteBatch);
-
-            // Draw frame
             spriteBatch.Draw(ImageDB.CharacterFrame, rect, Color.White);
         }
 

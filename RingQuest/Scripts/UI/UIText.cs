@@ -88,14 +88,12 @@ namespace RingQuest
             this.text = compiledString.TrimEnd();
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Vector2 textSize = font.MeasureString(text);
             Vector2 drawPosition = new Vector2(rect.Location.X + (rect.Width - textSize.X) / 2, rect.Location.Y + (rect.Height - textSize.Y) / 2);
 
             spriteBatch.DrawString(font, text, drawPosition, color);
-
-            base.Draw(gameTime, spriteBatch);
         }
 
         float stringLen(string x)

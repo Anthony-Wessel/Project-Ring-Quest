@@ -17,7 +17,6 @@ namespace RingQuest
         UIText title, prompt;
         Pool<Button> buttons;
         HorizontalGroup buttonGroup;
-        public bool hidden;
 
         public PromptPanel() : base(new Rectangle(610, 290, 700, 500))
         {
@@ -56,7 +55,7 @@ namespace RingQuest
 
             instance.buttonGroup.ConfigurePlacement();
 
-            instance.hidden = false;
+            instance.active = true;
         }
 
         public static void DisplaySimplePrompt(string title, string prompt, string buttonText, Action OnButtonPressed)
@@ -71,17 +70,13 @@ namespace RingQuest
 
         public static void Hide()
         {
-            instance.hidden = true;
+            instance.active = false;
             instance.buttons.Clear();
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (hidden) return;
-
             spriteBatch.Draw(ImageDB.Panel, rect, Color.White);
-
-            base.Draw(gameTime, spriteBatch);
         }
     }
 }

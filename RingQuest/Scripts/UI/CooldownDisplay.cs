@@ -11,7 +11,6 @@ namespace RingQuest.Scripts.UI
     public class CooldownDisplay : Image
     {
         UIText numberDisplay;
-        bool hidden;
 
         public CooldownDisplay(Rectangle rect) : base(rect, ImageDB.Blank)
         {
@@ -23,14 +22,13 @@ namespace RingQuest.Scripts.UI
         {
             numberDisplay.text = cooldownRemaining.ToString();
 
-            if (cooldownRemaining == 0) hidden = true;
-            else hidden = false;
+            if (cooldownRemaining == 0) active = false;
+            else active = true;
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (!hidden)
-                base.Draw(gameTime, spriteBatch);
+            base.DrawSelf(gameTime, spriteBatch);
         }
     }
 }

@@ -152,7 +152,7 @@ namespace RingQuest
             updateChildren.Invoke(gameTime);
 
             // Check for mouse click
-            if (Input.GetMouseButtonDown(0) && promptPanel.hidden && combatPanel.hidden && equipmentPanel.hidden)
+            if (Input.GetMouseButtonDown(0) && !promptPanel.active && !combatPanel.active && !equipmentPanel.active)
                 CheckIfTileClicked(Input.GetMousePosition().ToVector2());
 
 

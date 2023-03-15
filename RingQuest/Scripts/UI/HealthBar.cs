@@ -28,14 +28,12 @@ namespace RingQuest
             text.text = currentHealth + " / " + maxHealth;
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
             remainingRect.Location = rect.Location;
 
             spriteBatch.Draw(ImageDB.Blank, rect, Color.Red);
             spriteBatch.Draw(ImageDB.Blank, remainingRect, Color.Green);
-            
-            base.Draw(gameTime, spriteBatch);
         }
 
         int calculateRemainingWidth(int currentHealth, int maxHealth)

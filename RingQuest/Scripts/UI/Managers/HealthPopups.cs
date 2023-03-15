@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using RingQuest.My_Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    class HealthPopup : IPoolable
+    class HealthPopup
     {
         public UIText UIText;
         public double spawnTime;
@@ -57,9 +56,9 @@ namespace RingQuest
 
         public static void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            for(int i = popups.tList.Count-1; i >= 0; i--)
+            for(int i = popups.active.Count-1; i >= 0; i--)
             {
-                HealthPopup popup = popups.tList[i];
+                HealthPopup popup = popups.active[i];
                 if (popup.active)
                 {
                     if (popup.spawnTime == -1) popup.spawnTime = gameTime.TotalGameTime.TotalSeconds;

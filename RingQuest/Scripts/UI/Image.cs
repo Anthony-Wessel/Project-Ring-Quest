@@ -17,11 +17,9 @@ namespace RingQuest
             this.image = image;
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(image, rect, Color.White);
-
-            base.Draw(gameTime, spriteBatch);
         }
     }
 }

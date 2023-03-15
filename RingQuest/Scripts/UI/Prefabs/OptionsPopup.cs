@@ -13,7 +13,6 @@ namespace RingQuest
     {
         UIList buttons;
 
-        bool hidden;
         int itemHeight;
 
         public OptionsPopup(Rectangle rect) : base(rect)
@@ -41,21 +40,17 @@ namespace RingQuest
 
             (buttons[2] as Button).active = false;
 
-            hidden = false;
+            active = false;
         }
 
         public void HidePopup()
         {
-            hidden = true;
+            active = true;
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (hidden) return;
-
             spriteBatch.Draw(ImageDB.Panel, rect, Color.Black);
-
-            base.Draw(gameTime, spriteBatch);
         }
     }
 }

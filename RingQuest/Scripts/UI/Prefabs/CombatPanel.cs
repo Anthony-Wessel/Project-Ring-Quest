@@ -16,7 +16,6 @@ namespace RingQuest
         Pool<CharacterCard> cards;
 
         CombatOptions combatOptions;
-        public bool hidden;
 
         public CombatPanel() : base(new Rectangle(260, 2, 1400, 1075))
         {
@@ -56,20 +55,17 @@ namespace RingQuest
             players.ConfigurePlacement();
             enemies.ConfigurePlacement();
 
-            hidden = false;
+            active = true;
         }
 
         public void Hide()
         {
-            hidden = true;
+            active = false;
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (hidden) return;
             spriteBatch.Draw(ImageDB.Panel, rect, Color.White);
-
-            base.Draw(gameTime, spriteBatch);
         }
     }
 }
