@@ -25,20 +25,20 @@ namespace RingQuest
             
             for (int i = 0; i < 3; i++)
             {
-                buttons.AddChild(new Button(rect, "", null));
-                (buttons[i] as Button).active = false;
+                buttons.AddChild(new TextButton(rect, "", null));
+                (buttons[i] as TextButton).active = false;
             }
         }
 
         public void OpenPopup(IItem clickedItem)
         {
-            (buttons[0] as Button).ReInit("Equip", () => PlayerEquipment.Equip(clickedItem as Weapon));
-            (buttons[0] as Button).active = true;
+            (buttons[0] as TextButton).ReInit("Equip", () => PlayerEquipment.Equip(clickedItem as Weapon));
+            (buttons[0] as TextButton).active = true;
 
-            (buttons[1] as Button).ReInit("Print", () => Debug.WriteLine(clickedItem.Name));
-            (buttons[1] as Button).active = true;
+            (buttons[1] as TextButton).ReInit("Print", () => Debug.WriteLine(clickedItem.Name));
+            (buttons[1] as TextButton).active = true;
 
-            (buttons[2] as Button).active = false;
+            (buttons[2] as TextButton).active = false;
 
             active = false;
         }

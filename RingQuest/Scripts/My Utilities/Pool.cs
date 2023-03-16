@@ -42,6 +42,9 @@ namespace RingQuest
 
             newItem = new T();
             active.Add(newItem);
+
+            if (newItem is UIElement) (newItem as UIElement).active = true;
+
             return newItem;
         }
 
@@ -50,7 +53,7 @@ namespace RingQuest
             inactive.Add(item);
             active.Remove(item);
 
-            if (item is UIElement) (item as UIElement).active = true;
+            if (item is UIElement) (item as UIElement).active = false;
         }
     }
 }

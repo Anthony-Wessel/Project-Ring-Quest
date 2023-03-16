@@ -10,15 +10,13 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class CharacterCard : UIElement
+    public class CharacterCard : Button
     {
         Image image;
         UIText name;
         HealthBar healthBar;
 
         Character character;
-
-        bool pressed;
 
         public CharacterCard() : base(new Rectangle(100, 100, 300, 400))
         {
@@ -32,8 +30,6 @@ namespace RingQuest
 
             healthBar = new HealthBar(new Rectangle(rect.X, rect.Y + 350, 300, 50), 0, 0);
             AddChild(healthBar);
-
-            GameManager.Instance.updateChildren += Update;
         }
 
         public void SetCharacter(Character character)
@@ -43,6 +39,9 @@ namespace RingQuest
             character.onHealthChanged = (amount) => HealthPopups.Display(image.rect, amount);
 
             updateUI();
+
+            // Set button functionality
+            ReInit(()=> CombatManager.SelectTarget(character));
         }
 
         void updateUI()
@@ -64,28 +63,6 @@ namespace RingQuest
         protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(ImageDB.CharacterFrame, rect, Color.White);
-        }
-
-        void Update(GameTime gameTime)
-        {
-            if (!active) return;
-
-            if (rect.Contains(Input.GetMousePosition()))
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    pressed = true;
-                }
-                if (Input.GetMouseButtonUp(0) && pressed)
-                {
-                    pressed = false;
-                    CombatManager.SelectTarget(character);
-                }
-            }
-            else
-            {
-                pressed = false;
-            }
         }
     }
 }

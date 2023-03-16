@@ -15,7 +15,7 @@ namespace RingQuest
         static PromptPanel instance;
 
         UIText title, prompt;
-        Pool<Button> buttons;
+        Pool<TextButton> buttons;
         HorizontalGroup buttonGroup;
 
         public PromptPanel() : base(new Rectangle(610, 290, 700, 500))
@@ -28,7 +28,7 @@ namespace RingQuest
             prompt = new UIText(new Rectangle(720, 390, 500, 300), "", Fonts.defaultFont, Color.Black);
             AddChild(prompt);
 
-            buttons = new Pool<Button>();
+            buttons = new Pool<TextButton>();
 
             buttonGroup = new HorizontalGroup(new Rectangle(720, 690, 500, 100));
             AddChild(buttonGroup);
@@ -47,7 +47,7 @@ namespace RingQuest
 
             foreach (string option in options.Keys)
             {
-                Button b = instance.buttons.Request();
+                TextButton b = instance.buttons.Request();
                 b.ReInit(option, options[option]);
                 b.active = true;
                 instance.buttonGroup.AddChild(b);

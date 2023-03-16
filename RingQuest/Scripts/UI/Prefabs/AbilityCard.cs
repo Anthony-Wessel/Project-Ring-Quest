@@ -10,20 +10,17 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class AbilityCard : UIElement
+    public class AbilityCard : Button
     {
-        Point expandedSize, reducedSize;
         Ability ability;
 
         public UIText name, description;
         public Image image;
         public CooldownDisplay cooldownDisplay;
 
-        bool pressed;
+        public AbilityCard() : this(new Rectangle(0,0,100,150), null) { }
 
-        public AbilityCard() : this(new Rectangle(0,0,100,150), Point.Zero, null) { }
-
-        public AbilityCard(Rectangle rect, Point expandedSize, Ability ability) : base(rect)
+        public AbilityCard(Rectangle rect, Ability ability) : base(rect)
         {
             image = new Image(Rectangle.Empty, ImageDB.Blank);
             AddChild(image);
@@ -37,13 +34,8 @@ namespace RingQuest
             description = new UIText(Rectangle.Empty, "", Fonts.defaultFont, Color.Black);
             AddChild(description);
 
-            reducedSize = rect.Size;
-            this.expandedSize = expandedSize;
-
             UpdateRects();
             SetAbility(ability);
-
-            GameManager.Instance.updateChildren += Update;
         }
 
         public void UpdateRects()
@@ -67,6 +59,10 @@ namespace RingQuest
 
         protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            // TODO: Move to a more suitable spot, preferably an event
+            if (ability != null)
+                cooldownDisplay.Update(ability.remainingCooldown);
+
             spriteBatch.Draw(ImageDB.Panel, rect, Color.White);
         }
 
@@ -79,30 +75,9 @@ namespace RingQuest
             image.image = ability.image;
             name.text = ability.name;
             description.text = ability.description;
-        }
-
-        void Update(GameTime gameTime)
-        {
-            if (!active) return;
-
-            cooldownDisplay.Update(ability.remainingCooldown);
-
-            if (rect.Contains(Input.GetMousePosition()))
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    pressed = true;
-                }
-                if (Input.GetMouseButtonUp(0) && pressed)
-                {
-                    pressed = false;
-                    CombatManager.SelectAbility(ability);
-                }
-            }
-            else
-            {
-                pressed = false;
-            }
+            
+            // Set button functionality
+            ReInit(() => CombatManager.SelectAbility(ability));
         }
     }
 }

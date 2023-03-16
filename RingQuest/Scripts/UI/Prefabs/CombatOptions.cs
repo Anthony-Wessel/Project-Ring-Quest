@@ -38,7 +38,6 @@ namespace RingQuest
         public void Open(Character player)
         {
             abilityGroup.Clear();
-
             abilityCards.Clear();
             
             foreach (Ability a in player.abilities)

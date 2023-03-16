@@ -1,54 +1,32 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace RingQuest
 {
+
     public class Button : UIElement
     {
-        UIText UIText;
-        Action OnClick;
+        public Action OnClick;
 
-        bool pressed, hovered;
+        public bool pressed, hovered;
         bool skipFrame;
 
-        public Button() : this(new Rectangle(0, 0, 100, 50), "", null){ }
-
-        public Button(Rectangle rect, string text, Action OnClick) : base(rect)
+        public Button(Rectangle rect) : base(rect)
         {
-            UIText = new UIText(rect, text, Fonts.defaultFont, Color.Black);
-            AddChild(UIText);
-
-            ReInit(text, OnClick);
-
             GameManager.Instance.updateChildren += Update;
         }
 
-        public void ReInit(string text, Action OnClick)
+        public void ReInit(Action OnClick)
         {
-            UIText.SetText(text);
-           
             this.OnClick = OnClick;
-
             skipFrame = true;
-        }
 
-        protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            Texture2D tex;
-            if (pressed) tex = ImageDB.Button_Pressed;
-            else if (hovered) tex = ImageDB.Button_Hovered;
-            else tex = ImageDB.Button;
-
-            spriteBatch.Draw(tex, rect, Color.White);
-
-            base.DrawSelf(gameTime, spriteBatch);
+            hovered = false;
+            pressed = false;
         }
 
         void Update(GameTime gameTime)

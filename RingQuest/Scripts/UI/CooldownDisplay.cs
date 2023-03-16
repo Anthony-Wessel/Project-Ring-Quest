@@ -16,6 +16,7 @@ namespace RingQuest.Scripts.UI
         {
             numberDisplay = new UIText(rect, "---", Fonts.large, Color.Black);
             AddChild(numberDisplay);
+            active = false;
         }
 
         public void Update(int cooldownRemaining)
