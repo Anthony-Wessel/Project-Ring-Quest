@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace RingQuest
     public class Button : UIElement
     {
         public Action OnClick;
+        bool requestClickTrigger;
 
         public bool pressed, hovered;
         bool skipFrame;
@@ -18,6 +20,7 @@ namespace RingQuest
         public Button(Rectangle rect) : base(rect)
         {
             GameManager.Instance.updateChildren += Update;
+            Input.OnMouseClicked += CheckClick;
         }
 
         public void ReInit(Action OnClick)
@@ -27,6 +30,24 @@ namespace RingQuest
 
             hovered = false;
             pressed = false;
+        }
+
+        void CheckClick(Point mousePosition)
+        {
+            if (!active) return;
+
+            requestClickTrigger = rect.Contains(mousePosition);
+        }
+
+        protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            if (requestClickTrigger)
+            {
+                Input.RequestClick(OnClick);
+                requestClickTrigger = false;
+            }
+
+            base.DrawSelf(gameTime, spriteBatch);
         }
 
         void Update(GameTime gameTime)
@@ -49,7 +70,6 @@ namespace RingQuest
                 if (Input.GetMouseButtonUp(0) && pressed)
                 {
                     pressed = false;
-                    OnClick.Invoke();
                 }
             }
             else

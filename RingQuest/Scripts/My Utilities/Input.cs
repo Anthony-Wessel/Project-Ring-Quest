@@ -4,11 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace RingQuest
 {
+    public delegate void ClickEvent(Point position);
+
     public class Input
     {
         static bool[] mouseButtonDownPreviously;
@@ -19,12 +22,20 @@ namespace RingQuest
         static MouseState mouseState;
         static KeyboardState keyboardState;
 
+        public static event ClickEvent OnMouseClicked;
+        static bool clickAvailable;
+        public static Stack<Action> clickRequests;
+
         public Input()
         {
             mouseButtonDownPreviously = new bool[3];
 
             keysPressedPreviously = new Keys[15];
             numKeysPressedPreviously = 0;
+
+            OnMouseClicked = (position) => { };
+            clickRequests = new Stack<Action>();
+            clickAvailable = false;
         }
 
         public void Update(GameTime gameTime)
@@ -37,6 +48,12 @@ namespace RingQuest
 
             mouseState = Mouse.GetState();
 
+            // Mouse click event
+            if (GetMouseButtonDown(0))
+            {
+                clickAvailable = true;
+            }
+
             // Update keyboard state
             numKeysPressedPreviously = keyboardState.GetPressedKeyCount();
             keyboardState.GetPressedKeys(keysPressedPreviously);
@@ -45,9 +62,6 @@ namespace RingQuest
         }
 
         #region Mouse
-
-        public delegate void OnMouseClick(Point mousePos);
-        public static OnMouseClick onMouseClick;
 
         public static bool GetMouseButton(int i)
         {
@@ -86,6 +100,36 @@ namespace RingQuest
             float xScale = 1920f / Screen.UnscaledSize.X;
 
             return new Vector2(xScale * mouseState.Position.X, yScale * mouseState.Position.Y).ToPoint();
+        }
+
+        public static void RequestClick(Action action)
+        {
+            clickRequests.Push(action);
+        }
+
+        public static void HandleClickRequests()
+        {
+            if (!clickAvailable) return;
+            
+            Debug.WriteLine(clickRequests.Count);
+
+            clickAvailable = false;
+
+            if (clickRequests.Count == 0) return;
+
+            foreach (Action a in clickRequests)
+            {
+                Debug.WriteLine(a.Target);
+            }
+
+            clickRequests.Pop().Invoke();
+            clickRequests.Clear();
+        }
+
+        public static void CheckForClick()
+        {
+            if (clickAvailable)
+                OnMouseClicked(GetMousePosition());
         }
 
         #endregion

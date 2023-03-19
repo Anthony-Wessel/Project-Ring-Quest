@@ -61,7 +61,7 @@ namespace RingQuest
             SetEquipmentItems();
             PlayerEquipment.onEquipmentUpdated += SetEquipmentItems;
 
-            active = false;
+            active = true;
         }
 
         protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)

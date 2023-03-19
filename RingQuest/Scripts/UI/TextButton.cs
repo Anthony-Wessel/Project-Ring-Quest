@@ -33,6 +33,8 @@ namespace RingQuest
 
         protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            base.DrawSelf(gameTime, spriteBatch);
+
             if (pressed) tex = ImageDB.Button_Pressed;
             else if (hovered) tex = ImageDB.Button_Hovered;
             else tex = ImageDB.Button;

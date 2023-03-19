@@ -18,9 +18,12 @@ namespace RingQuest
 
         Tile[,] tiles;
         Player player;
+        
         PromptPanel promptPanel;
         CombatPanel combatPanel;
         EquipmentUI equipmentPanel;
+        OptionsPopup optionsPopup;
+
         Input input;
 
         ExitEvent exit;
@@ -116,6 +119,7 @@ namespace RingQuest
             promptPanel = new PromptPanel();
             combatPanel = new CombatPanel();
             equipmentPanel = new EquipmentUI();
+            optionsPopup = new OptionsPopup();
         }
 
         #endregion
@@ -191,6 +195,7 @@ namespace RingQuest
             Resolution.BeginDraw();
             _spriteBatch.Begin(transformMatrix: Resolution.getTransformationMatrix());
 
+            Input.CheckForClick();
 
             // Draw tiles
             foreach (Tile t in tiles)
@@ -207,9 +212,12 @@ namespace RingQuest
             equipmentPanel.Draw(gameTime, _spriteBatch);
 
             HealthPopups.Draw(gameTime, _spriteBatch);
+            optionsPopup.Draw(gameTime, _spriteBatch);
 
             _spriteBatch.End();
-            
+
+            Input.HandleClickRequests();
+
             base.Draw(gameTime);
         }
 

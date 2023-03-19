@@ -11,14 +11,15 @@ namespace RingQuest
 {
     public class OptionsPopup : UIElement
     {
+        public static OptionsPopup instance;
+
         UIList buttons;
 
         int itemHeight;
 
-        public OptionsPopup(Rectangle rect) : base(rect)
+        public OptionsPopup() : base(new Rectangle(0,0,100,50))
         {
             itemHeight = rect.Height;
-
 
             buttons = new UIList(rect);
             AddChild(buttons);
@@ -28,24 +29,36 @@ namespace RingQuest
                 buttons.AddChild(new TextButton(rect, "", null));
                 (buttons[i] as TextButton).active = false;
             }
-        }
-
-        public void OpenPopup(IItem clickedItem)
-        {
-            (buttons[0] as TextButton).ReInit("Equip", () => PlayerEquipment.Equip(clickedItem as Weapon));
-            (buttons[0] as TextButton).active = true;
-
-            (buttons[1] as TextButton).ReInit("Print", () => Debug.WriteLine(clickedItem.Name));
-            (buttons[1] as TextButton).active = true;
-
-            (buttons[2] as TextButton).active = false;
 
             active = false;
+
+            instance = this;
+
+            Input.OnMouseClicked += (x) => { if (!rect.Contains(x)) HidePopup(); };
         }
 
-        public void HidePopup()
+        public static void OpenPopup(IItem clickedItem, Point location)
         {
-            active = true;
+            instance.rect = new Rectangle(location, instance.rect.Size);
+
+            (instance.buttons[0] as TextButton).ReInit("Equip", () => { PlayerEquipment.Equip(clickedItem as Weapon); HidePopup(); });
+            (instance.buttons[0] as TextButton).active = true;
+
+            (instance.buttons[1] as TextButton).ReInit("Print", () => { Debug.WriteLine(clickedItem.Name); HidePopup(); });
+            (instance.buttons[1] as TextButton).active = true;
+
+            (instance.buttons[2] as TextButton).active = false;
+
+            instance.active = true;
+        }
+
+        public static void HidePopup()
+        {
+            instance.active = false;
+            foreach (UIElement element in instance.buttons.children)
+            {
+                element.active = false;
+            }
         }
 
         protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)

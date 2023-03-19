@@ -10,7 +10,7 @@ namespace RingQuest
 {
     public abstract class UIElement
     {
-        protected List<UIElement> children;
+        public List<UIElement> children;
         public bool active;
 
         public UIElement(Rectangle rect)

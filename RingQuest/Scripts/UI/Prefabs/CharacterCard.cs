@@ -62,6 +62,8 @@ namespace RingQuest
 
         protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            base.DrawSelf(gameTime, spriteBatch);
+
             spriteBatch.Draw(ImageDB.CharacterFrame, rect, Color.White);
         }
     }

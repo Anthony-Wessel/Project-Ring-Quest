@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public class ItemGUI : UIElement
+    public class ItemGUI : Button
     {
         public Image image;
         public UIText text;
@@ -33,10 +33,14 @@ namespace RingQuest
 
             image.image = item.Sprite;
             text.text = item.Name + "\n" + item.Description;
+
+            ReInit(() => OptionsPopup.OpenPopup(item, Input.GetMousePosition()));
         }
 
         protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            base.DrawSelf(gameTime, spriteBatch);
+
             spriteBatch.Draw(ImageDB.Panel, rect, Color.White);
         }
     }

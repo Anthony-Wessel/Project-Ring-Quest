@@ -20,7 +20,6 @@ namespace RingQuest
 
         protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            Debug.WriteLine(image + " - " + rect);
             spriteBatch.Draw(image, rect, Color.White);
         }
     }
