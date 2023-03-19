@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,9 @@ namespace RingQuest
         List<ItemGUI> inventoryGUI;
         Inventory inventory;
 
-        UIList equipmentList, inventoryList;
+        UIText characterName, healthStat, damageDoneStat, damageTakenStat, accuracyStat, critChanceStat, critDamageStat;
+
+        UIList equipmentList, inventoryList, statList;
         Point ItemSlotSize = new Point(300, 80);
 
         public EquipmentUI() : base(new Rectangle(560,40,900,1000))
@@ -23,7 +26,6 @@ namespace RingQuest
             equipmentList = new UIList(new Rectangle(rect.X + 400, rect.Y, 500, 500));
             AddChild(equipmentList);
             equipmentList.spacing = 15;
-
 
             helmSlot = new ItemGUI(new Rectangle(Point.Zero, ItemSlotSize));
             equipmentList.AddChild(helmSlot);
@@ -39,6 +41,9 @@ namespace RingQuest
 
             offhandSlot = new ItemGUI(new Rectangle(Point.Zero, ItemSlotSize));
             equipmentList.AddChild(offhandSlot);
+
+            SetEquipmentItems();
+            PlayerEquipment.onEquipmentUpdated += SetEquipmentItems;
 
 
 
@@ -58,8 +63,39 @@ namespace RingQuest
             SetInventoryItems();
             inventory.onInventoryChanged += SetInventoryItems;
 
-            SetEquipmentItems();
-            PlayerEquipment.onEquipmentUpdated += SetEquipmentItems;
+
+
+            statList = new UIList(new Rectangle(rect.X + 400, rect.Y + 500, 500, 500));
+            AddChild(statList);
+
+            Rectangle singleStatRect = statList.rect;
+            singleStatRect.Height = 40;
+
+            characterName = new UIText(singleStatRect, "", Fonts.defaultFont, Color.Black);
+            statList.AddChild(characterName);
+
+            healthStat = new UIText(singleStatRect, "", Fonts.defaultFont, Color.Black);
+            statList.AddChild(healthStat);
+
+            damageDoneStat = new UIText(singleStatRect, "", Fonts.defaultFont, Color.Black);
+            statList.AddChild(damageDoneStat);
+
+            damageTakenStat = new UIText(singleStatRect, "", Fonts.defaultFont, Color.Black);
+            statList.AddChild(damageTakenStat);
+
+            accuracyStat = new UIText(singleStatRect, "", Fonts.defaultFont, Color.Black);
+            statList.AddChild(accuracyStat);
+
+            critChanceStat = new UIText(singleStatRect, "", Fonts.defaultFont, Color.Black);
+            statList.AddChild(critChanceStat);
+
+            critDamageStat = new UIText(singleStatRect, "", Fonts.defaultFont, Color.Black);
+            statList.AddChild(critDamageStat);
+
+            UpdateStats();
+            PlayerEquipment.onEquipmentUpdated += UpdateStats;
+
+
 
             active = true;
         }
@@ -68,7 +104,7 @@ namespace RingQuest
         {
             spriteBatch.Draw(ImageDB.Panel, inventoryList.rect, Color.DarkGray);
             spriteBatch.Draw(ImageDB.Panel, equipmentList.rect, Color.Gray);
-            spriteBatch.Draw(ImageDB.Panel, new Rectangle(rect.X + 400, rect.Y + 500, 500, 500), Color.White);
+            spriteBatch.Draw(ImageDB.Panel, statList.rect, Color.White);
         }
 
         void SetInventoryItems()
@@ -103,6 +139,18 @@ namespace RingQuest
             accessorySlot.SetItem(PlayerEquipment.equippedAccessory);
             weaponSlot.SetItem(PlayerEquipment.equippedWeapon);
             offhandSlot.SetItem(PlayerEquipment.equippedOffhand);
+        }
+
+        void UpdateStats()
+        {
+            Character c = Player.character;
+            characterName.text = c.name;
+            healthStat.text = "Health: " + c.currentHealth + " / " + c.maxHealth;
+            damageDoneStat.text = "Damage: " + c.bonusDamageDone;
+            damageTakenStat.text = "Armor: " + c.bonusDamageTaken;
+            accuracyStat.text = "Accuracy: " + c.accuracy;
+            critChanceStat.text = "Crit Chance: " + c.bonusCritChance;
+            critDamageStat.text = "Crit Multiplier: " + c.bonusCritMultiplier;
         }
     }
 }
