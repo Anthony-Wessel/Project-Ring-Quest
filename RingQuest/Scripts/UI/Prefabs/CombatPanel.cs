@@ -17,14 +17,14 @@ namespace RingQuest
 
         CombatOptions combatOptions;
 
-        public CombatPanel() : base(new Rectangle(260, 2, 1400, 1075))
+        public CombatPanel() : base(new FloatRect(260, 2, 1400, 1075))
         {
-            enemies = new HorizontalGroup(new Rectangle(rect.X + 200, rect.Y + 25, 1000, 400));
-            players = new HorizontalGroup(new Rectangle(rect.X + 200, rect.Y + 450, 1000, 400));
+            enemies = new HorizontalGroup(new FloatRect(rect.X + 200, rect.Y + 25, 1000, 400));
+            players = new HorizontalGroup(new FloatRect(rect.X + 200, rect.Y + 450, 1000, 400));
 
             cards = new Pool<CharacterCard>();
 
-            combatOptions = new CombatOptions(new Rectangle(rect.X + 50, rect.Y + 875, 1300, 175));
+            combatOptions = new CombatOptions(new FloatRect(rect.X + 50, rect.Y + 875, 1300, 175));
             AddChild(combatOptions);
 
             Instance = this;
@@ -65,7 +65,7 @@ namespace RingQuest
 
         protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(ImageDB.Panel, rect, Color.White);
+            spriteBatch.Draw(ImageDB.Panel, rect.rectangle, Color.White);
         }
     }
 }

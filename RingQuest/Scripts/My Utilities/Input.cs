@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public delegate void ClickEvent(Point position);
+    public delegate void ClickEvent(Vector2 position);
 
     public class Input
     {
@@ -94,12 +94,12 @@ namespace RingQuest
             return !GetMouseButton(i) && mouseButtonDownPreviously[i];
         }
 
-        public static Point GetMousePosition()
+        public static Vector2 GetMousePosition()
         {
             float yScale = 1080f / Screen.UnscaledSize.Y;
             float xScale = 1920f / Screen.UnscaledSize.X;
 
-            return new Vector2(xScale * mouseState.Position.X, yScale * mouseState.Position.Y).ToPoint();
+            return new Vector2(xScale * mouseState.Position.X, yScale * mouseState.Position.Y);
         }
 
         public static void RequestClick(Action action)

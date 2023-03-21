@@ -12,7 +12,7 @@ namespace RingQuest.Scripts.UI
     {
         UIText numberDisplay;
 
-        public CooldownDisplay(Rectangle rect) : base(rect, ImageDB.Blank)
+        public CooldownDisplay(FloatRect rect) : base(rect, ImageDB.Blank)
         {
             numberDisplay = new UIText(rect, "---", Fonts.large, Color.Black);
             AddChild(numberDisplay);

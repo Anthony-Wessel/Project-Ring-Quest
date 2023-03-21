@@ -144,6 +144,7 @@ namespace RingQuest
 
         protected override void Update(GameTime gameTime)
         {
+            Time.Update(gameTime);
             input.Update(gameTime);
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -157,7 +158,7 @@ namespace RingQuest
 
             // Check for mouse click
             if (Input.GetMouseButtonDown(0) && !promptPanel.active && !combatPanel.active && !equipmentPanel.active)
-                CheckIfTileClicked(Input.GetMousePosition().ToVector2());
+                CheckIfTileClicked(Input.GetMousePosition());
 
 
 

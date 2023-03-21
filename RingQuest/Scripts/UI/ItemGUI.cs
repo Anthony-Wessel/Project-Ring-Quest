@@ -13,12 +13,12 @@ namespace RingQuest
         public Image image;
         public UIText text;
 
-        public ItemGUI(Rectangle rect) : base(rect)
+        public ItemGUI(FloatRect rect) : base(rect)
         {
-            image = new Image(new Rectangle(rect.X, rect.Y, rect.Height, rect.Height), ImageDB.ChoiceEvent);
+            image = new Image(new FloatRect(rect.X, rect.Y, rect.Height, rect.Height), ImageDB.ChoiceEvent);
             AddChild(image);
 
-            text = new UIText(new Rectangle(rect.X + rect.Height, rect.Y, rect.Width - rect.Height, rect.Height), "", Fonts.defaultFont, Color.Black);
+            text = new UIText(new FloatRect(rect.X + rect.Height, rect.Y, rect.Width - rect.Height, rect.Height), "", Fonts.defaultFont, Color.Black);
             AddChild(text);
         }
 
@@ -41,7 +41,7 @@ namespace RingQuest
         {
             base.DrawSelf(gameTime, spriteBatch);
 
-            spriteBatch.Draw(ImageDB.Panel, rect, Color.White);
+            spriteBatch.Draw(ImageDB.Panel, rect.rectangle, Color.White);
         }
     }
 }

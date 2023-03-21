@@ -18,7 +18,7 @@ namespace RingQuest
         public SpriteFont font;
         public Color color;
 
-        public UIText(Rectangle parentRect, string text, SpriteFont font, Color color) : base(parentRect)
+        public UIText(FloatRect parentRect, string text, SpriteFont font, Color color) : base(parentRect)
         {
             SetText(text);
             this.font = font;

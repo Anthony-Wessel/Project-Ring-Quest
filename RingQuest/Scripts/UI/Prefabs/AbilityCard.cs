@@ -18,20 +18,20 @@ namespace RingQuest
         public Image image;
         public CooldownDisplay cooldownDisplay;
 
-        public AbilityCard() : this(new Rectangle(0,0,100,150), null) { }
+        public AbilityCard() : this(new FloatRect(0,0,100,150), null) { }
 
-        public AbilityCard(Rectangle rect, Ability ability) : base(rect)
+        public AbilityCard(FloatRect rect, Ability ability) : base(rect)
         {
-            image = new Image(Rectangle.Empty, ImageDB.Blank);
+            image = new Image(new FloatRect(), ImageDB.Blank);
             AddChild(image);
 
-            cooldownDisplay = new CooldownDisplay(Rectangle.Empty);
+            cooldownDisplay = new CooldownDisplay(new FloatRect());
             AddChild(cooldownDisplay);
 
-            name = new UIText(Rectangle.Empty, "", Fonts.defaultFont, Color.Black);
+            name = new UIText(new FloatRect(), "", Fonts.defaultFont, Color.Black);
             AddChild(name);
 
-            description = new UIText(Rectangle.Empty, "", Fonts.defaultFont, Color.Black);
+            description = new UIText(new FloatRect(), "", Fonts.defaultFont, Color.Black);
             AddChild(description);
 
             UpdateRects();
@@ -41,7 +41,7 @@ namespace RingQuest
         public void UpdateRects()
         {
             // Create image
-            Rectangle r1 = rect;
+            FloatRect r1 = rect;
             r1.Height = (int)(rect.Height * 0.5);
             image.rect = r1;
             cooldownDisplay.rect = r1;
@@ -65,7 +65,7 @@ namespace RingQuest
             if (ability != null)
                 cooldownDisplay.Update(ability.remainingCooldown);
 
-            spriteBatch.Draw(ImageDB.Panel, rect, Color.White);
+            spriteBatch.Draw(ImageDB.Panel, rect.rectangle, Color.White);
         }
 
         public void SetAbility(Ability ability)

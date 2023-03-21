@@ -17,7 +17,7 @@ namespace RingQuest
         public bool pressed, hovered;
         bool skipFrame;
 
-        public Button(Rectangle rect) : base(rect)
+        public Button(FloatRect rect) : base(rect)
         {
             GameManager.Instance.updateChildren += Update;
             Input.OnMouseClicked += CheckClick;
@@ -32,11 +32,11 @@ namespace RingQuest
             pressed = false;
         }
 
-        void CheckClick(Point mousePosition)
+        void CheckClick(Vector2 mousePosition)
         {
             if (!active) return;
 
-            requestClickTrigger = rect.Contains(mousePosition);
+            requestClickTrigger = rect.rectangle.Contains(mousePosition);
         }
 
         protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
@@ -50,7 +50,7 @@ namespace RingQuest
             base.DrawSelf(gameTime, spriteBatch);
         }
 
-        void Update(GameTime gameTime)
+        protected virtual void Update(GameTime gameTime)
         {
             if (!active) return;
 
@@ -60,7 +60,7 @@ namespace RingQuest
                 return;
             }
 
-            if (rect.Contains(Input.GetMousePosition()))
+            if (rect.rectangle.Contains(Input.GetMousePosition()))
             {
                 hovered = true;
                 if (Input.GetMouseButtonDown(0))

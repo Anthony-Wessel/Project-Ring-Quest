@@ -12,7 +12,7 @@ namespace RingQuest
     {
         public int spacing;
 
-        public UIList(Rectangle rect) : base(rect)
+        public UIList(FloatRect rect) : base(rect)
         {
         }
 
@@ -38,10 +38,10 @@ namespace RingQuest
 
         void ConfigurePlacement()
         {
-            int currentY = spacing;
+            float currentY = spacing;
             foreach (UIElement child in children)
             {
-                child.rect = new Rectangle(rect.X + (rect.Width - child.rect.Width) / 2, rect.Y + currentY, child.rect.Width, child.rect.Height);
+                child.rect = new FloatRect(rect.X + (rect.Width - child.rect.Width) / 2, rect.Y + currentY, child.rect.Width, child.rect.Height);
                 currentY += child.rect.Height + spacing;
             }
         }

@@ -18,19 +18,19 @@ namespace RingQuest
         Pool<TextButton> buttons;
         HorizontalGroup buttonGroup;
 
-        public PromptPanel() : base(new Rectangle(610, 290, 700, 500))
+        public PromptPanel() : base(new FloatRect(610, 290, 700, 500))
         {
             // Title
-            title = new UIText(new Rectangle(670, 315, 600, 50), "", Fonts.defaultFont, Color.Black);
+            title = new UIText(new FloatRect(670, 315, 600, 50), "", Fonts.defaultFont, Color.Black);
             AddChild(title);
 
             // Prompt
-            prompt = new UIText(new Rectangle(720, 390, 500, 300), "", Fonts.defaultFont, Color.Black);
+            prompt = new UIText(new FloatRect(720, 390, 500, 300), "", Fonts.defaultFont, Color.Black);
             AddChild(prompt);
 
             buttons = new Pool<TextButton>();
 
-            buttonGroup = new HorizontalGroup(new Rectangle(720, 690, 500, 100));
+            buttonGroup = new HorizontalGroup(new FloatRect(720, 690, 500, 100));
             AddChild(buttonGroup);
 
             instance = this;
@@ -76,7 +76,7 @@ namespace RingQuest
 
         protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(ImageDB.Panel, rect, Color.White);
+            spriteBatch.Draw(ImageDB.Panel, rect.rectangle, Color.White);
         }
     }
 }

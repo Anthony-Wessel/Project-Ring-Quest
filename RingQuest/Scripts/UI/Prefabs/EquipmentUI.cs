@@ -19,27 +19,27 @@ namespace RingQuest
         UIText characterName, healthStat, damageDoneStat, damageTakenStat, accuracyStat, critChanceStat, critDamageStat;
 
         UIList equipmentList, inventoryList, statList;
-        Point ItemSlotSize = new Point(300, 80);
+        Vector2 ItemSlotSize = new Vector2(300, 80);
 
-        public EquipmentUI() : base(new Rectangle(560,40,900,1000))
+        public EquipmentUI() : base(new FloatRect(560,40,900,1000))
         {
-            equipmentList = new UIList(new Rectangle(rect.X + 400, rect.Y, 500, 500));
+            equipmentList = new UIList(new FloatRect(rect.X + 400, rect.Y, 500, 500));
             AddChild(equipmentList);
             equipmentList.spacing = 15;
 
-            helmSlot = new ItemGUI(new Rectangle(Point.Zero, ItemSlotSize));
+            helmSlot = new ItemGUI(new FloatRect(Vector2.Zero, ItemSlotSize));
             equipmentList.AddChild(helmSlot);
 
-            armorSlot = new ItemGUI(new Rectangle(Point.Zero, ItemSlotSize));
+            armorSlot = new ItemGUI(new FloatRect(Vector2.Zero, ItemSlotSize));
             equipmentList.AddChild(armorSlot);
             
-            accessorySlot = new ItemGUI(new Rectangle(Point.Zero, ItemSlotSize));
+            accessorySlot = new ItemGUI(new FloatRect(Vector2.Zero, ItemSlotSize));
             equipmentList.AddChild(accessorySlot);
 
-            weaponSlot = new ItemGUI(new Rectangle(Point.Zero, ItemSlotSize));
+            weaponSlot = new ItemGUI(new FloatRect(Vector2.Zero, ItemSlotSize));
             equipmentList.AddChild(weaponSlot);
 
-            offhandSlot = new ItemGUI(new Rectangle(Point.Zero, ItemSlotSize));
+            offhandSlot = new ItemGUI(new FloatRect(Vector2.Zero, ItemSlotSize));
             equipmentList.AddChild(offhandSlot);
 
             SetEquipmentItems();
@@ -47,7 +47,7 @@ namespace RingQuest
 
 
 
-            inventoryList = new UIList(new Rectangle(rect.X, rect.Y, 400, 1000));
+            inventoryList = new UIList(new FloatRect(rect.X, rect.Y, 400, 1000));
             AddChild(inventoryList);
             inventoryList.spacing = 10;
 
@@ -55,7 +55,7 @@ namespace RingQuest
             inventoryGUI = new List<ItemGUI>();
             for (int i = 0; i < inventory.Size; i++)
             {
-                ItemGUI newItemGUI = new ItemGUI(new Rectangle(Point.Zero, ItemSlotSize));
+                ItemGUI newItemGUI = new ItemGUI(new FloatRect(Vector2.Zero, ItemSlotSize));
                 inventoryGUI.Add(newItemGUI);
                 inventoryList.AddChild(newItemGUI);
             }
@@ -65,10 +65,10 @@ namespace RingQuest
 
 
 
-            statList = new UIList(new Rectangle(rect.X + 400, rect.Y + 500, 500, 500));
+            statList = new UIList(new FloatRect(rect.X + 400, rect.Y + 500, 500, 500));
             AddChild(statList);
 
-            Rectangle singleStatRect = statList.rect;
+            FloatRect singleStatRect = statList.rect;
             singleStatRect.Height = 40;
 
             characterName = new UIText(singleStatRect, "", Fonts.defaultFont, Color.Black);
@@ -97,14 +97,14 @@ namespace RingQuest
 
 
 
-            active = true;
+            active = false;
         }
 
         protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(ImageDB.Panel, inventoryList.rect, Color.DarkGray);
-            spriteBatch.Draw(ImageDB.Panel, equipmentList.rect, Color.Gray);
-            spriteBatch.Draw(ImageDB.Panel, statList.rect, Color.White);
+            spriteBatch.Draw(ImageDB.Panel, inventoryList.rect.rectangle, Color.DarkGray);
+            spriteBatch.Draw(ImageDB.Panel, equipmentList.rect.rectangle, Color.Gray);
+            spriteBatch.Draw(ImageDB.Panel, statList.rect.rectangle, Color.White);
         }
 
         void SetInventoryItems()
@@ -120,7 +120,7 @@ namespace RingQuest
             // Add enough itemGUIs to represent whole inventory
             while (inventoryGUI.Count < inventory.Size)
             {
-                ItemGUI newItemGUI = new ItemGUI(new Rectangle(Point.Zero, ItemSlotSize));
+                ItemGUI newItemGUI = new ItemGUI(new FloatRect(Vector2.Zero, ItemSlotSize));
                 inventoryGUI.Add(newItemGUI);
                 inventoryList.AddChild(newItemGUI);
             }

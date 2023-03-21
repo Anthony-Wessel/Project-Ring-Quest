@@ -13,14 +13,14 @@ namespace RingQuest
     {
         public Texture2D image;
 
-        public Image(Rectangle rect, Texture2D image) : base(rect)
+        public Image(FloatRect rect, Texture2D image) : base(rect)
         {
             this.image = image;
         }
 
         protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(image, rect, Color.White);
+            spriteBatch.Draw(image, rect.rectangle, Color.White);
         }
     }
 }

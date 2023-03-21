@@ -10,7 +10,7 @@ namespace RingQuest
 {
     public class HorizontalGroup : UIElement
     {
-        public HorizontalGroup(Rectangle rect) : base(rect) { }
+        public HorizontalGroup(FloatRect rect) : base(rect) { }
 
         public UIElement this[int index]
         {
@@ -33,7 +33,7 @@ namespace RingQuest
 
             if (children.Count == 1)
             {
-                children[0].rect = new Rectangle(new Point(rect.X + (rect.Width - children[0].rect.Width) / 2, rect.Y + (rect.Height - children[0].rect.Height) / 2), children[0].rect.Size);
+                children[0].rect = new FloatRect(new Vector2(rect.X + (rect.Width - children[0].rect.Width) / 2, rect.Y + (rect.Height - children[0].rect.Height) / 2), children[0].rect.Size);
                 return;
             }
 
@@ -45,17 +45,17 @@ namespace RingQuest
 
             float remainingWidth = rect.Width - summedWidth;
             int gaps = children.Count;
-            int gapSize = (int)(remainingWidth / gaps);
+            float gapSize = remainingWidth / gaps;
 
-            int currentX = rect.X + gapSize/2;
+            float currentX = rect.X + gapSize/2;
             foreach (UIElement child in children)
             {
-                child.rect = new Rectangle(new Point(currentX, rect.Y + (rect.Height - child.rect.Height) / 2), child.rect.Size);
+                child.rect = new FloatRect(new Vector2(currentX, rect.Y + (rect.Height - child.rect.Height) / 2), child.rect.Size);
                 currentX += child.rect.Width + gapSize;
             }
         }
 
-        public void Init(Rectangle rect, List<UIElement> children)
+        public void Init(FloatRect rect, List<UIElement> children)
         {
             this.rect = rect;
             if (children == null) this.children = new List<UIElement>();

@@ -15,9 +15,9 @@ namespace RingQuest
 
         UIList buttons;
 
-        int itemHeight;
+        float itemHeight;
 
-        public OptionsPopup() : base(new Rectangle(0,0,100,50))
+        public OptionsPopup() : base(new FloatRect(0,0,100,50))
         {
             itemHeight = rect.Height;
 
@@ -34,12 +34,12 @@ namespace RingQuest
 
             instance = this;
 
-            Input.OnMouseClicked += (x) => { if (!rect.Contains(x)) HidePopup(); };
+            Input.OnMouseClicked += (x) => { if (!rect.rectangle.Contains(x)) HidePopup(); };
         }
 
-        public static void OpenPopup(IItem clickedItem, Point location)
+        public static void OpenPopup(IItem clickedItem, Vector2 location)
         {
-            instance.rect = new Rectangle(location, instance.rect.Size);
+            instance.rect = new FloatRect(location, instance.rect.Size);
 
             (instance.buttons[0] as TextButton).ReInit("Equip", () => { PlayerEquipment.Equip(clickedItem as Weapon); HidePopup(); });
             (instance.buttons[0] as TextButton).active = true;
@@ -63,7 +63,7 @@ namespace RingQuest
 
         protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(ImageDB.Panel, rect, Color.Black);
+            spriteBatch.Draw(ImageDB.Panel, rect.rectangle, Color.Black);
         }
     }
 }

@@ -15,10 +15,10 @@ namespace RingQuest
 
         Pool<AbilityCard> abilityCards;
 
-        public CombatOptions(Rectangle rect) : base(rect)
+        public CombatOptions(FloatRect rect) : base(rect)
         {
             this.rect = rect;
-            Rectangle oneThirdRect = rect;
+            FloatRect oneThirdRect = rect;
             oneThirdRect.Width = rect.Width / 3;
 
             abilityGroup = new HorizontalGroup(oneThirdRect);
@@ -50,7 +50,7 @@ namespace RingQuest
         
         protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(ImageDB.Blank, rect, Color.Black);
+            spriteBatch.Draw(ImageDB.Blank, rect.rectangle, Color.Black);
         }
     }
 }

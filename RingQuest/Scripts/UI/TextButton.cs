@@ -15,9 +15,9 @@ namespace RingQuest
         UIText UIText;
         Texture2D tex;
 
-        public TextButton() : this(new Rectangle(0, 0, 100, 50), "", null){ }
+        public TextButton() : this(new FloatRect(0, 0, 100, 50), "", null){ }
 
-        public TextButton(Rectangle rect, string text, Action OnClick) : base(rect)
+        public TextButton(FloatRect rect, string text, Action OnClick) : base(rect)
         {
             UIText = new UIText(rect, text, Fonts.defaultFont, Color.Black);
             AddChild(UIText);
@@ -39,7 +39,7 @@ namespace RingQuest
             else if (hovered) tex = ImageDB.Button_Hovered;
             else tex = ImageDB.Button;
 
-            spriteBatch.Draw(tex, rect, Color.White);
+            spriteBatch.Draw(tex, rect.rectangle, Color.White);
         }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace RingQuest
         public List<UIElement> children;
         public bool active;
 
-        public UIElement(Rectangle rect)
+        public UIElement(FloatRect rect)
         {
             children = new List<UIElement>();
 
@@ -54,8 +55,8 @@ namespace RingQuest
             }
         }
 
-        private Rectangle r;
-        public Rectangle rect
+        private FloatRect r;
+        public FloatRect rect
         {
             get
             {

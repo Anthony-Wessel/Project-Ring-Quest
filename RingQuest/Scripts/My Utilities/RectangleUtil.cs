@@ -9,23 +9,32 @@ namespace RingQuest
 {
     public static class RectangleUtil
     {
-        public static Rectangle ScaleProportionately(this Rectangle original, Rectangle from, Rectangle to)
+        
+        public static FloatRect ScaleProportionately(this FloatRect original, FloatRect from, FloatRect to)
         {
-            if (original == from) return to;
+            if (from.Equals(to)) return original;
 
-            float xProgress = (float)(original.X - from.X) / from.Width;
-            float yProgress = (float)(original.Y - from.Y) / from.Height;
+            float xProgress = (original.X - from.X) / from.Width;
+            float yProgress = (original.Y - from.Y) / from.Height;
 
-            float widthMultiplier = (float)to.Width / from.Width;
-            float heightMultiplier = (float)to.Height / from.Height;
+            float widthMultiplier = to.Width / from.Width;
+            float heightMultiplier = to.Height / from.Height;
 
-            Rectangle newRect = new Rectangle();
-            newRect.X = (int)(to.X + (xProgress * to.Width));
-            newRect.Y = (int)(to.Y + (yProgress * to.Height));
-            newRect.Width = (int)(original.Width * widthMultiplier);
-            newRect.Height = (int)(original.Height * heightMultiplier);
+            FloatRect newRect = new FloatRect();
+            newRect.X = to.X + (xProgress * to.Width);
+            newRect.Y = to.Y + (yProgress * to.Height);
+            newRect.Width = original.Width * widthMultiplier;
+            newRect.Height = original.Height * heightMultiplier;
 
             return newRect;
+        }
+
+        public static FloatRect Lerp(FloatRect a, FloatRect b, float t)
+        {
+            return new FloatRect(MathHelper.Lerp(a.X, b.X, t),
+                                MathHelper.Lerp(a.Y, b.Y, t),
+                                MathHelper.Lerp(a.Width, b.Width, t),
+                                MathHelper.Lerp(a.Height, b.Height, t));
         }
     }
 }

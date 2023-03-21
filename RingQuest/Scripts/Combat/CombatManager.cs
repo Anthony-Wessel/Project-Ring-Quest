@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
+    public delegate void NewTurn(Character activeCharacter);
+
     public static class CombatManager
     {
         public static Queue<Character> turnQueue;
@@ -17,9 +19,12 @@ namespace RingQuest
         public static bool combatEnded;
         public static Ability playersActiveAbility;
 
+        public static event NewTurn OnNewTurnStarted;
+
         public static void Init()
         {
             turnQueue = new Queue<Character>();
+            OnNewTurnStarted = (x) => { };
         }
 
         public static void BeginNewCombat(PlayerCharacter pc, List<AICharacter> enemies, Action<bool> OnCompleted = null)
@@ -37,6 +42,7 @@ namespace RingQuest
             CombatPanel.Instance.Open();
 
             combatEnded = false;
+
             StartNewTurn();
         }
 
@@ -89,8 +95,9 @@ namespace RingQuest
                 turnQueue.Enqueue(activeCharacter);
             }
             while (activeCharacter.isDead);
-            
-            
+
+            OnNewTurnStarted(activeCharacter);
+
             // Start new active character's turn
             activeCharacter.TakeTurn();
         }

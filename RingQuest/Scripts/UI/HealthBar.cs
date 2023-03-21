@@ -10,10 +10,10 @@ namespace RingQuest
 {
     public class HealthBar : UIElement
     {
-        Rectangle remainingRect;
+        FloatRect remainingRect;
         UIText text;
 
-        public HealthBar(Rectangle rect, int currentHealth, int maxHealth) : base(rect)
+        public HealthBar(FloatRect rect, int currentHealth, int maxHealth) : base(rect)
         {
             remainingRect = rect;
             remainingRect.Width = calculateRemainingWidth(currentHealth, maxHealth);
@@ -32,8 +32,8 @@ namespace RingQuest
         {
             remainingRect.Location = rect.Location;
 
-            spriteBatch.Draw(ImageDB.Blank, rect, Color.Red);
-            spriteBatch.Draw(ImageDB.Blank, remainingRect, Color.Green);
+            spriteBatch.Draw(ImageDB.Blank, rect.rectangle, Color.Red);
+            spriteBatch.Draw(ImageDB.Blank, remainingRect.rectangle, Color.Green);
         }
 
         int calculateRemainingWidth(int currentHealth, int maxHealth)

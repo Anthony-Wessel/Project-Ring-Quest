@@ -15,12 +15,12 @@ namespace RingQuest
         public double spawnTime;
         public Color baseColor;
 
-        public void Init(string text, Color color, Point position)
+        public void Init(string text, Color color, Vector2 position)
         {
-            if (UIText == null) UIText = new UIText(Rectangle.Empty, "", Fonts.large, Color.Black);
+            if (UIText == null) UIText = new UIText(new FloatRect(), "", Fonts.large, Color.Black);
 
             UIText.text = text;
-            UIText.rect = new Rectangle(position, Point.Zero);
+            UIText.rect = new FloatRect(position, Vector2.Zero);
             UIText.color = color;
 
             baseColor = color;
@@ -35,10 +35,10 @@ namespace RingQuest
     {
         static Pool<HealthPopup> popups = new Pool<HealthPopup>();
 
-        public static void Display(Rectangle area, int amount)
+        public static void Display(FloatRect area, int amount)
         {
             HealthPopup newPopup = popups.Request();
-            Point position = new Point(RNG.NextInt(area.X, area.X + area.Width), RNG.NextInt(area.Y, area.Y + area.Height));
+            Vector2 position = new Vector2(RNG.NextFloat(area.X, area.X + area.Width), RNG.NextFloat(area.Y, area.Y + area.Height));
             
             if (amount > 0)
             {
