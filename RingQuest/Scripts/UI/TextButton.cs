@@ -15,6 +15,8 @@ namespace RingQuest
         UIText UIText;
         Texture2D tex;
 
+        double lastPress;
+
         public TextButton() : this(new FloatRect(0, 0, 100, 50), "", null){ }
 
         public TextButton(FloatRect rect, string text, Action OnClick) : base(rect)
@@ -27,7 +29,7 @@ namespace RingQuest
 
         public void ReInit(string text, Action OnClick)
         {
-            ReInit(OnClick);
+            ReInit(() => { lastPress = Time.Now(); OnClick(); });
             UIText.SetText(text);
         }
 
@@ -35,8 +37,7 @@ namespace RingQuest
         {
             base.DrawSelf(gameTime, spriteBatch);
 
-            if (pressed) tex = ImageDB.Button_Pressed;
-            else if (hovered) tex = ImageDB.Button_Hovered;
+            if (Time.Now() - lastPress < 0.2) tex = ImageDB.Button_Pressed;
             else tex = ImageDB.Button;
 
             spriteBatch.Draw(tex, rect.rectangle, Color.White);

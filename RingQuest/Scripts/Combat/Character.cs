@@ -21,8 +21,8 @@ namespace RingQuest
 
         public bool isDead;
 
-        public event EventTrigger onCharacterUpdated;
-        public event IntEventTrigger onHealthChanged;
+        public EventTrigger onCharacterUpdated;
+        public IntEventTrigger onHealthChanged;
 
         public List<Ability> abilities;
         public List<Effect> combatEffects;

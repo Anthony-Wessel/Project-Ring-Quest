@@ -78,6 +78,19 @@ namespace RingQuest
         {
             base.DrawSelf(gameTime, spriteBatch);
 
+            if (changingSize)
+            {
+                if (Time.Now() - sizeChangeTime > 0.25)
+                {
+                    rect = targetRect;
+                    changingSize = false;
+                }
+                else
+                {
+                    rect = RectangleUtil.Lerp(rect, targetRect, 0.1f);
+                }
+            }
+
             spriteBatch.Draw(ImageDB.CharacterFrame, rect.rectangle, Color.White);
         }
 
@@ -103,25 +116,6 @@ namespace RingQuest
             sizeChangeTime = Time.Now();
             targetRect = new FloatRect(rect.Location, normalSize);
             changingSize = true;
-        }
-
-        protected override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-
-            if (changingSize)
-            {
-                if (Time.Now() - sizeChangeTime > 0.25)
-                {
-                    rect = targetRect;
-                    changingSize = false;
-                }
-                else
-                {
-                    rect = RectangleUtil.Lerp(rect, targetRect, 0.1f);
-                }
-            }
-            
         }
     }
 }
