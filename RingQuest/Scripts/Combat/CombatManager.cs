@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public delegate void NewTurn(Character activeCharacter);
-
     public static class CombatManager
     {
         public static Queue<Character> turnQueue;
@@ -19,7 +17,7 @@ namespace RingQuest
         public static bool combatEnded;
         public static Ability playersActiveAbility;
 
-        public static event NewTurn OnNewTurnStarted;
+        public static event CharacterEventTrigger OnNewTurnStarted;
 
         public static void Init()
         {

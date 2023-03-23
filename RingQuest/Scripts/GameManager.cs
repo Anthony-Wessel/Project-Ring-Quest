@@ -28,8 +28,7 @@ namespace RingQuest
 
         ExitEvent exit;
 
-        public delegate void UpdateChildren(GameTime gameTime);
-        public UpdateChildren updateChildren;
+        public GameTimeEventTrigger updateChildren;
 
         public GameManager()
         {

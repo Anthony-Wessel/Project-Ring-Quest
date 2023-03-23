@@ -10,8 +10,6 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public delegate void ClickEvent(Vector2 position);
-
     public class Input
     {
         static bool[] mouseButtonDownPreviously;
@@ -22,7 +20,7 @@ namespace RingQuest
         static MouseState mouseState;
         static KeyboardState keyboardState;
 
-        public static event ClickEvent OnMouseClicked;
+        public static event Vector2EventTrigger OnMouseClicked;
         static bool clickAvailable;
         public static Stack<Action> clickRequests;
 

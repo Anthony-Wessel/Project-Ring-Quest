@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public delegate void OnEquipmentUpdated();
-
     public static class PlayerEquipment
     {
         public static PlayerCharacter playerCharacter;
@@ -18,7 +16,7 @@ namespace RingQuest
 
         public static Weapon equippedWeapon, equippedOffhand;
 
-        public static event OnEquipmentUpdated onEquipmentUpdated = () => { };
+        public static event EventTrigger onEquipmentUpdated = () => { };
 
         // HELMET
         public static void Equip(Helmet helmet)

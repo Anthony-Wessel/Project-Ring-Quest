@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace RingQuest
 {
-    public delegate void OnInventoryChanged();
-
     public class Inventory
     {
         public IItem[] items;
 
         public int Size { get => items.Length; }
 
-        public event OnInventoryChanged onInventoryChanged;
+        public event EventTrigger onInventoryChanged;
 
         public Inventory(int size)
         {
